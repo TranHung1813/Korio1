@@ -1,0 +1,2364 @@
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0plus
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"CapSense_Adc_INT.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_uidiv
+  20              		.global	__aeabi_idiv
+  21              		.section	.text.CapSense_AdcIntrHandler,"ax",%progbits
+  22              		.align	2
+  23              		.global	CapSense_AdcIntrHandler
+  24              		.code	16
+  25              		.thumb_func
+  26              		.type	CapSense_AdcIntrHandler, %function
+  27              	CapSense_AdcIntrHandler:
+  28              	.LFB1:
+  29              		.file 1 "Generated_Source\\PSoC4\\CapSense_Adc_INT.c"
+   1:Generated_Source\PSoC4/CapSense_Adc_INT.c **** /***************************************************************************//**
+   2:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \file CapSense_Adc_INT.c
+   3:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \version 5.0
+   4:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *
+   5:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \brief
+   6:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   This file contains the source code for implementation of the CapSense
+   7:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   Component ADC functionality Interrupt Service Routine (ISR).
+   8:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *
+   9:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \see CapSense v5.0 Datasheet
+  10:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *
+  11:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *//*****************************************************************************
+  12:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * Copyright (2016-2017), Cypress Semiconductor Corporation.
+  13:Generated_Source\PSoC4/CapSense_Adc_INT.c **** ********************************************************************************
+  14:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * This software is owned by Cypress Semiconductor Corporation (Cypress) and is
+  15:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * protected by and subject to worldwide patent protection (United States and
+  16:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * foreign), United States copyright laws and international treaty provisions.
+  17:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * Cypress hereby grants to licensee a personal, non-exclusive, non-transferable
+  18:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * license to copy, use, modify, create derivative works of, and compile the
+  19:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * Cypress Source Code and derivative works for the sole purpose of creating
+  20:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * custom software in support of licensee product to be used only in conjunction
+  21:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * with a Cypress integrated circuit as specified in the applicable agreement.
+  22:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * Any reproduction, modification, translation, compilation, or representation of
+  23:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * this software except as specified above is prohibited without the express
+  24:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * written permission of Cypress.
+  25:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *
+  26:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH
+  27:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  28:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 2
+
+
+  29:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * Cypress reserves the right to make changes without further notice to the
+  30:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * materials described herein. Cypress does not assume any liability arising out
+  31:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * of the application or use of any product or circuit described herein. Cypress
+  32:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * does not authorize its products for use as critical components in life-support
+  33:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * systems where a malfunction or failure may reasonably be expected to result in
+  34:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * significant injury to the user. The inclusion of Cypress' product in a life-
+  35:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * support systems application implies that the manufacturer assumes all risk of
+  36:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * such use and in doing so indemnifies Cypress against all charges. Use may be
+  37:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * limited by and subject to the applicable Cypress software license agreement.
+  38:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *******************************************************************************/
+  39:Generated_Source\PSoC4/CapSense_Adc_INT.c **** #include "CyLib.h"
+  40:Generated_Source\PSoC4/CapSense_Adc_INT.c **** #include "cytypes.h"
+  41:Generated_Source\PSoC4/CapSense_Adc_INT.c **** #include "cyfitter.h"
+  42:Generated_Source\PSoC4/CapSense_Adc_INT.c **** #include "CapSense_Adc.h"
+  43:Generated_Source\PSoC4/CapSense_Adc_INT.c **** #include "CapSense_Sensing.h"
+  44:Generated_Source\PSoC4/CapSense_Adc_INT.c **** #include "CapSense_Configuration.h"
+  45:Generated_Source\PSoC4/CapSense_Adc_INT.c **** #include "cyapicallbacks.h"
+  46:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  47:Generated_Source\PSoC4/CapSense_Adc_INT.c **** /**
+  48:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \cond SECTION_ADC_INTERRUPT
+  49:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \addtogroup group_c_interrupt
+  50:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \{
+  51:Generated_Source\PSoC4/CapSense_Adc_INT.c **** */
+  52:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  53:Generated_Source\PSoC4/CapSense_Adc_INT.c **** #if (CapSense_ADC_EN)
+  54:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  55:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  56:Generated_Source\PSoC4/CapSense_Adc_INT.c **** /*******************************************************************************
+  57:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * Function Name: CapSense_AdcIntrHandler
+  58:Generated_Source\PSoC4/CapSense_Adc_INT.c **** ****************************************************************************//**
+  59:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *
+  60:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \brief
+  61:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   This is an internal ISR function for the ADC implementation.
+  62:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *
+  63:Generated_Source\PSoC4/CapSense_Adc_INT.c **** * \details
+  64:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   This ISR is triggered after a measurement completes or during the calibration
+  65:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   phases.
+  66:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *
+  67:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   To use the entry or exit callbacks, define
+  68:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   CapSense_ADC_[ENTRY|EXIT]_CALLBACK
+  69:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   and define the corresponding function,
+  70:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *   CapSense_Adc[Entry|Exit]Callback().
+  71:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *
+  72:Generated_Source\PSoC4/CapSense_Adc_INT.c **** *******************************************************************************/
+  73:Generated_Source\PSoC4/CapSense_Adc_INT.c **** CY_ISR(CapSense_AdcIntrHandler)
+  74:Generated_Source\PSoC4/CapSense_Adc_INT.c **** {
+  30              		.loc 1 74 0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+  35              		.cfi_def_cfa_offset 20
+  36              		.cfi_offset 4, -20
+  37              		.cfi_offset 5, -16
+  38              		.cfi_offset 6, -12
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 3
+
+
+  41 0002 4746     		mov	r7, r8
+  42 0004 80B4     		push	{r7}
+  43              		.cfi_def_cfa_offset 24
+  44              		.cfi_offset 8, -24
+  75:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     static uint16 tVssa2Vref;
+  76:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     static uint16 tFull;
+  77:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     static uint16 vMaxMv;
+  78:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  79:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     uint32 tmpResult;
+  80:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     uint32 polarity;
+  81:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     uint8 adcFsmStatus;
+  82:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     uint8 tmpChId;
+  83:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  84:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     #if (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE)
+  85:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         uint8  interruptState;
+  86:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         uint32 newRegValue;
+  87:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  88:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         static uint16 tVdda2Vref;
+  89:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         static uint16 tRecover;
+  90:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     #endif /* (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE) */
+  91:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  92:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     #ifdef CapSense_ADC_ENTRY_CALLBACK
+  93:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         CapSense_AdcEntryCallback();
+  94:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     #endif /* CapSense_ADC_ENTRY_CALLBACK */
+  95:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  96:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     /* Mask all CSD block interrupts (disable all interrupts) */
+  97:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     CY_SET_REG32(CapSense_INTR_MASK_PTR, CapSense_INTR_MASK_CLEAR_MASK);
+  45              		.loc 1 97 0
+  46 0006 0022     		movs	r2, #0
+  47 0008 5E4B     		ldr	r3, .L14
+  48 000a 1A60     		str	r2, [r3]
+  98:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+  99:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     /* Clear all pending interrupts of CSD block */
+ 100:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     CY_SET_REG32(CapSense_INTR_PTR, CapSense_INTR_ALL_MASK);
+  49              		.loc 1 100 0
+  50 000c 0732     		adds	r2, r2, #7
+  51 000e FF32     		adds	r2, r2, #255
+  52 0010 5D4B     		ldr	r3, .L14+4
+  53 0012 1A60     		str	r2, [r3]
+ 101:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 102:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     /* Read ADC result and check for ADC_ABORT or ADC_OVERFLOW flags */
+ 103:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     tmpResult = CY_GET_REG32(CapSense_ADC_RES_PTR);
+  54              		.loc 1 103 0
+  55 0014 5D4B     		ldr	r3, .L14+8
+  56 0016 1C68     		ldr	r4, [r3]
+  57              	.LVL0:
+ 104:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     if (0uL == (tmpResult & CapSense_AdcADC_RES_ABORT_MASK))
+  58              		.loc 1 104 0
+  59 0018 002C     		cmp	r4, #0
+  60 001a 00DA     		bge	.LCB26
+  61 001c AAE0     		b	.L2	@long jump
+  62              	.LCB26:
+ 105:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     {
+ 106:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         if (0uL == (tmpResult & CapSense_AdcADC_RES_OVERFLOW_MASK))
+  63              		.loc 1 106 0
+  64 001e 6300     		lsls	r3, r4, #1
+  65 0020 00D5     		bpl	.LCB30
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 4
+
+
+  66 0022 A2E0     		b	.L3	@long jump
+  67              	.LCB30:
+ 107:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         {
+ 108:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             /* Read ADC status, define polarity, value and ChId */
+ 109:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             adcFsmStatus = (uint8)(CapSense_dsRam.adcStatus & CapSense_AdcSTATUS_FSM_MASK);
+  68              		.loc 1 109 0
+  69 0024 5A4D     		ldr	r5, .L14+12
+  70 0026 2021     		movs	r1, #32
+  71 0028 6B5C     		ldrb	r3, [r5, r1]
+  72 002a F73A     		subs	r2, r2, #247
+  73 002c 9343     		bics	r3, r2
+  74              	.LVL1:
+ 110:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             /* Select the polarity bit */
+ 111:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             polarity = tmpResult & CapSense_AdcADC_RES_HSCMPPOL_MASK;
+  75              		.loc 1 111 0
+  76 002e 8022     		movs	r2, #128
+  77 0030 5202     		lsls	r2, r2, #9
+  78 0032 2240     		ands	r2, r4
+  79              	.LVL2:
+ 112:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             /* Select the result value */
+ 113:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             tmpResult &= CapSense_AdcADC_RES_VALUE_MASK;
+  80              		.loc 1 113 0
+  81 0034 2004     		lsls	r0, r4, #16
+  82 0036 000C     		lsrs	r0, r0, #16
+  83              	.LVL3:
+ 114:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             tmpChId = CapSense_dsRam.adcStatus & (uint8)(CapSense_AdcSTATUS_LASTCHAN_MASK);
+  84              		.loc 1 114 0
+  85 0038 6D5C     		ldrb	r5, [r5, r1]
+  86 003a 1139     		subs	r1, r1, #17
+  87 003c 0D40     		ands	r5, r1
+  88              	.LVL4:
+ 115:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 116:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             /* ADC could have been converting or calibrating; handle each differently. */
+ 117:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             switch (adcFsmStatus)
+  89              		.loc 1 117 0
+  90 003e 202B     		cmp	r3, #32
+  91 0040 4FD0     		beq	.L5
+  92 0042 02D8     		bhi	.L6
+  93 0044 102B     		cmp	r3, #16
+  94 0046 3ED0     		beq	.L7
+  95 0048 98E0     		b	.L1
+  96              	.L6:
+  97 004a 302B     		cmp	r3, #48
+  98 004c 63D0     		beq	.L8
+  99 004e 402B     		cmp	r3, #64
+ 100 0050 00D0     		beq	.LCB65
+ 101 0052 93E0     		b	.L1	@long jump
+ 102              	.LCB65:
+ 118:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             {
+ 119:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             case CapSense_AdcSTATUS_CONVERTING:
+ 120:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 /*
+ 121:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 * After the converting will calculate an ADC result in mV depending on
+ 122:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 * sourcing or sinking mode. Checks for a saturation in all modes.
+ 123:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 */
+ 124:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 /* HSCMP polarity is 0:sink, 1:source */
+ 125:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 if(0uL != polarity) /* Sourcing */
+ 103              		.loc 1 125 0
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 5
+
+
+ 104 0054 002A     		cmp	r2, #0
+ 105 0056 0ED0     		beq	.L10
+ 126:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 {
+ 127:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Saturate result at tVssa2Vref */
+ 128:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     tmpResult = (tmpResult > (uint32)tVssa2Vref) ? (uint32)tVssa2Vref : tmpResult;
+ 106              		.loc 1 128 0
+ 107 0058 4E4B     		ldr	r3, .L14+16
+ 108              	.LVL5:
+ 109 005a 1B88     		ldrh	r3, [r3]
+ 110 005c 9842     		cmp	r0, r3
+ 111 005e 00D9     		bls	.L11
+ 112 0060 1800     		movs	r0, r3
+ 113              	.LVL6:
+ 114              	.L11:
+ 129:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Scale result to Resolution range with rounding*/
+ 130:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     tmpResult = ((((uint32)tVssa2Vref - tmpResult) * CapSense_AdcRES_MAX) +
+ 115              		.loc 1 130 0
+ 116 0062 1B1A     		subs	r3, r3, r0
+ 117 0064 9802     		lsls	r0, r3, #10
+ 118              	.LVL7:
+ 119 0066 C01A     		subs	r0, r0, r3
+ 131:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                                  ((uint32)tFull >> 1uL)) / (uint32)tFull;
+ 120              		.loc 1 131 0
+ 121 0068 4A4B     		ldr	r3, .L14+16
+ 122 006a 5988     		ldrh	r1, [r3, #2]
+ 123 006c 4A08     		lsrs	r2, r1, #1
+ 124              	.LVL8:
+ 130:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                                  ((uint32)tFull >> 1uL)) / (uint32)tFull;
+ 125              		.loc 1 130 0
+ 126 006e 8018     		adds	r0, r0, r2
+ 127 0070 FFF7FEFF 		bl	__aeabi_uidiv
+ 128              	.LVL9:
+ 129 0074 16E0     		b	.L12
+ 130              	.LVL10:
+ 131              	.L10:
+ 132:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 }
+ 133:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 else /* Sinking */
+ 134:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 {
+ 135:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     #if (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE)
+ 136:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                         /* Scale result with sink/source mismatch with rounding */
+ 137:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                         tmpResult = (((uint32)((uint32)tRecover << 1u) * tmpResult) + ((uint32)tVss
+ 132              		.loc 1 137 0
+ 133 0076 474C     		ldr	r4, .L14+16
+ 134 0078 A388     		ldrh	r3, [r4, #4]
+ 135              	.LVL11:
+ 136 007a 5B00     		lsls	r3, r3, #1
+ 137 007c 5843     		muls	r0, r3
+ 138              	.LVL12:
+ 139 007e 2688     		ldrh	r6, [r4]
+ 140 0080 7308     		lsrs	r3, r6, #1
+ 141 0082 C018     		adds	r0, r0, r3
+ 142 0084 3100     		movs	r1, r6
+ 143 0086 FFF7FEFF 		bl	__aeabi_uidiv
+ 144              	.LVL13:
+ 138:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                         /* Saturate result at t_Vdda2Vref*/
+ 139:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                         tmpResult = (tmpResult > (uint32)tVdda2Vref) ? (uint32)tVdda2Vref : tmpResu
+ 145              		.loc 1 139 0
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 6
+
+
+ 146 008a E388     		ldrh	r3, [r4, #6]
+ 147 008c 9842     		cmp	r0, r3
+ 148 008e 00D9     		bls	.L13
+ 149 0090 1800     		movs	r0, r3
+ 150              	.LVL14:
+ 151              	.L13:
+ 140:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                         /* Scale result to Resolution range with rounding */
+ 141:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                         tmpResult = ((((uint32)tVssa2Vref + tmpResult) * CapSense_AdcRES_MAX)  +
+ 152              		.loc 1 141 0
+ 153 0092 3018     		adds	r0, r6, r0
+ 154              	.LVL15:
+ 155 0094 8302     		lsls	r3, r0, #10
+ 156 0096 181A     		subs	r0, r3, r0
+ 142:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                                      ((uint32)tFull >> 1uL)) / (uint32)tFull;
+ 157              		.loc 1 142 0
+ 158 0098 3E4B     		ldr	r3, .L14+16
+ 159 009a 5988     		ldrh	r1, [r3, #2]
+ 160 009c 4B08     		lsrs	r3, r1, #1
+ 141:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                                      ((uint32)tFull >> 1uL)) / (uint32)tFull;
+ 161              		.loc 1 141 0
+ 162 009e C018     		adds	r0, r0, r3
+ 163 00a0 FFF7FEFF 		bl	__aeabi_uidiv
+ 164              	.LVL16:
+ 165              	.L12:
+ 143:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     #else /* (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE) */
+ 144:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                         /* In vref mode, we are not supposed to be sinking. Saturate */
+ 145:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                         tmpResult = ((uint32)tVssa2Vref * CapSense_AdcRES_MAX) / (uint32)tFull;
+ 146:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     #endif /* (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE) */
+ 147:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 }
+ 148:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 /* Store ADC result code */
+ 149:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 CapSense_dsRam.adcCode [tmpChId] = (uint16)(tmpResult);        
+ 166              		.loc 1 149 0
+ 167 00a4 3A4E     		ldr	r6, .L14+12
+ 168 00a6 2C00     		movs	r4, r5
+ 169 00a8 0C34     		adds	r4, r4, #12
+ 170 00aa 6400     		lsls	r4, r4, #1
+ 171 00ac 3419     		adds	r4, r6, r4
+ 172 00ae E080     		strh	r0, [r4, #6]
+ 150:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 /* Scale result to mV with rounding and store it */
+ 151:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 tmpResult = ((uint32)vMaxMv * tmpResult) / CapSense_AdcRES_MAX;
+ 173              		.loc 1 151 0
+ 174 00b0 384B     		ldr	r3, .L14+16
+ 175 00b2 1B89     		ldrh	r3, [r3, #8]
+ 176 00b4 5843     		muls	r0, r3
+ 177              	.LVL17:
+ 178 00b6 3849     		ldr	r1, .L14+20
+ 179 00b8 FFF7FEFF 		bl	__aeabi_uidiv
+ 180              	.LVL18:
+ 152:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 CapSense_dsRam.adcResult[tmpChId] = (uint16)(tmpResult);
+ 181              		.loc 1 152 0
+ 182 00bc A080     		strh	r0, [r4, #4]
+ 153:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 CapSense_dsRam.adcStatus = CapSense_AdcSTATUS_IDLE;
+ 183              		.loc 1 153 0
+ 184 00be 0022     		movs	r2, #0
+ 185 00c0 2023     		movs	r3, #32
+ 186 00c2 F254     		strb	r2, [r6, r3]
+ 154:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 break;
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 7
+
+
+ 187              		.loc 1 154 0
+ 188 00c4 5AE0     		b	.L1
+ 189              	.LVL19:
+ 190              	.L7:
+ 155:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 156:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             case CapSense_AdcSTATUS_CALIBPH1:
+ 157:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 /*
+ 158:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 * After the calibration phase 1 will define a time to charge Cref1 and Cref2 from V
+ 159:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 * clock cycles. In the full-range mode starts the next calibration phase 2. In the 
+ 160:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 * and recalibrate Idac if necessary.
+ 161:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 */
+ 162:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 tVssa2Vref = (uint16)tmpResult;
+ 191              		.loc 1 162 0
+ 192 00c6 334B     		ldr	r3, .L14+16
+ 193              	.LVL20:
+ 194 00c8 1C80     		strh	r4, [r3]
+ 163:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 164:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 #if (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE)
+ 165:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Full range mode */
+ 166:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CapSense_dsRam.adcStatus = CapSense_AdcSTATUS_CALIBPH2;
+ 195              		.loc 1 166 0
+ 196 00ca 2023     		movs	r3, #32
+ 197 00cc 304A     		ldr	r2, .L14+12
+ 198              	.LVL21:
+ 199 00ce D354     		strb	r3, [r2, r3]
+ 167:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Un-mask ADC_RES interrupt (enable interrupt) */
+ 168:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CY_SET_REG32(CapSense_INTR_MASK_PTR, CapSense_INTR_MASK_ADC_RES_MASK);
+ 200              		.loc 1 168 0
+ 201 00d0 8022     		movs	r2, #128
+ 202              	.LVL22:
+ 203 00d2 5200     		lsls	r2, r2, #1
+ 204              	.LVL23:
+ 205 00d4 2B4B     		ldr	r3, .L14
+ 206 00d6 1A60     		str	r2, [r3]
+ 169:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CapSense_StartAdcFSM(CapSense_AdcMEASMODE_VREFBY2);
+ 207              		.loc 1 169 0
+ 208 00d8 8020     		movs	r0, #128
+ 209              	.LVL24:
+ 210 00da 8002     		lsls	r0, r0, #10
+ 211              	.LVL25:
+ 212 00dc FFF7FEFF 		bl	CapSense_StartAdcFSM
+ 213              	.LVL26:
+ 170:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     
+ 171:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 #else /* (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE) */
+ 172:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Vref range mode */
+ 173:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     vMaxMv = CapSense_adcVrefMv;
+ 174:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     tFull = tVssa2Vref;
+ 175:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CapSense_dsRam.adcStatus = CapSense_AdcSTATUS_IDLE;
+ 176:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     
+ 177:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 #endif /* (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE) */
+ 178:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 179:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 break;
+ 214              		.loc 1 179 0
+ 215 00e0 4CE0     		b	.L1
+ 216              	.LVL27:
+ 217              	.L5:
+ 180:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 8
+
+
+ 181:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             /* In vref mode not need further calibration */
+ 182:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             #if (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE)
+ 183:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 184:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 case CapSense_AdcSTATUS_CALIBPH2:
+ 185:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /*
+ 186:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     * After the calibration phase 2 will define a time to charge Cref1 and Cref2 to
+ 187:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     * a discharging them by a sinking from Vref during tVssa2Vref/2 time. This rech
+ 188:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     * and is proporional to an Idac_sourcing/Idac_sinking mismatch. Then charges ca
+ 189:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     * the next calibration phase 3.
+ 190:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     */
+ 191:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     tRecover = (uint16)tmpResult;
+ 218              		.loc 1 191 0
+ 219 00e2 2C4B     		ldr	r3, .L14+16
+ 220              	.LVL28:
+ 221 00e4 9C80     		strh	r4, [r3, #4]
+ 192:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     
+ 193:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Disconnect amuxbusB, Connect VDDA to csdbusB */
+ 194:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     interruptState = CyEnterCriticalSection();
+ 222              		.loc 1 194 0
+ 223 00e6 FFF7FEFF 		bl	CyEnterCriticalSection
+ 224              	.LVL29:
+ 195:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     newRegValue = CY_GET_REG32(CapSense_SW_BYP_SEL_PTR);
+ 225              		.loc 1 195 0
+ 226 00ea 2C4A     		ldr	r2, .L14+24
+ 227 00ec 1168     		ldr	r1, [r2]
+ 228              	.LVL30:
+ 196:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     newRegValue &= (uint32)(~CapSense_AdcSW_BYP_DEFAULT);
+ 229              		.loc 1 196 0
+ 230 00ee 2C4B     		ldr	r3, .L14+28
+ 231 00f0 0B40     		ands	r3, r1
+ 232              	.LVL31:
+ 197:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CY_SET_REG32(CapSense_SW_BYP_SEL_PTR, newRegValue);
+ 233              		.loc 1 197 0
+ 234 00f2 1360     		str	r3, [r2]
+ 198:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CyExitCriticalSection(interruptState);
+ 235              		.loc 1 198 0
+ 236 00f4 FFF7FEFF 		bl	CyExitCriticalSection
+ 237              	.LVL32:
+ 199:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CY_SET_REG32(CapSense_SW_SHIELD_SEL_PTR, CapSense_AdcSW_SHIELD_VDDA2CSDBUSB);
+ 238              		.loc 1 199 0
+ 239 00f8 8023     		movs	r3, #128
+ 240              	.LVL33:
+ 241 00fa 5B00     		lsls	r3, r3, #1
+ 242              	.LVL34:
+ 243 00fc 294A     		ldr	r2, .L14+32
+ 244 00fe 1360     		str	r3, [r2]
+ 200:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 201:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CapSense_dsRam.adcStatus = CapSense_AdcSTATUS_CALIBPH3;
+ 245              		.loc 1 201 0
+ 246 0100 3020     		movs	r0, #48
+ 247 0102 2022     		movs	r2, #32
+ 248 0104 2249     		ldr	r1, .L14+12
+ 249 0106 8854     		strb	r0, [r1, r2]
+ 202:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 203:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Un-mask ADC_RES interrupt (enable interrupt) */
+ 204:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CY_SET_REG32(CapSense_INTR_MASK_PTR, CapSense_INTR_MASK_ADC_RES_MASK);
+ 250              		.loc 1 204 0
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 9
+
+
+ 251 0108 1E4A     		ldr	r2, .L14
+ 252 010a 1360     		str	r3, [r2]
+ 205:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CapSense_StartAdcFSM(CapSense_AdcMEASMODE_VIN);
+ 253              		.loc 1 205 0
+ 254 010c C020     		movs	r0, #192
+ 255 010e 8002     		lsls	r0, r0, #10
+ 256 0110 FFF7FEFF 		bl	CapSense_StartAdcFSM
+ 257              	.LVL35:
+ 206:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     break;
+ 258              		.loc 1 206 0
+ 259 0114 32E0     		b	.L1
+ 260              	.LVL36:
+ 261              	.L8:
+ 207:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     
+ 208:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 case CapSense_AdcSTATUS_CALIBPH3:
+ 209:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /*
+ 210:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     * After the calibration phase 3 will define a time to discharge Cref1 and Cref2
+ 211:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     * a sinking. This time must be corrected to an Idac_sourcing/Idac_sinking misma
+ 212:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     * Calculates t_full, checks it for a target and recalibrate Idac if necessary. 
+ 213:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     */
+ 214:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Reconnect amuxbusB, disconnect VDDA */
+ 215:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CY_SET_REG32(CapSense_SW_SHIELD_SEL_PTR, CapSense_AdcSW_SHIELD_DEFAULT);
+ 262              		.loc 1 215 0
+ 263 0116 0025     		movs	r5, #0
+ 264              	.LVL37:
+ 265 0118 224B     		ldr	r3, .L14+32
+ 266              	.LVL38:
+ 267 011a 1D60     		str	r5, [r3]
+ 216:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     interruptState = CyEnterCriticalSection();
+ 268              		.loc 1 216 0
+ 269 011c FFF7FEFF 		bl	CyEnterCriticalSection
+ 270              	.LVL39:
+ 217:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     newRegValue = CY_GET_REG32(CapSense_SW_BYP_SEL_PTR);
+ 271              		.loc 1 217 0
+ 272 0120 1E4A     		ldr	r2, .L14+24
+ 273 0122 1368     		ldr	r3, [r2]
+ 274              	.LVL40:
+ 218:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     newRegValue |= CapSense_AdcSW_BYP_DEFAULT;
+ 275              		.loc 1 218 0
+ 276 0124 8821     		movs	r1, #136
+ 277 0126 4903     		lsls	r1, r1, #13
+ 278 0128 0B43     		orrs	r3, r1
+ 279              	.LVL41:
+ 219:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CY_SET_REG32(CapSense_SW_BYP_SEL_PTR, newRegValue);
+ 280              		.loc 1 219 0
+ 281 012a 1360     		str	r3, [r2]
+ 220:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CyExitCriticalSection(interruptState);
+ 282              		.loc 1 220 0
+ 283 012c FFF7FEFF 		bl	CyExitCriticalSection
+ 284              	.LVL42:
+ 221:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     
+ 222:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     tVdda2Vref = (uint16)tmpResult;
+ 285              		.loc 1 222 0
+ 286 0130 A0B2     		uxth	r0, r4
+ 287 0132 184E     		ldr	r6, .L14+16
+ 223:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Calibrate tVdda2Vref with Sink/Source mismatch with rounding */
+ 224:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     tVdda2Vref = (uint16)(((((uint32)tVdda2Vref << 1u) * tRecover) + ((uint32)tVssa
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 10
+
+
+ 288              		.loc 1 224 0
+ 289 0134 4400     		lsls	r4, r0, #1
+ 290              	.LVL43:
+ 291 0136 B088     		ldrh	r0, [r6, #4]
+ 292 0138 6043     		muls	r0, r4
+ 293 013a 3788     		ldrh	r7, [r6]
+ 294 013c 7C08     		lsrs	r4, r7, #1
+ 295 013e 0019     		adds	r0, r0, r4
+ 296 0140 3900     		movs	r1, r7
+ 297 0142 FFF7FEFF 		bl	__aeabi_uidiv
+ 298              	.LVL44:
+ 299 0146 83B2     		uxth	r3, r0
+ 300 0148 F380     		strh	r3, [r6, #6]
+ 225:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     /* Test whether the full range is 2-bits higher than adc resolution */
+ 226:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     tFull = (tVssa2Vref + tVdda2Vref);
+ 301              		.loc 1 226 0
+ 302 014a FA18     		adds	r2, r7, r3
+ 303 014c 7280     		strh	r2, [r6, #2]
+ 227:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     vMaxMv = CapSense_adcVrefMv +
+ 228:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                             (((CapSense_adcVrefMv * tVdda2Vref) + (tVssa2Vref >> 1uL)) / tVssa2Vref
+ 304              		.loc 1 228 0
+ 305 014e 164A     		ldr	r2, .L14+36
+ 306 0150 1288     		ldrh	r2, [r2]
+ 307 0152 9046     		mov	r8, r2
+ 308 0154 5343     		muls	r3, r2
+ 309 0156 1819     		adds	r0, r3, r4
+ 310 0158 3900     		movs	r1, r7
+ 311 015a FFF7FEFF 		bl	__aeabi_idiv
+ 312              	.LVL45:
+ 227:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     vMaxMv = CapSense_adcVrefMv +
+ 313              		.loc 1 227 0
+ 314 015e 4044     		add	r0, r0, r8
+ 315 0160 3081     		strh	r0, [r6, #8]
+ 229:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 230:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     CapSense_dsRam.adcStatus = CapSense_AdcSTATUS_IDLE;
+ 316              		.loc 1 230 0
+ 317 0162 2023     		movs	r3, #32
+ 318 0164 0A4A     		ldr	r2, .L14+12
+ 319 0166 D554     		strb	r5, [r2, r3]
+ 231:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 232:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                     break;
+ 320              		.loc 1 232 0
+ 321 0168 08E0     		b	.L1
+ 322              	.LVL46:
+ 323              	.L3:
+ 233:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 234:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             #endif /* (CapSense_ADC_FULLRANGE_MODE == CapSense_ADC_MEASURE_MODE) */
+ 235:Generated_Source\PSoC4/CapSense_Adc_INT.c **** 
+ 236:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             default:
+ 237:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 /* If interrupt is called without defined ADC state, do nothing. */
+ 238:Generated_Source\PSoC4/CapSense_Adc_INT.c ****                 break;
+ 239:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             }
+ 240:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         }
+ 241:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         else
+ 242:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         {
+ 243:Generated_Source\PSoC4/CapSense_Adc_INT.c ****             CapSense_dsRam.adcStatus = CapSense_AdcSTATUS_OVERFLOW;
+ 324              		.loc 1 243 0
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 11
+
+
+ 325 016a 8021     		movs	r1, #128
+ 326 016c 2023     		movs	r3, #32
+ 327 016e 084A     		ldr	r2, .L14+12
+ 328 0170 D154     		strb	r1, [r2, r3]
+ 329 0172 03E0     		b	.L1
+ 330              	.L2:
+ 244:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         }
+ 245:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     }
+ 246:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     else
+ 247:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     {
+ 248:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         CapSense_dsRam.adcStatus = CapSense_AdcSTATUS_IDLE;
+ 331              		.loc 1 248 0
+ 332 0174 0021     		movs	r1, #0
+ 333 0176 2023     		movs	r3, #32
+ 334 0178 054A     		ldr	r2, .L14+12
+ 335 017a D154     		strb	r1, [r2, r3]
+ 336              	.LVL47:
+ 337              	.L1:
+ 249:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     }
+ 250:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     #ifdef CapSense_ADC_EXIT_CALLBACK
+ 251:Generated_Source\PSoC4/CapSense_Adc_INT.c ****         CapSense_AdcExitCallback();
+ 252:Generated_Source\PSoC4/CapSense_Adc_INT.c ****     #endif /* CapSense_ADC_EXIT_CALLBACK */
+ 253:Generated_Source\PSoC4/CapSense_Adc_INT.c **** }
+ 338              		.loc 1 253 0
+ 339              		@ sp needed
+ 340 017c 04BC     		pop	{r2}
+ 341 017e 9046     		mov	r8, r2
+ 342 0180 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 343              	.L15:
+ 344 0182 C046     		.align	2
+ 345              	.L14:
+ 346 0184 F8000B40 		.word	1074462968
+ 347 0188 F0000B40 		.word	1074462960
+ 348 018c E0000B40 		.word	1074462944
+ 349 0190 00000000 		.word	CapSense_dsRam
+ 350 0194 00000000 		.word	.LANCHOR0
+ 351 0198 FF030000 		.word	1023
+ 352 019c 94020B40 		.word	1074463380
+ 353 01a0 FFFFEEFF 		.word	-1114113
+ 354 01a4 88020B40 		.word	1074463368
+ 355 01a8 00000000 		.word	CapSense_adcVrefMv
+ 356              		.cfi_endproc
+ 357              	.LFE1:
+ 358              		.size	CapSense_AdcIntrHandler, .-CapSense_AdcIntrHandler
+ 359              		.bss
+ 360              		.align	1
+ 361              		.set	.LANCHOR0,. + 0
+ 362              		.type	tVssa2Vref.5066, %object
+ 363              		.size	tVssa2Vref.5066, 2
+ 364              	tVssa2Vref.5066:
+ 365 0000 0000     		.space	2
+ 366              		.type	tFull.5067, %object
+ 367              		.size	tFull.5067, 2
+ 368              	tFull.5067:
+ 369 0002 0000     		.space	2
+ 370              		.type	tRecover.5076, %object
+ 371              		.size	tRecover.5076, 2
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 12
+
+
+ 372              	tRecover.5076:
+ 373 0004 0000     		.space	2
+ 374              		.type	tVdda2Vref.5075, %object
+ 375              		.size	tVdda2Vref.5075, 2
+ 376              	tVdda2Vref.5075:
+ 377 0006 0000     		.space	2
+ 378              		.type	vMaxMv.5068, %object
+ 379              		.size	vMaxMv.5068, 2
+ 380              	vMaxMv.5068:
+ 381 0008 0000     		.space	2
+ 382              		.text
+ 383              	.Letext0:
+ 384              		.file 2 "Generated_Source\\PSoC4\\cytypes.h"
+ 385              		.file 3 "Generated_Source\\PSoC4\\CapSense_Configuration.h"
+ 386              		.file 4 "Generated_Source\\PSoC4\\CapSense_Structure.h"
+ 387              		.file 5 "Generated_Source\\PSoC4\\CapSense_Adc.h"
+ 388              		.file 6 "Generated_Source\\PSoC4\\CyLib.h"
+ 389              		.section	.debug_info,"",%progbits
+ 390              	.Ldebug_info0:
+ 391 0000 5D050000 		.4byte	0x55d
+ 392 0004 0400     		.2byte	0x4
+ 393 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 394 000a 04       		.byte	0x4
+ 395 000b 01       		.uleb128 0x1
+ 396 000c 77030000 		.4byte	.LASF84
+ 397 0010 0C       		.byte	0xc
+ 398 0011 28040000 		.4byte	.LASF85
+ 399 0015 B5000000 		.4byte	.LASF86
+ 400 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 401 001d 00000000 		.4byte	0
+ 402 0021 00000000 		.4byte	.Ldebug_line0
+ 403 0025 02       		.uleb128 0x2
+ 404 0026 01       		.byte	0x1
+ 405 0027 06       		.byte	0x6
+ 406 0028 A9000000 		.4byte	.LASF0
+ 407 002c 02       		.uleb128 0x2
+ 408 002d 01       		.byte	0x1
+ 409 002e 08       		.byte	0x8
+ 410 002f 38030000 		.4byte	.LASF1
+ 411 0033 02       		.uleb128 0x2
+ 412 0034 02       		.byte	0x2
+ 413 0035 05       		.byte	0x5
+ 414 0036 46030000 		.4byte	.LASF2
+ 415 003a 02       		.uleb128 0x2
+ 416 003b 02       		.byte	0x2
+ 417 003c 07       		.byte	0x7
+ 418 003d 10020000 		.4byte	.LASF3
+ 419 0041 02       		.uleb128 0x2
+ 420 0042 04       		.byte	0x4
+ 421 0043 05       		.byte	0x5
+ 422 0044 16010000 		.4byte	.LASF4
+ 423 0048 02       		.uleb128 0x2
+ 424 0049 04       		.byte	0x4
+ 425 004a 07       		.byte	0x7
+ 426 004b D1010000 		.4byte	.LASF5
+ 427 004f 02       		.uleb128 0x2
+ 428 0050 08       		.byte	0x8
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 13
+
+
+ 429 0051 05       		.byte	0x5
+ 430 0052 9B000000 		.4byte	.LASF6
+ 431 0056 02       		.uleb128 0x2
+ 432 0057 08       		.byte	0x8
+ 433 0058 07       		.byte	0x7
+ 434 0059 3C000000 		.4byte	.LASF7
+ 435 005d 03       		.uleb128 0x3
+ 436 005e 04       		.byte	0x4
+ 437 005f 05       		.byte	0x5
+ 438 0060 696E7400 		.ascii	"int\000"
+ 439 0064 02       		.uleb128 0x2
+ 440 0065 04       		.byte	0x4
+ 441 0066 07       		.byte	0x7
+ 442 0067 B4010000 		.4byte	.LASF8
+ 443 006b 04       		.uleb128 0x4
+ 444 006c 29010000 		.4byte	.LASF9
+ 445 0070 02       		.byte	0x2
+ 446 0071 F701     		.2byte	0x1f7
+ 447 0073 2C000000 		.4byte	0x2c
+ 448 0077 04       		.uleb128 0x4
+ 449 0078 00000000 		.4byte	.LASF10
+ 450 007c 02       		.byte	0x2
+ 451 007d F801     		.2byte	0x1f8
+ 452 007f 3A000000 		.4byte	0x3a
+ 453 0083 04       		.uleb128 0x4
+ 454 0084 72010000 		.4byte	.LASF11
+ 455 0088 02       		.byte	0x2
+ 456 0089 F901     		.2byte	0x1f9
+ 457 008b 48000000 		.4byte	0x48
+ 458 008f 02       		.uleb128 0x2
+ 459 0090 04       		.byte	0x4
+ 460 0091 04       		.byte	0x4
+ 461 0092 F3020000 		.4byte	.LASF12
+ 462 0096 02       		.uleb128 0x2
+ 463 0097 08       		.byte	0x8
+ 464 0098 04       		.byte	0x4
+ 465 0099 40010000 		.4byte	.LASF13
+ 466 009d 02       		.uleb128 0x2
+ 467 009e 01       		.byte	0x1
+ 468 009f 08       		.byte	0x8
+ 469 00a0 09040000 		.4byte	.LASF14
+ 470 00a4 05       		.uleb128 0x5
+ 471 00a5 6B000000 		.4byte	0x6b
+ 472 00a9 04       		.uleb128 0x4
+ 473 00aa 91020000 		.4byte	.LASF15
+ 474 00ae 02       		.byte	0x2
+ 475 00af A302     		.2byte	0x2a3
+ 476 00b1 B5000000 		.4byte	0xb5
+ 477 00b5 05       		.uleb128 0x5
+ 478 00b6 83000000 		.4byte	0x83
+ 479 00ba 02       		.uleb128 0x2
+ 480 00bb 08       		.byte	0x8
+ 481 00bc 04       		.byte	0x4
+ 482 00bd B2020000 		.4byte	.LASF16
+ 483 00c1 02       		.uleb128 0x2
+ 484 00c2 04       		.byte	0x4
+ 485 00c3 07       		.byte	0x7
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 14
+
+
+ 486 00c4 A9020000 		.4byte	.LASF17
+ 487 00c8 04       		.uleb128 0x4
+ 488 00c9 83000000 		.4byte	.LASF18
+ 489 00cd 03       		.byte	0x3
+ 490 00ce 0E01     		.2byte	0x10e
+ 491 00d0 77000000 		.4byte	0x77
+ 492 00d4 04       		.uleb128 0x4
+ 493 00d5 58000000 		.4byte	.LASF19
+ 494 00d9 03       		.byte	0x3
+ 495 00da 1201     		.2byte	0x112
+ 496 00dc 6B000000 		.4byte	0x6b
+ 497 00e0 06       		.uleb128 0x6
+ 498 00e1 6B000000 		.4byte	0x6b
+ 499 00e5 F0000000 		.4byte	0xf0
+ 500 00e9 07       		.uleb128 0x7
+ 501 00ea C1000000 		.4byte	0xc1
+ 502 00ee 00       		.byte	0
+ 503 00ef 00       		.byte	0
+ 504 00f0 08       		.uleb128 0x8
+ 505 00f1 0E       		.byte	0xe
+ 506 00f2 04       		.byte	0x4
+ 507 00f3 CE       		.byte	0xce
+ 508 00f4 73010000 		.4byte	0x173
+ 509 00f8 09       		.uleb128 0x9
+ 510 00f9 5A030000 		.4byte	.LASF20
+ 511 00fd 04       		.byte	0x4
+ 512 00fe D3       		.byte	0xd3
+ 513 00ff 77000000 		.4byte	0x77
+ 514 0103 00       		.byte	0
+ 515 0104 09       		.uleb128 0x9
+ 516 0105 B4040000 		.4byte	.LASF21
+ 517 0109 04       		.byte	0x4
+ 518 010a D8       		.byte	0xd8
+ 519 010b C8000000 		.4byte	0xc8
+ 520 010f 02       		.byte	0x2
+ 521 0110 09       		.uleb128 0x9
+ 522 0111 09050000 		.4byte	.LASF22
+ 523 0115 04       		.byte	0x4
+ 524 0116 DD       		.byte	0xdd
+ 525 0117 6B000000 		.4byte	0x6b
+ 526 011b 04       		.byte	0x4
+ 527 011c 09       		.uleb128 0x9
+ 528 011d BE020000 		.4byte	.LASF23
+ 529 0121 04       		.byte	0x4
+ 530 0122 E2       		.byte	0xe2
+ 531 0123 6B000000 		.4byte	0x6b
+ 532 0127 05       		.byte	0x5
+ 533 0128 09       		.uleb128 0x9
+ 534 0129 79010000 		.4byte	.LASF24
+ 535 012d 04       		.byte	0x4
+ 536 012e E8       		.byte	0xe8
+ 537 012f 6B000000 		.4byte	0x6b
+ 538 0133 06       		.byte	0x6
+ 539 0134 09       		.uleb128 0x9
+ 540 0135 52040000 		.4byte	.LASF25
+ 541 0139 04       		.byte	0x4
+ 542 013a EE       		.byte	0xee
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 15
+
+
+ 543 013b 6B000000 		.4byte	0x6b
+ 544 013f 07       		.byte	0x7
+ 545 0140 09       		.uleb128 0x9
+ 546 0141 05020000 		.4byte	.LASF26
+ 547 0145 04       		.byte	0x4
+ 548 0146 F5       		.byte	0xf5
+ 549 0147 D4000000 		.4byte	0xd4
+ 550 014b 08       		.byte	0x8
+ 551 014c 09       		.uleb128 0x9
+ 552 014d 97020000 		.4byte	.LASF27
+ 553 0151 04       		.byte	0x4
+ 554 0152 FC       		.byte	0xfc
+ 555 0153 E0000000 		.4byte	0xe0
+ 556 0157 09       		.byte	0x9
+ 557 0158 0A       		.uleb128 0xa
+ 558 0159 0E040000 		.4byte	.LASF28
+ 559 015d 04       		.byte	0x4
+ 560 015e 0401     		.2byte	0x104
+ 561 0160 77000000 		.4byte	0x77
+ 562 0164 0A       		.byte	0xa
+ 563 0165 0A       		.uleb128 0xa
+ 564 0166 A7040000 		.4byte	.LASF29
+ 565 016a 04       		.byte	0x4
+ 566 016b 0901     		.2byte	0x109
+ 567 016d 6B000000 		.4byte	0x6b
+ 568 0171 0C       		.byte	0xc
+ 569 0172 00       		.byte	0
+ 570 0173 04       		.uleb128 0x4
+ 571 0174 73020000 		.4byte	.LASF30
+ 572 0178 04       		.byte	0x4
+ 573 0179 0A01     		.2byte	0x10a
+ 574 017b F0000000 		.4byte	0xf0
+ 575 017f 0B       		.uleb128 0xb
+ 576 0180 38       		.byte	0x38
+ 577 0181 04       		.byte	0x4
+ 578 0182 1001     		.2byte	0x110
+ 579 0184 BD010000 		.4byte	0x1bd
+ 580 0188 0A       		.uleb128 0xa
+ 581 0189 F9020000 		.4byte	.LASF31
+ 582 018d 04       		.byte	0x4
+ 583 018e 1501     		.2byte	0x115
+ 584 0190 73010000 		.4byte	0x173
+ 585 0194 00       		.byte	0
+ 586 0195 0A       		.uleb128 0xa
+ 587 0196 EC040000 		.4byte	.LASF32
+ 588 019a 04       		.byte	0x4
+ 589 019b 1A01     		.2byte	0x11a
+ 590 019d 73010000 		.4byte	0x173
+ 591 01a1 0E       		.byte	0xe
+ 592 01a2 0A       		.uleb128 0xa
+ 593 01a3 47010000 		.4byte	.LASF33
+ 594 01a7 04       		.byte	0x4
+ 595 01a8 1F01     		.2byte	0x11f
+ 596 01aa 73010000 		.4byte	0x173
+ 597 01ae 1C       		.byte	0x1c
+ 598 01af 0A       		.uleb128 0xa
+ 599 01b0 5D040000 		.4byte	.LASF34
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 16
+
+
+ 600 01b4 04       		.byte	0x4
+ 601 01b5 2401     		.2byte	0x124
+ 602 01b7 73010000 		.4byte	0x173
+ 603 01bb 2A       		.byte	0x2a
+ 604 01bc 00       		.byte	0
+ 605 01bd 04       		.uleb128 0x4
+ 606 01be BD040000 		.4byte	.LASF35
+ 607 01c2 04       		.byte	0x4
+ 608 01c3 2501     		.2byte	0x125
+ 609 01c5 7F010000 		.4byte	0x17f
+ 610 01c9 0B       		.uleb128 0xb
+ 611 01ca 0A       		.byte	0xa
+ 612 01cb 04       		.byte	0x4
+ 613 01cc 2B01     		.2byte	0x12b
+ 614 01ce 21020000 		.4byte	0x221
+ 615 01d2 0C       		.uleb128 0xc
+ 616 01d3 72617700 		.ascii	"raw\000"
+ 617 01d7 04       		.byte	0x4
+ 618 01d8 3001     		.2byte	0x130
+ 619 01da 21020000 		.4byte	0x221
+ 620 01de 00       		.byte	0
+ 621 01df 0A       		.uleb128 0xa
+ 622 01e0 AF010000 		.4byte	.LASF36
+ 623 01e4 04       		.byte	0x4
+ 624 01e5 3501     		.2byte	0x135
+ 625 01e7 21020000 		.4byte	0x221
+ 626 01eb 02       		.byte	0x2
+ 627 01ec 0A       		.uleb128 0xa
+ 628 01ed 9C010000 		.4byte	.LASF37
+ 629 01f1 04       		.byte	0x4
+ 630 01f2 3B01     		.2byte	0x13b
+ 631 01f4 E0000000 		.4byte	0xe0
+ 632 01f8 04       		.byte	0x4
+ 633 01f9 0A       		.uleb128 0xa
+ 634 01fa 53000000 		.4byte	.LASF38
+ 635 01fe 04       		.byte	0x4
+ 636 01ff 4001     		.2byte	0x140
+ 637 0201 C8000000 		.4byte	0xc8
+ 638 0205 06       		.byte	0x6
+ 639 0206 0A       		.uleb128 0xa
+ 640 0207 6E040000 		.4byte	.LASF39
+ 641 020b 04       		.byte	0x4
+ 642 020c 4501     		.2byte	0x145
+ 643 020e 31020000 		.4byte	0x231
+ 644 0212 08       		.byte	0x8
+ 645 0213 0A       		.uleb128 0xa
+ 646 0214 65040000 		.4byte	.LASF40
+ 647 0218 04       		.byte	0x4
+ 648 0219 4A01     		.2byte	0x14a
+ 649 021b E0000000 		.4byte	0xe0
+ 650 021f 09       		.byte	0x9
+ 651 0220 00       		.byte	0
+ 652 0221 06       		.uleb128 0x6
+ 653 0222 77000000 		.4byte	0x77
+ 654 0226 31020000 		.4byte	0x231
+ 655 022a 07       		.uleb128 0x7
+ 656 022b C1000000 		.4byte	0xc1
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 17
+
+
+ 657 022f 00       		.byte	0
+ 658 0230 00       		.byte	0
+ 659 0231 06       		.uleb128 0x6
+ 660 0232 D4000000 		.4byte	0xd4
+ 661 0236 41020000 		.4byte	0x241
+ 662 023a 07       		.uleb128 0x7
+ 663 023b C1000000 		.4byte	0xc1
+ 664 023f 00       		.byte	0
+ 665 0240 00       		.byte	0
+ 666 0241 04       		.uleb128 0x4
+ 667 0242 24000000 		.4byte	.LASF41
+ 668 0246 04       		.byte	0x4
+ 669 0247 4B01     		.2byte	0x14b
+ 670 0249 C9010000 		.4byte	0x1c9
+ 671 024d 0B       		.uleb128 0xb
+ 672 024e 28       		.byte	0x28
+ 673 024f 04       		.byte	0x4
+ 674 0250 5101     		.2byte	0x151
+ 675 0252 8B020000 		.4byte	0x28b
+ 676 0256 0A       		.uleb128 0xa
+ 677 0257 F9020000 		.4byte	.LASF31
+ 678 025b 04       		.byte	0x4
+ 679 025c 5601     		.2byte	0x156
+ 680 025e 8B020000 		.4byte	0x28b
+ 681 0262 00       		.byte	0
+ 682 0263 0A       		.uleb128 0xa
+ 683 0264 EC040000 		.4byte	.LASF32
+ 684 0268 04       		.byte	0x4
+ 685 0269 5B01     		.2byte	0x15b
+ 686 026b 8B020000 		.4byte	0x28b
+ 687 026f 0A       		.byte	0xa
+ 688 0270 0A       		.uleb128 0xa
+ 689 0271 47010000 		.4byte	.LASF33
+ 690 0275 04       		.byte	0x4
+ 691 0276 6001     		.2byte	0x160
+ 692 0278 8B020000 		.4byte	0x28b
+ 693 027c 14       		.byte	0x14
+ 694 027d 0A       		.uleb128 0xa
+ 695 027e 5D040000 		.4byte	.LASF34
+ 696 0282 04       		.byte	0x4
+ 697 0283 6501     		.2byte	0x165
+ 698 0285 8B020000 		.4byte	0x28b
+ 699 0289 1E       		.byte	0x1e
+ 700 028a 00       		.byte	0
+ 701 028b 06       		.uleb128 0x6
+ 702 028c 41020000 		.4byte	0x241
+ 703 0290 9B020000 		.4byte	0x29b
+ 704 0294 07       		.uleb128 0x7
+ 705 0295 C1000000 		.4byte	0xc1
+ 706 0299 00       		.byte	0
+ 707 029a 00       		.byte	0
+ 708 029b 04       		.uleb128 0x4
+ 709 029c 07030000 		.4byte	.LASF42
+ 710 02a0 04       		.byte	0x4
+ 711 02a1 6601     		.2byte	0x166
+ 712 02a3 4D020000 		.4byte	0x24d
+ 713 02a7 0B       		.uleb128 0xb
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 18
+
+
+ 714 02a8 90       		.byte	0x90
+ 715 02a9 04       		.byte	0x4
+ 716 02aa 6C01     		.2byte	0x16c
+ 717 02ac E9030000 		.4byte	0x3e9
+ 718 02b0 0A       		.uleb128 0xa
+ 719 02b1 3E020000 		.4byte	.LASF43
+ 720 02b5 04       		.byte	0x4
+ 721 02b6 7301     		.2byte	0x173
+ 722 02b8 77000000 		.4byte	0x77
+ 723 02bc 00       		.byte	0
+ 724 02bd 0A       		.uleb128 0xa
+ 725 02be 6A020000 		.4byte	.LASF44
+ 726 02c2 04       		.byte	0x4
+ 727 02c3 7801     		.2byte	0x178
+ 728 02c5 77000000 		.4byte	0x77
+ 729 02c9 02       		.byte	0x2
+ 730 02ca 0A       		.uleb128 0xa
+ 731 02cb C7020000 		.4byte	.LASF45
+ 732 02cf 04       		.byte	0x4
+ 733 02d0 7D01     		.2byte	0x17d
+ 734 02d2 77000000 		.4byte	0x77
+ 735 02d6 04       		.byte	0x4
+ 736 02d7 0A       		.uleb128 0xa
+ 737 02d8 EA020000 		.4byte	.LASF46
+ 738 02dc 04       		.byte	0x4
+ 739 02dd 8301     		.2byte	0x183
+ 740 02df 77000000 		.4byte	0x77
+ 741 02e3 06       		.byte	0x6
+ 742 02e4 0A       		.uleb128 0xa
+ 743 02e5 CF020000 		.4byte	.LASF47
+ 744 02e9 04       		.byte	0x4
+ 745 02ea 8801     		.2byte	0x188
+ 746 02ec 77000000 		.4byte	0x77
+ 747 02f0 08       		.byte	0x8
+ 748 02f1 0A       		.uleb128 0xa
+ 749 02f2 88040000 		.4byte	.LASF48
+ 750 02f6 04       		.byte	0x4
+ 751 02f7 8D01     		.2byte	0x18d
+ 752 02f9 B5000000 		.4byte	0xb5
+ 753 02fd 0C       		.byte	0xc
+ 754 02fe 0A       		.uleb128 0xa
+ 755 02ff E3010000 		.4byte	.LASF49
+ 756 0303 04       		.byte	0x4
+ 757 0304 9301     		.2byte	0x193
+ 758 0306 E9030000 		.4byte	0x3e9
+ 759 030a 10       		.byte	0x10
+ 760 030b 0A       		.uleb128 0xa
+ 761 030c A4010000 		.4byte	.LASF50
+ 762 0310 04       		.byte	0x4
+ 763 0311 9A01     		.2byte	0x19a
+ 764 0313 E9030000 		.4byte	0x3e9
+ 765 0317 14       		.byte	0x14
+ 766 0318 0A       		.uleb128 0xa
+ 767 0319 0C010000 		.4byte	.LASF51
+ 768 031d 04       		.byte	0x4
+ 769 031e AA01     		.2byte	0x1aa
+ 770 0320 F9030000 		.4byte	0x3f9
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 19
+
+
+ 771 0324 18       		.byte	0x18
+ 772 0325 0A       		.uleb128 0xa
+ 773 0326 9F020000 		.4byte	.LASF52
+ 774 032a 04       		.byte	0x4
+ 775 032b B001     		.2byte	0x1b0
+ 776 032d 21020000 		.4byte	0x221
+ 777 0331 1C       		.byte	0x1c
+ 778 0332 0A       		.uleb128 0xa
+ 779 0333 5E010000 		.4byte	.LASF53
+ 780 0337 04       		.byte	0x4
+ 781 0338 B601     		.2byte	0x1b6
+ 782 033a 21020000 		.4byte	0x221
+ 783 033e 1E       		.byte	0x1e
+ 784 033f 0A       		.uleb128 0xa
+ 785 0340 50030000 		.4byte	.LASF54
+ 786 0344 04       		.byte	0x4
+ 787 0345 BB01     		.2byte	0x1bb
+ 788 0347 A4000000 		.4byte	0xa4
+ 789 034b 20       		.byte	0x20
+ 790 034c 0A       		.uleb128 0xa
+ 791 034d 04010000 		.4byte	.LASF55
+ 792 0351 04       		.byte	0x4
+ 793 0352 C001     		.2byte	0x1c0
+ 794 0354 6B000000 		.4byte	0x6b
+ 795 0358 21       		.byte	0x21
+ 796 0359 0A       		.uleb128 0xa
+ 797 035a 7C040000 		.4byte	.LASF56
+ 798 035e 04       		.byte	0x4
+ 799 035f C501     		.2byte	0x1c5
+ 800 0361 6B000000 		.4byte	0x6b
+ 801 0365 22       		.byte	0x22
+ 802 0366 0A       		.uleb128 0xa
+ 803 0367 52020000 		.4byte	.LASF57
+ 804 036b 04       		.byte	0x4
+ 805 036c CB01     		.2byte	0x1cb
+ 806 036e 77000000 		.4byte	0x77
+ 807 0372 24       		.byte	0x24
+ 808 0373 0A       		.uleb128 0xa
+ 809 0374 1F010000 		.4byte	.LASF58
+ 810 0378 04       		.byte	0x4
+ 811 0379 D001     		.2byte	0x1d0
+ 812 037b 6B000000 		.4byte	0x6b
+ 813 037f 26       		.byte	0x26
+ 814 0380 0A       		.uleb128 0xa
+ 815 0381 99040000 		.4byte	.LASF59
+ 816 0385 04       		.byte	0x4
+ 817 0386 D501     		.2byte	0x1d5
+ 818 0388 6B000000 		.4byte	0x6b
+ 819 038c 27       		.byte	0x27
+ 820 038d 0A       		.uleb128 0xa
+ 821 038e 15040000 		.4byte	.LASF60
+ 822 0392 04       		.byte	0x4
+ 823 0393 DA01     		.2byte	0x1da
+ 824 0395 6B000000 		.4byte	0x6b
+ 825 0399 28       		.byte	0x28
+ 826 039a 0A       		.uleb128 0xa
+ 827 039b 65030000 		.4byte	.LASF61
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 20
+
+
+ 828 039f 04       		.byte	0x4
+ 829 03a0 DF01     		.2byte	0x1df
+ 830 03a2 BD010000 		.4byte	0x1bd
+ 831 03a6 2A       		.byte	0x2a
+ 832 03a7 0A       		.uleb128 0xa
+ 833 03a8 36020000 		.4byte	.LASF62
+ 834 03ac 04       		.byte	0x4
+ 835 03ad E401     		.2byte	0x1e4
+ 836 03af 9B020000 		.4byte	0x29b
+ 837 03b3 62       		.byte	0x62
+ 838 03b4 0A       		.uleb128 0xa
+ 839 03b5 C1010000 		.4byte	.LASF63
+ 840 03b9 04       		.byte	0x4
+ 841 03ba E901     		.2byte	0x1e9
+ 842 03bc 6B000000 		.4byte	0x6b
+ 843 03c0 8A       		.byte	0x8a
+ 844 03c1 0A       		.uleb128 0xa
+ 845 03c2 73000000 		.4byte	.LASF64
+ 846 03c6 04       		.byte	0x4
+ 847 03c7 EE01     		.2byte	0x1ee
+ 848 03c9 6B000000 		.4byte	0x6b
+ 849 03cd 8B       		.byte	0x8b
+ 850 03ce 0A       		.uleb128 0xa
+ 851 03cf D9040000 		.4byte	.LASF65
+ 852 03d3 04       		.byte	0x4
+ 853 03d4 F301     		.2byte	0x1f3
+ 854 03d6 77000000 		.4byte	0x77
+ 855 03da 8C       		.byte	0x8c
+ 856 03db 0A       		.uleb128 0xa
+ 857 03dc 4E010000 		.4byte	.LASF66
+ 858 03e0 04       		.byte	0x4
+ 859 03e1 F801     		.2byte	0x1f8
+ 860 03e3 21020000 		.4byte	0x221
+ 861 03e7 8E       		.byte	0x8e
+ 862 03e8 00       		.byte	0
+ 863 03e9 06       		.uleb128 0x6
+ 864 03ea 83000000 		.4byte	0x83
+ 865 03ee F9030000 		.4byte	0x3f9
+ 866 03f2 07       		.uleb128 0x7
+ 867 03f3 C1000000 		.4byte	0xc1
+ 868 03f7 00       		.byte	0
+ 869 03f8 00       		.byte	0
+ 870 03f9 06       		.uleb128 0x6
+ 871 03fa 6B000000 		.4byte	0x6b
+ 872 03fe 09040000 		.4byte	0x409
+ 873 0402 07       		.uleb128 0x7
+ 874 0403 C1000000 		.4byte	0xc1
+ 875 0407 03       		.byte	0x3
+ 876 0408 00       		.byte	0
+ 877 0409 04       		.uleb128 0x4
+ 878 040a 24030000 		.4byte	.LASF67
+ 879 040e 04       		.byte	0x4
+ 880 040f F901     		.2byte	0x1f9
+ 881 0411 A7020000 		.4byte	0x2a7
+ 882 0415 0D       		.uleb128 0xd
+ 883 0416 84010000 		.4byte	.LASF87
+ 884 041a 01       		.byte	0x1
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 21
+
+
+ 885 041b 49       		.byte	0x49
+ 886 041c 00000000 		.4byte	.LFB1
+ 887 0420 AC010000 		.4byte	.LFE1-.LFB1
+ 888 0424 01       		.uleb128 0x1
+ 889 0425 9C       		.byte	0x9c
+ 890 0426 28050000 		.4byte	0x528
+ 891 042a 0E       		.uleb128 0xe
+ 892 042b 2F010000 		.4byte	.LASF68
+ 893 042f 01       		.byte	0x1
+ 894 0430 4B       		.byte	0x4b
+ 895 0431 77000000 		.4byte	0x77
+ 896 0435 05       		.uleb128 0x5
+ 897 0436 03       		.byte	0x3
+ 898 0437 00000000 		.4byte	tVssa2Vref.5066
+ 899 043b 0E       		.uleb128 0xe
+ 900 043c 3A010000 		.4byte	.LASF69
+ 901 0440 01       		.byte	0x1
+ 902 0441 4C       		.byte	0x4c
+ 903 0442 77000000 		.4byte	0x77
+ 904 0446 05       		.uleb128 0x5
+ 905 0447 03       		.byte	0x3
+ 906 0448 02000000 		.4byte	tFull.5067
+ 907 044c 0E       		.uleb128 0xe
+ 908 044d 1D000000 		.4byte	.LASF70
+ 909 0451 01       		.byte	0x1
+ 910 0452 4D       		.byte	0x4d
+ 911 0453 77000000 		.4byte	0x77
+ 912 0457 05       		.uleb128 0x5
+ 913 0458 03       		.byte	0x3
+ 914 0459 08000000 		.4byte	vMaxMv.5068
+ 915 045d 0F       		.uleb128 0xf
+ 916 045e 8F040000 		.4byte	.LASF71
+ 917 0462 01       		.byte	0x1
+ 918 0463 4F       		.byte	0x4f
+ 919 0464 83000000 		.4byte	0x83
+ 920 0468 00000000 		.4byte	.LLST0
+ 921 046c 0F       		.uleb128 0xf
+ 922 046d 6E030000 		.4byte	.LASF72
+ 923 0471 01       		.byte	0x1
+ 924 0472 50       		.byte	0x50
+ 925 0473 83000000 		.4byte	0x83
+ 926 0477 9E000000 		.4byte	.LLST1
+ 927 047b 0F       		.uleb128 0xf
+ 928 047c 5D020000 		.4byte	.LASF73
+ 929 0480 01       		.byte	0x1
+ 930 0481 51       		.byte	0x51
+ 931 0482 6B000000 		.4byte	0x6b
+ 932 0486 8A010000 		.4byte	.LLST2
+ 933 048a 0F       		.uleb128 0xf
+ 934 048b FF020000 		.4byte	.LASF74
+ 935 048f 01       		.byte	0x1
+ 936 0490 52       		.byte	0x52
+ 937 0491 6B000000 		.4byte	0x6b
+ 938 0495 C9010000 		.4byte	.LLST3
+ 939 0499 0F       		.uleb128 0xf
+ 940 049a F5000000 		.4byte	.LASF75
+ 941 049e 01       		.byte	0x1
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 22
+
+
+ 942 049f 55       		.byte	0x55
+ 943 04a0 6B000000 		.4byte	0x6b
+ 944 04a4 DC010000 		.4byte	.LLST4
+ 945 04a8 0F       		.uleb128 0xf
+ 946 04a9 66010000 		.4byte	.LASF76
+ 947 04ad 01       		.byte	0x1
+ 948 04ae 56       		.byte	0x56
+ 949 04af 83000000 		.4byte	0x83
+ 950 04b3 FA010000 		.4byte	.LLST5
+ 951 04b7 0E       		.uleb128 0xe
+ 952 04b8 47020000 		.4byte	.LASF77
+ 953 04bc 01       		.byte	0x1
+ 954 04bd 58       		.byte	0x58
+ 955 04be 77000000 		.4byte	0x77
+ 956 04c2 05       		.uleb128 0x5
+ 957 04c3 03       		.byte	0x3
+ 958 04c4 06000000 		.4byte	tVdda2Vref.5075
+ 959 04c8 0E       		.uleb128 0xe
+ 960 04c9 1F040000 		.4byte	.LASF78
+ 961 04cd 01       		.byte	0x1
+ 962 04ce 59       		.byte	0x59
+ 963 04cf 77000000 		.4byte	0x77
+ 964 04d3 05       		.uleb128 0x5
+ 965 04d4 03       		.byte	0x3
+ 966 04d5 04000000 		.4byte	tRecover.5076
+ 967 04d9 10       		.uleb128 0x10
+ 968 04da E0000000 		.4byte	.LVL26
+ 969 04de 3F050000 		.4byte	0x53f
+ 970 04e2 EE040000 		.4byte	0x4ee
+ 971 04e6 11       		.uleb128 0x11
+ 972 04e7 01       		.uleb128 0x1
+ 973 04e8 50       		.byte	0x50
+ 974 04e9 03       		.uleb128 0x3
+ 975 04ea 40       		.byte	0x40
+ 976 04eb 3D       		.byte	0x3d
+ 977 04ec 24       		.byte	0x24
+ 978 04ed 00       		.byte	0
+ 979 04ee 12       		.uleb128 0x12
+ 980 04ef EA000000 		.4byte	.LVL29
+ 981 04f3 4A050000 		.4byte	0x54a
+ 982 04f7 12       		.uleb128 0x12
+ 983 04f8 F8000000 		.4byte	.LVL32
+ 984 04fc 55050000 		.4byte	0x555
+ 985 0500 10       		.uleb128 0x10
+ 986 0501 14010000 		.4byte	.LVL35
+ 987 0505 3F050000 		.4byte	0x53f
+ 988 0509 15050000 		.4byte	0x515
+ 989 050d 11       		.uleb128 0x11
+ 990 050e 01       		.uleb128 0x1
+ 991 050f 50       		.byte	0x50
+ 992 0510 03       		.uleb128 0x3
+ 993 0511 48       		.byte	0x48
+ 994 0512 3D       		.byte	0x3d
+ 995 0513 24       		.byte	0x24
+ 996 0514 00       		.byte	0
+ 997 0515 12       		.uleb128 0x12
+ 998 0516 20010000 		.4byte	.LVL39
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 23
+
+
+ 999 051a 4A050000 		.4byte	0x54a
+ 1000 051e 12       		.uleb128 0x12
+ 1001 051f 30010000 		.4byte	.LVL42
+ 1002 0523 55050000 		.4byte	0x555
+ 1003 0527 00       		.byte	0
+ 1004 0528 13       		.uleb128 0x13
+ 1005 0529 DB020000 		.4byte	.LASF79
+ 1006 052d 04       		.byte	0x4
+ 1007 052e 4404     		.2byte	0x444
+ 1008 0530 09040000 		.4byte	0x409
+ 1009 0534 14       		.uleb128 0x14
+ 1010 0535 23020000 		.4byte	.LASF80
+ 1011 0539 05       		.byte	0x5
+ 1012 053a 6B       		.byte	0x6b
+ 1013 053b 77000000 		.4byte	0x77
+ 1014 053f 15       		.uleb128 0x15
+ 1015 0540 F4040000 		.4byte	.LASF81
+ 1016 0544 F4040000 		.4byte	.LASF81
+ 1017 0548 05       		.byte	0x5
+ 1018 0549 5E       		.byte	0x5e
+ 1019 054a 15       		.uleb128 0x15
+ 1020 054b EE010000 		.4byte	.LASF82
+ 1021 054f EE010000 		.4byte	.LASF82
+ 1022 0553 06       		.byte	0x6
+ 1023 0554 F8       		.byte	0xf8
+ 1024 0555 15       		.uleb128 0x15
+ 1025 0556 07000000 		.4byte	.LASF83
+ 1026 055a 07000000 		.4byte	.LASF83
+ 1027 055e 06       		.byte	0x6
+ 1028 055f F9       		.byte	0xf9
+ 1029 0560 00       		.byte	0
+ 1030              		.section	.debug_abbrev,"",%progbits
+ 1031              	.Ldebug_abbrev0:
+ 1032 0000 01       		.uleb128 0x1
+ 1033 0001 11       		.uleb128 0x11
+ 1034 0002 01       		.byte	0x1
+ 1035 0003 25       		.uleb128 0x25
+ 1036 0004 0E       		.uleb128 0xe
+ 1037 0005 13       		.uleb128 0x13
+ 1038 0006 0B       		.uleb128 0xb
+ 1039 0007 03       		.uleb128 0x3
+ 1040 0008 0E       		.uleb128 0xe
+ 1041 0009 1B       		.uleb128 0x1b
+ 1042 000a 0E       		.uleb128 0xe
+ 1043 000b 55       		.uleb128 0x55
+ 1044 000c 17       		.uleb128 0x17
+ 1045 000d 11       		.uleb128 0x11
+ 1046 000e 01       		.uleb128 0x1
+ 1047 000f 10       		.uleb128 0x10
+ 1048 0010 17       		.uleb128 0x17
+ 1049 0011 00       		.byte	0
+ 1050 0012 00       		.byte	0
+ 1051 0013 02       		.uleb128 0x2
+ 1052 0014 24       		.uleb128 0x24
+ 1053 0015 00       		.byte	0
+ 1054 0016 0B       		.uleb128 0xb
+ 1055 0017 0B       		.uleb128 0xb
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 24
+
+
+ 1056 0018 3E       		.uleb128 0x3e
+ 1057 0019 0B       		.uleb128 0xb
+ 1058 001a 03       		.uleb128 0x3
+ 1059 001b 0E       		.uleb128 0xe
+ 1060 001c 00       		.byte	0
+ 1061 001d 00       		.byte	0
+ 1062 001e 03       		.uleb128 0x3
+ 1063 001f 24       		.uleb128 0x24
+ 1064 0020 00       		.byte	0
+ 1065 0021 0B       		.uleb128 0xb
+ 1066 0022 0B       		.uleb128 0xb
+ 1067 0023 3E       		.uleb128 0x3e
+ 1068 0024 0B       		.uleb128 0xb
+ 1069 0025 03       		.uleb128 0x3
+ 1070 0026 08       		.uleb128 0x8
+ 1071 0027 00       		.byte	0
+ 1072 0028 00       		.byte	0
+ 1073 0029 04       		.uleb128 0x4
+ 1074 002a 16       		.uleb128 0x16
+ 1075 002b 00       		.byte	0
+ 1076 002c 03       		.uleb128 0x3
+ 1077 002d 0E       		.uleb128 0xe
+ 1078 002e 3A       		.uleb128 0x3a
+ 1079 002f 0B       		.uleb128 0xb
+ 1080 0030 3B       		.uleb128 0x3b
+ 1081 0031 05       		.uleb128 0x5
+ 1082 0032 49       		.uleb128 0x49
+ 1083 0033 13       		.uleb128 0x13
+ 1084 0034 00       		.byte	0
+ 1085 0035 00       		.byte	0
+ 1086 0036 05       		.uleb128 0x5
+ 1087 0037 35       		.uleb128 0x35
+ 1088 0038 00       		.byte	0
+ 1089 0039 49       		.uleb128 0x49
+ 1090 003a 13       		.uleb128 0x13
+ 1091 003b 00       		.byte	0
+ 1092 003c 00       		.byte	0
+ 1093 003d 06       		.uleb128 0x6
+ 1094 003e 01       		.uleb128 0x1
+ 1095 003f 01       		.byte	0x1
+ 1096 0040 49       		.uleb128 0x49
+ 1097 0041 13       		.uleb128 0x13
+ 1098 0042 01       		.uleb128 0x1
+ 1099 0043 13       		.uleb128 0x13
+ 1100 0044 00       		.byte	0
+ 1101 0045 00       		.byte	0
+ 1102 0046 07       		.uleb128 0x7
+ 1103 0047 21       		.uleb128 0x21
+ 1104 0048 00       		.byte	0
+ 1105 0049 49       		.uleb128 0x49
+ 1106 004a 13       		.uleb128 0x13
+ 1107 004b 2F       		.uleb128 0x2f
+ 1108 004c 0B       		.uleb128 0xb
+ 1109 004d 00       		.byte	0
+ 1110 004e 00       		.byte	0
+ 1111 004f 08       		.uleb128 0x8
+ 1112 0050 13       		.uleb128 0x13
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 25
+
+
+ 1113 0051 01       		.byte	0x1
+ 1114 0052 0B       		.uleb128 0xb
+ 1115 0053 0B       		.uleb128 0xb
+ 1116 0054 3A       		.uleb128 0x3a
+ 1117 0055 0B       		.uleb128 0xb
+ 1118 0056 3B       		.uleb128 0x3b
+ 1119 0057 0B       		.uleb128 0xb
+ 1120 0058 01       		.uleb128 0x1
+ 1121 0059 13       		.uleb128 0x13
+ 1122 005a 00       		.byte	0
+ 1123 005b 00       		.byte	0
+ 1124 005c 09       		.uleb128 0x9
+ 1125 005d 0D       		.uleb128 0xd
+ 1126 005e 00       		.byte	0
+ 1127 005f 03       		.uleb128 0x3
+ 1128 0060 0E       		.uleb128 0xe
+ 1129 0061 3A       		.uleb128 0x3a
+ 1130 0062 0B       		.uleb128 0xb
+ 1131 0063 3B       		.uleb128 0x3b
+ 1132 0064 0B       		.uleb128 0xb
+ 1133 0065 49       		.uleb128 0x49
+ 1134 0066 13       		.uleb128 0x13
+ 1135 0067 38       		.uleb128 0x38
+ 1136 0068 0B       		.uleb128 0xb
+ 1137 0069 00       		.byte	0
+ 1138 006a 00       		.byte	0
+ 1139 006b 0A       		.uleb128 0xa
+ 1140 006c 0D       		.uleb128 0xd
+ 1141 006d 00       		.byte	0
+ 1142 006e 03       		.uleb128 0x3
+ 1143 006f 0E       		.uleb128 0xe
+ 1144 0070 3A       		.uleb128 0x3a
+ 1145 0071 0B       		.uleb128 0xb
+ 1146 0072 3B       		.uleb128 0x3b
+ 1147 0073 05       		.uleb128 0x5
+ 1148 0074 49       		.uleb128 0x49
+ 1149 0075 13       		.uleb128 0x13
+ 1150 0076 38       		.uleb128 0x38
+ 1151 0077 0B       		.uleb128 0xb
+ 1152 0078 00       		.byte	0
+ 1153 0079 00       		.byte	0
+ 1154 007a 0B       		.uleb128 0xb
+ 1155 007b 13       		.uleb128 0x13
+ 1156 007c 01       		.byte	0x1
+ 1157 007d 0B       		.uleb128 0xb
+ 1158 007e 0B       		.uleb128 0xb
+ 1159 007f 3A       		.uleb128 0x3a
+ 1160 0080 0B       		.uleb128 0xb
+ 1161 0081 3B       		.uleb128 0x3b
+ 1162 0082 05       		.uleb128 0x5
+ 1163 0083 01       		.uleb128 0x1
+ 1164 0084 13       		.uleb128 0x13
+ 1165 0085 00       		.byte	0
+ 1166 0086 00       		.byte	0
+ 1167 0087 0C       		.uleb128 0xc
+ 1168 0088 0D       		.uleb128 0xd
+ 1169 0089 00       		.byte	0
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 26
+
+
+ 1170 008a 03       		.uleb128 0x3
+ 1171 008b 08       		.uleb128 0x8
+ 1172 008c 3A       		.uleb128 0x3a
+ 1173 008d 0B       		.uleb128 0xb
+ 1174 008e 3B       		.uleb128 0x3b
+ 1175 008f 05       		.uleb128 0x5
+ 1176 0090 49       		.uleb128 0x49
+ 1177 0091 13       		.uleb128 0x13
+ 1178 0092 38       		.uleb128 0x38
+ 1179 0093 0B       		.uleb128 0xb
+ 1180 0094 00       		.byte	0
+ 1181 0095 00       		.byte	0
+ 1182 0096 0D       		.uleb128 0xd
+ 1183 0097 2E       		.uleb128 0x2e
+ 1184 0098 01       		.byte	0x1
+ 1185 0099 3F       		.uleb128 0x3f
+ 1186 009a 19       		.uleb128 0x19
+ 1187 009b 03       		.uleb128 0x3
+ 1188 009c 0E       		.uleb128 0xe
+ 1189 009d 3A       		.uleb128 0x3a
+ 1190 009e 0B       		.uleb128 0xb
+ 1191 009f 3B       		.uleb128 0x3b
+ 1192 00a0 0B       		.uleb128 0xb
+ 1193 00a1 27       		.uleb128 0x27
+ 1194 00a2 19       		.uleb128 0x19
+ 1195 00a3 11       		.uleb128 0x11
+ 1196 00a4 01       		.uleb128 0x1
+ 1197 00a5 12       		.uleb128 0x12
+ 1198 00a6 06       		.uleb128 0x6
+ 1199 00a7 40       		.uleb128 0x40
+ 1200 00a8 18       		.uleb128 0x18
+ 1201 00a9 9642     		.uleb128 0x2116
+ 1202 00ab 19       		.uleb128 0x19
+ 1203 00ac 01       		.uleb128 0x1
+ 1204 00ad 13       		.uleb128 0x13
+ 1205 00ae 00       		.byte	0
+ 1206 00af 00       		.byte	0
+ 1207 00b0 0E       		.uleb128 0xe
+ 1208 00b1 34       		.uleb128 0x34
+ 1209 00b2 00       		.byte	0
+ 1210 00b3 03       		.uleb128 0x3
+ 1211 00b4 0E       		.uleb128 0xe
+ 1212 00b5 3A       		.uleb128 0x3a
+ 1213 00b6 0B       		.uleb128 0xb
+ 1214 00b7 3B       		.uleb128 0x3b
+ 1215 00b8 0B       		.uleb128 0xb
+ 1216 00b9 49       		.uleb128 0x49
+ 1217 00ba 13       		.uleb128 0x13
+ 1218 00bb 02       		.uleb128 0x2
+ 1219 00bc 18       		.uleb128 0x18
+ 1220 00bd 00       		.byte	0
+ 1221 00be 00       		.byte	0
+ 1222 00bf 0F       		.uleb128 0xf
+ 1223 00c0 34       		.uleb128 0x34
+ 1224 00c1 00       		.byte	0
+ 1225 00c2 03       		.uleb128 0x3
+ 1226 00c3 0E       		.uleb128 0xe
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 27
+
+
+ 1227 00c4 3A       		.uleb128 0x3a
+ 1228 00c5 0B       		.uleb128 0xb
+ 1229 00c6 3B       		.uleb128 0x3b
+ 1230 00c7 0B       		.uleb128 0xb
+ 1231 00c8 49       		.uleb128 0x49
+ 1232 00c9 13       		.uleb128 0x13
+ 1233 00ca 02       		.uleb128 0x2
+ 1234 00cb 17       		.uleb128 0x17
+ 1235 00cc 00       		.byte	0
+ 1236 00cd 00       		.byte	0
+ 1237 00ce 10       		.uleb128 0x10
+ 1238 00cf 898201   		.uleb128 0x4109
+ 1239 00d2 01       		.byte	0x1
+ 1240 00d3 11       		.uleb128 0x11
+ 1241 00d4 01       		.uleb128 0x1
+ 1242 00d5 31       		.uleb128 0x31
+ 1243 00d6 13       		.uleb128 0x13
+ 1244 00d7 01       		.uleb128 0x1
+ 1245 00d8 13       		.uleb128 0x13
+ 1246 00d9 00       		.byte	0
+ 1247 00da 00       		.byte	0
+ 1248 00db 11       		.uleb128 0x11
+ 1249 00dc 8A8201   		.uleb128 0x410a
+ 1250 00df 00       		.byte	0
+ 1251 00e0 02       		.uleb128 0x2
+ 1252 00e1 18       		.uleb128 0x18
+ 1253 00e2 9142     		.uleb128 0x2111
+ 1254 00e4 18       		.uleb128 0x18
+ 1255 00e5 00       		.byte	0
+ 1256 00e6 00       		.byte	0
+ 1257 00e7 12       		.uleb128 0x12
+ 1258 00e8 898201   		.uleb128 0x4109
+ 1259 00eb 00       		.byte	0
+ 1260 00ec 11       		.uleb128 0x11
+ 1261 00ed 01       		.uleb128 0x1
+ 1262 00ee 31       		.uleb128 0x31
+ 1263 00ef 13       		.uleb128 0x13
+ 1264 00f0 00       		.byte	0
+ 1265 00f1 00       		.byte	0
+ 1266 00f2 13       		.uleb128 0x13
+ 1267 00f3 34       		.uleb128 0x34
+ 1268 00f4 00       		.byte	0
+ 1269 00f5 03       		.uleb128 0x3
+ 1270 00f6 0E       		.uleb128 0xe
+ 1271 00f7 3A       		.uleb128 0x3a
+ 1272 00f8 0B       		.uleb128 0xb
+ 1273 00f9 3B       		.uleb128 0x3b
+ 1274 00fa 05       		.uleb128 0x5
+ 1275 00fb 49       		.uleb128 0x49
+ 1276 00fc 13       		.uleb128 0x13
+ 1277 00fd 3F       		.uleb128 0x3f
+ 1278 00fe 19       		.uleb128 0x19
+ 1279 00ff 3C       		.uleb128 0x3c
+ 1280 0100 19       		.uleb128 0x19
+ 1281 0101 00       		.byte	0
+ 1282 0102 00       		.byte	0
+ 1283 0103 14       		.uleb128 0x14
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 28
+
+
+ 1284 0104 34       		.uleb128 0x34
+ 1285 0105 00       		.byte	0
+ 1286 0106 03       		.uleb128 0x3
+ 1287 0107 0E       		.uleb128 0xe
+ 1288 0108 3A       		.uleb128 0x3a
+ 1289 0109 0B       		.uleb128 0xb
+ 1290 010a 3B       		.uleb128 0x3b
+ 1291 010b 0B       		.uleb128 0xb
+ 1292 010c 49       		.uleb128 0x49
+ 1293 010d 13       		.uleb128 0x13
+ 1294 010e 3F       		.uleb128 0x3f
+ 1295 010f 19       		.uleb128 0x19
+ 1296 0110 3C       		.uleb128 0x3c
+ 1297 0111 19       		.uleb128 0x19
+ 1298 0112 00       		.byte	0
+ 1299 0113 00       		.byte	0
+ 1300 0114 15       		.uleb128 0x15
+ 1301 0115 2E       		.uleb128 0x2e
+ 1302 0116 00       		.byte	0
+ 1303 0117 3F       		.uleb128 0x3f
+ 1304 0118 19       		.uleb128 0x19
+ 1305 0119 3C       		.uleb128 0x3c
+ 1306 011a 19       		.uleb128 0x19
+ 1307 011b 6E       		.uleb128 0x6e
+ 1308 011c 0E       		.uleb128 0xe
+ 1309 011d 03       		.uleb128 0x3
+ 1310 011e 0E       		.uleb128 0xe
+ 1311 011f 3A       		.uleb128 0x3a
+ 1312 0120 0B       		.uleb128 0xb
+ 1313 0121 3B       		.uleb128 0x3b
+ 1314 0122 0B       		.uleb128 0xb
+ 1315 0123 00       		.byte	0
+ 1316 0124 00       		.byte	0
+ 1317 0125 00       		.byte	0
+ 1318              		.section	.debug_loc,"",%progbits
+ 1319              	.Ldebug_loc0:
+ 1320              	.LLST0:
+ 1321 0000 18000000 		.4byte	.LVL0
+ 1322 0004 38000000 		.4byte	.LVL3
+ 1323 0008 0100     		.2byte	0x1
+ 1324 000a 54       		.byte	0x54
+ 1325 000b 38000000 		.4byte	.LVL3
+ 1326 000f 66000000 		.4byte	.LVL7
+ 1327 0013 0100     		.2byte	0x1
+ 1328 0015 50       		.byte	0x50
+ 1329 0016 74000000 		.4byte	.LVL9
+ 1330 001a 7E000000 		.4byte	.LVL12
+ 1331 001e 0100     		.2byte	0x1
+ 1332 0020 50       		.byte	0x50
+ 1333 0021 8A000000 		.4byte	.LVL13
+ 1334 0025 94000000 		.4byte	.LVL15
+ 1335 0029 0100     		.2byte	0x1
+ 1336 002b 50       		.byte	0x50
+ 1337 002c A4000000 		.4byte	.LVL16
+ 1338 0030 B6000000 		.4byte	.LVL17
+ 1339 0034 0100     		.2byte	0x1
+ 1340 0036 50       		.byte	0x50
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 29
+
+
+ 1341 0037 BC000000 		.4byte	.LVL18
+ 1342 003b DA000000 		.4byte	.LVL24
+ 1343 003f 0100     		.2byte	0x1
+ 1344 0041 50       		.byte	0x50
+ 1345 0042 DA000000 		.4byte	.LVL24
+ 1346 0046 E2000000 		.4byte	.LVL27
+ 1347 004a 0700     		.2byte	0x7
+ 1348 004c 74       		.byte	0x74
+ 1349 004d 00       		.sleb128 0
+ 1350 004e 40       		.byte	0x40
+ 1351 004f 24       		.byte	0x24
+ 1352 0050 40       		.byte	0x40
+ 1353 0051 25       		.byte	0x25
+ 1354 0052 9F       		.byte	0x9f
+ 1355 0053 E2000000 		.4byte	.LVL27
+ 1356 0057 E9000000 		.4byte	.LVL29-1
+ 1357 005b 0100     		.2byte	0x1
+ 1358 005d 50       		.byte	0x50
+ 1359 005e E9000000 		.4byte	.LVL29-1
+ 1360 0062 16010000 		.4byte	.LVL36
+ 1361 0066 0700     		.2byte	0x7
+ 1362 0068 74       		.byte	0x74
+ 1363 0069 00       		.sleb128 0
+ 1364 006a 40       		.byte	0x40
+ 1365 006b 24       		.byte	0x24
+ 1366 006c 40       		.byte	0x40
+ 1367 006d 25       		.byte	0x25
+ 1368 006e 9F       		.byte	0x9f
+ 1369 006f 16010000 		.4byte	.LVL36
+ 1370 0073 1F010000 		.4byte	.LVL39-1
+ 1371 0077 0100     		.2byte	0x1
+ 1372 0079 50       		.byte	0x50
+ 1373 007a 1F010000 		.4byte	.LVL39-1
+ 1374 007e 36010000 		.4byte	.LVL43
+ 1375 0082 0700     		.2byte	0x7
+ 1376 0084 74       		.byte	0x74
+ 1377 0085 00       		.sleb128 0
+ 1378 0086 40       		.byte	0x40
+ 1379 0087 24       		.byte	0x24
+ 1380 0088 40       		.byte	0x40
+ 1381 0089 25       		.byte	0x25
+ 1382 008a 9F       		.byte	0x9f
+ 1383 008b 6A010000 		.4byte	.LVL46
+ 1384 008f 7C010000 		.4byte	.LVL47
+ 1385 0093 0100     		.2byte	0x1
+ 1386 0095 54       		.byte	0x54
+ 1387 0096 00000000 		.4byte	0
+ 1388 009a 00000000 		.4byte	0
+ 1389              	.LLST1:
+ 1390 009e 34000000 		.4byte	.LVL2
+ 1391 00a2 6E000000 		.4byte	.LVL8
+ 1392 00a6 0100     		.2byte	0x1
+ 1393 00a8 52       		.byte	0x52
+ 1394 00a9 6E000000 		.4byte	.LVL8
+ 1395 00ad 76000000 		.4byte	.LVL10
+ 1396 00b1 0700     		.2byte	0x7
+ 1397 00b3 74       		.byte	0x74
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 30
+
+
+ 1398 00b4 00       		.sleb128 0
+ 1399 00b5 40       		.byte	0x40
+ 1400 00b6 3C       		.byte	0x3c
+ 1401 00b7 24       		.byte	0x24
+ 1402 00b8 1A       		.byte	0x1a
+ 1403 00b9 9F       		.byte	0x9f
+ 1404 00ba 76000000 		.4byte	.LVL10
+ 1405 00be 89000000 		.4byte	.LVL13-1
+ 1406 00c2 0100     		.2byte	0x1
+ 1407 00c4 52       		.byte	0x52
+ 1408 00c5 C6000000 		.4byte	.LVL19
+ 1409 00c9 CE000000 		.4byte	.LVL21
+ 1410 00cd 0100     		.2byte	0x1
+ 1411 00cf 52       		.byte	0x52
+ 1412 00d0 CE000000 		.4byte	.LVL21
+ 1413 00d4 D2000000 		.4byte	.LVL22
+ 1414 00d8 0700     		.2byte	0x7
+ 1415 00da 74       		.byte	0x74
+ 1416 00db 00       		.sleb128 0
+ 1417 00dc 40       		.byte	0x40
+ 1418 00dd 3C       		.byte	0x3c
+ 1419 00de 24       		.byte	0x24
+ 1420 00df 1A       		.byte	0x1a
+ 1421 00e0 9F       		.byte	0x9f
+ 1422 00e1 D2000000 		.4byte	.LVL22
+ 1423 00e5 D4000000 		.4byte	.LVL23
+ 1424 00e9 0800     		.2byte	0x8
+ 1425 00eb 72       		.byte	0x72
+ 1426 00ec 00       		.sleb128 0
+ 1427 00ed 39       		.byte	0x39
+ 1428 00ee 24       		.byte	0x24
+ 1429 00ef 74       		.byte	0x74
+ 1430 00f0 00       		.sleb128 0
+ 1431 00f1 1A       		.byte	0x1a
+ 1432 00f2 9F       		.byte	0x9f
+ 1433 00f3 D4000000 		.4byte	.LVL23
+ 1434 00f7 DA000000 		.4byte	.LVL24
+ 1435 00fb 0700     		.2byte	0x7
+ 1436 00fd 74       		.byte	0x74
+ 1437 00fe 00       		.sleb128 0
+ 1438 00ff 40       		.byte	0x40
+ 1439 0100 3C       		.byte	0x3c
+ 1440 0101 24       		.byte	0x24
+ 1441 0102 1A       		.byte	0x1a
+ 1442 0103 9F       		.byte	0x9f
+ 1443 0104 DA000000 		.4byte	.LVL24
+ 1444 0108 DC000000 		.4byte	.LVL25
+ 1445 010c 0800     		.2byte	0x8
+ 1446 010e 70       		.byte	0x70
+ 1447 010f 00       		.sleb128 0
+ 1448 0110 39       		.byte	0x39
+ 1449 0111 24       		.byte	0x24
+ 1450 0112 74       		.byte	0x74
+ 1451 0113 00       		.sleb128 0
+ 1452 0114 1A       		.byte	0x1a
+ 1453 0115 9F       		.byte	0x9f
+ 1454 0116 DC000000 		.4byte	.LVL25
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 31
+
+
+ 1455 011a E2000000 		.4byte	.LVL27
+ 1456 011e 0700     		.2byte	0x7
+ 1457 0120 74       		.byte	0x74
+ 1458 0121 00       		.sleb128 0
+ 1459 0122 40       		.byte	0x40
+ 1460 0123 3C       		.byte	0x3c
+ 1461 0124 24       		.byte	0x24
+ 1462 0125 1A       		.byte	0x1a
+ 1463 0126 9F       		.byte	0x9f
+ 1464 0127 E2000000 		.4byte	.LVL27
+ 1465 012b E9000000 		.4byte	.LVL29-1
+ 1466 012f 0100     		.2byte	0x1
+ 1467 0131 52       		.byte	0x52
+ 1468 0132 E9000000 		.4byte	.LVL29-1
+ 1469 0136 FA000000 		.4byte	.LVL33
+ 1470 013a 0700     		.2byte	0x7
+ 1471 013c 74       		.byte	0x74
+ 1472 013d 00       		.sleb128 0
+ 1473 013e 40       		.byte	0x40
+ 1474 013f 3C       		.byte	0x3c
+ 1475 0140 24       		.byte	0x24
+ 1476 0141 1A       		.byte	0x1a
+ 1477 0142 9F       		.byte	0x9f
+ 1478 0143 FA000000 		.4byte	.LVL33
+ 1479 0147 FC000000 		.4byte	.LVL34
+ 1480 014b 0800     		.2byte	0x8
+ 1481 014d 73       		.byte	0x73
+ 1482 014e 00       		.sleb128 0
+ 1483 014f 39       		.byte	0x39
+ 1484 0150 24       		.byte	0x24
+ 1485 0151 74       		.byte	0x74
+ 1486 0152 00       		.sleb128 0
+ 1487 0153 1A       		.byte	0x1a
+ 1488 0154 9F       		.byte	0x9f
+ 1489 0155 FC000000 		.4byte	.LVL34
+ 1490 0159 16010000 		.4byte	.LVL36
+ 1491 015d 0700     		.2byte	0x7
+ 1492 015f 74       		.byte	0x74
+ 1493 0160 00       		.sleb128 0
+ 1494 0161 40       		.byte	0x40
+ 1495 0162 3C       		.byte	0x3c
+ 1496 0163 24       		.byte	0x24
+ 1497 0164 1A       		.byte	0x1a
+ 1498 0165 9F       		.byte	0x9f
+ 1499 0166 16010000 		.4byte	.LVL36
+ 1500 016a 1F010000 		.4byte	.LVL39-1
+ 1501 016e 0100     		.2byte	0x1
+ 1502 0170 52       		.byte	0x52
+ 1503 0171 1F010000 		.4byte	.LVL39-1
+ 1504 0175 36010000 		.4byte	.LVL43
+ 1505 0179 0700     		.2byte	0x7
+ 1506 017b 74       		.byte	0x74
+ 1507 017c 00       		.sleb128 0
+ 1508 017d 40       		.byte	0x40
+ 1509 017e 3C       		.byte	0x3c
+ 1510 017f 24       		.byte	0x24
+ 1511 0180 1A       		.byte	0x1a
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 32
+
+
+ 1512 0181 9F       		.byte	0x9f
+ 1513 0182 00000000 		.4byte	0
+ 1514 0186 00000000 		.4byte	0
+ 1515              	.LLST2:
+ 1516 018a 2E000000 		.4byte	.LVL1
+ 1517 018e 5A000000 		.4byte	.LVL5
+ 1518 0192 0100     		.2byte	0x1
+ 1519 0194 53       		.byte	0x53
+ 1520 0195 76000000 		.4byte	.LVL10
+ 1521 0199 7A000000 		.4byte	.LVL11
+ 1522 019d 0100     		.2byte	0x1
+ 1523 019f 53       		.byte	0x53
+ 1524 01a0 C6000000 		.4byte	.LVL19
+ 1525 01a4 C8000000 		.4byte	.LVL20
+ 1526 01a8 0100     		.2byte	0x1
+ 1527 01aa 53       		.byte	0x53
+ 1528 01ab E2000000 		.4byte	.LVL27
+ 1529 01af E4000000 		.4byte	.LVL28
+ 1530 01b3 0100     		.2byte	0x1
+ 1531 01b5 53       		.byte	0x53
+ 1532 01b6 16010000 		.4byte	.LVL36
+ 1533 01ba 1A010000 		.4byte	.LVL38
+ 1534 01be 0100     		.2byte	0x1
+ 1535 01c0 53       		.byte	0x53
+ 1536 01c1 00000000 		.4byte	0
+ 1537 01c5 00000000 		.4byte	0
+ 1538              	.LLST3:
+ 1539 01c9 3E000000 		.4byte	.LVL4
+ 1540 01cd 18010000 		.4byte	.LVL37
+ 1541 01d1 0100     		.2byte	0x1
+ 1542 01d3 55       		.byte	0x55
+ 1543 01d4 00000000 		.4byte	0
+ 1544 01d8 00000000 		.4byte	0
+ 1545              	.LLST4:
+ 1546 01dc EA000000 		.4byte	.LVL29
+ 1547 01e0 F7000000 		.4byte	.LVL32-1
+ 1548 01e4 0100     		.2byte	0x1
+ 1549 01e6 50       		.byte	0x50
+ 1550 01e7 20010000 		.4byte	.LVL39
+ 1551 01eb 2F010000 		.4byte	.LVL42-1
+ 1552 01ef 0100     		.2byte	0x1
+ 1553 01f1 50       		.byte	0x50
+ 1554 01f2 00000000 		.4byte	0
+ 1555 01f6 00000000 		.4byte	0
+ 1556              	.LLST5:
+ 1557 01fa EE000000 		.4byte	.LVL30
+ 1558 01fe F2000000 		.4byte	.LVL31
+ 1559 0202 0100     		.2byte	0x1
+ 1560 0204 51       		.byte	0x51
+ 1561 0205 F2000000 		.4byte	.LVL31
+ 1562 0209 F7000000 		.4byte	.LVL32-1
+ 1563 020d 0100     		.2byte	0x1
+ 1564 020f 53       		.byte	0x53
+ 1565 0210 24010000 		.4byte	.LVL40
+ 1566 0214 2F010000 		.4byte	.LVL42-1
+ 1567 0218 0100     		.2byte	0x1
+ 1568 021a 53       		.byte	0x53
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 33
+
+
+ 1569 021b 00000000 		.4byte	0
+ 1570 021f 00000000 		.4byte	0
+ 1571              		.section	.debug_aranges,"",%progbits
+ 1572 0000 1C000000 		.4byte	0x1c
+ 1573 0004 0200     		.2byte	0x2
+ 1574 0006 00000000 		.4byte	.Ldebug_info0
+ 1575 000a 04       		.byte	0x4
+ 1576 000b 00       		.byte	0
+ 1577 000c 0000     		.2byte	0
+ 1578 000e 0000     		.2byte	0
+ 1579 0010 00000000 		.4byte	.LFB1
+ 1580 0014 AC010000 		.4byte	.LFE1-.LFB1
+ 1581 0018 00000000 		.4byte	0
+ 1582 001c 00000000 		.4byte	0
+ 1583              		.section	.debug_ranges,"",%progbits
+ 1584              	.Ldebug_ranges0:
+ 1585 0000 00000000 		.4byte	.LFB1
+ 1586 0004 AC010000 		.4byte	.LFE1
+ 1587 0008 00000000 		.4byte	0
+ 1588 000c 00000000 		.4byte	0
+ 1589              		.section	.debug_line,"",%progbits
+ 1590              	.Ldebug_line0:
+ 1591 0000 F7000000 		.section	.debug_str,"MS",%progbits,1
+ 1591      02009E00 
+ 1591      00000201 
+ 1591      FB0E0D00 
+ 1591      01010101 
+ 1592              	.LASF10:
+ 1593 0000 75696E74 		.ascii	"uint16\000"
+ 1593      313600
+ 1594              	.LASF83:
+ 1595 0007 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1595      69744372 
+ 1595      69746963 
+ 1595      616C5365 
+ 1595      6374696F 
+ 1596              	.LASF70:
+ 1597 001d 764D6178 		.ascii	"vMaxMv\000"
+ 1597      4D7600
+ 1598              	.LASF41:
+ 1599 0024 43617053 		.ascii	"CapSense_RAM_SNS_STRUCT\000"
+ 1599      656E7365 
+ 1599      5F52414D 
+ 1599      5F534E53 
+ 1599      5F535452 
+ 1600              	.LASF7:
+ 1601 003c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1601      206C6F6E 
+ 1601      6720756E 
+ 1601      7369676E 
+ 1601      65642069 
+ 1602              	.LASF38:
+ 1603 0053 64696666 		.ascii	"diff\000"
+ 1603      00
+ 1604              	.LASF19:
+ 1605 0058 43617053 		.ascii	"CapSense_LOW_BSLN_RST_TYPE\000"
+ 1605      656E7365 
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 34
+
+
+ 1605      5F4C4F57 
+ 1605      5F42534C 
+ 1605      4E5F5253 
+ 1606              	.LASF64:
+ 1607 0073 736E7254 		.ascii	"snrTestSensorId\000"
+ 1607      65737453 
+ 1607      656E736F 
+ 1607      72496400 
+ 1608              	.LASF18:
+ 1609 0083 43617053 		.ascii	"CapSense_THRESHOLD_TYPE\000"
+ 1609      656E7365 
+ 1609      5F544852 
+ 1609      4553484F 
+ 1609      4C445F54 
+ 1610              	.LASF6:
+ 1611 009b 6C6F6E67 		.ascii	"long long int\000"
+ 1611      206C6F6E 
+ 1611      6720696E 
+ 1611      7400
+ 1612              	.LASF0:
+ 1613 00a9 7369676E 		.ascii	"signed char\000"
+ 1613      65642063 
+ 1613      68617200 
+ 1614              	.LASF86:
+ 1615 00b5 433A5C55 		.ascii	"C:\\Users\\dell\\Documents\\PSoC Creator\\Workspace"
+ 1615      73657273 
+ 1615      5C64656C 
+ 1615      6C5C446F 
+ 1615      63756D65 
+ 1616 00e3 30335C44 		.ascii	"03\\Design01.cydsn\000"
+ 1616      65736967 
+ 1616      6E30312E 
+ 1616      63796473 
+ 1616      6E00
+ 1617              	.LASF75:
+ 1618 00f5 696E7465 		.ascii	"interruptState\000"
+ 1618      72727570 
+ 1618      74537461 
+ 1618      746500
+ 1619              	.LASF55:
+ 1620 0104 61646349 		.ascii	"adcIdac\000"
+ 1620      64616300 
+ 1621              	.LASF51:
+ 1622 010c 736E7353 		.ascii	"snsStatus\000"
+ 1622      74617475 
+ 1622      7300
+ 1623              	.LASF4:
+ 1624 0116 6C6F6E67 		.ascii	"long int\000"
+ 1624      20696E74 
+ 1624      00
+ 1625              	.LASF58:
+ 1626 011f 6D6F6443 		.ascii	"modCsdClk\000"
+ 1626      7364436C 
+ 1626      6B00
+ 1627              	.LASF9:
+ 1628 0129 75696E74 		.ascii	"uint8\000"
+ 1628      3800
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 35
+
+
+ 1629              	.LASF68:
+ 1630 012f 74567373 		.ascii	"tVssa2Vref\000"
+ 1630      61325672 
+ 1630      656600
+ 1631              	.LASF69:
+ 1632 013a 7446756C 		.ascii	"tFull\000"
+ 1632      6C00
+ 1633              	.LASF13:
+ 1634 0140 646F7562 		.ascii	"double\000"
+ 1634      6C6500
+ 1635              	.LASF33:
+ 1636 0147 62746E68 		.ascii	"btnhot\000"
+ 1636      6F7400
+ 1637              	.LASF66:
+ 1638 014e 736E7254 		.ascii	"snrTestRawCount\000"
+ 1638      65737452 
+ 1638      6177436F 
+ 1638      756E7400 
+ 1639              	.LASF53:
+ 1640 015e 61646343 		.ascii	"adcCode\000"
+ 1640      6F646500 
+ 1641              	.LASF76:
+ 1642 0166 6E657752 		.ascii	"newRegValue\000"
+ 1642      65675661 
+ 1642      6C756500 
+ 1643              	.LASF11:
+ 1644 0172 75696E74 		.ascii	"uint32\000"
+ 1644      333200
+ 1645              	.LASF24:
+ 1646 0179 68797374 		.ascii	"hysteresis\000"
+ 1646      65726573 
+ 1646      697300
+ 1647              	.LASF87:
+ 1648 0184 43617053 		.ascii	"CapSense_AdcIntrHandler\000"
+ 1648      656E7365 
+ 1648      5F416463 
+ 1648      496E7472 
+ 1648      48616E64 
+ 1649              	.LASF37:
+ 1650 019c 62736C6E 		.ascii	"bslnExt\000"
+ 1650      45787400 
+ 1651              	.LASF50:
+ 1652 01a4 77646774 		.ascii	"wdgtStatus\000"
+ 1652      53746174 
+ 1652      757300
+ 1653              	.LASF36:
+ 1654 01af 62736C6E 		.ascii	"bsln\000"
+ 1654      00
+ 1655              	.LASF8:
+ 1656 01b4 756E7369 		.ascii	"unsigned int\000"
+ 1656      676E6564 
+ 1656      20696E74 
+ 1656      00
+ 1657              	.LASF63:
+ 1658 01c1 736E7254 		.ascii	"snrTestWidgetId\000"
+ 1658      65737457 
+ 1658      69646765 
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 36
+
+
+ 1658      74496400 
+ 1659              	.LASF5:
+ 1660 01d1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1660      20756E73 
+ 1660      69676E65 
+ 1660      6420696E 
+ 1660      7400
+ 1661              	.LASF49:
+ 1662 01e3 77646774 		.ascii	"wdgtEnable\000"
+ 1662      456E6162 
+ 1662      6C6500
+ 1663              	.LASF82:
+ 1664 01ee 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1664      74657243 
+ 1664      72697469 
+ 1664      63616C53 
+ 1664      65637469 
+ 1665              	.LASF26:
+ 1666 0205 6C6F7742 		.ascii	"lowBslnRst\000"
+ 1666      736C6E52 
+ 1666      737400
+ 1667              	.LASF3:
+ 1668 0210 73686F72 		.ascii	"short unsigned int\000"
+ 1668      7420756E 
+ 1668      7369676E 
+ 1668      65642069 
+ 1668      6E7400
+ 1669              	.LASF80:
+ 1670 0223 43617053 		.ascii	"CapSense_adcVrefMv\000"
+ 1670      656E7365 
+ 1670      5F616463 
+ 1670      56726566 
+ 1670      4D7600
+ 1671              	.LASF62:
+ 1672 0236 736E734C 		.ascii	"snsList\000"
+ 1672      69737400 
+ 1673              	.LASF43:
+ 1674 023e 636F6E66 		.ascii	"configId\000"
+ 1674      69674964 
+ 1674      00
+ 1675              	.LASF77:
+ 1676 0247 74566464 		.ascii	"tVdda2Vref\000"
+ 1676      61325672 
+ 1676      656600
+ 1677              	.LASF57:
+ 1678 0252 63736430 		.ascii	"csd0Config\000"
+ 1678      436F6E66 
+ 1678      696700
+ 1679              	.LASF73:
+ 1680 025d 61646346 		.ascii	"adcFsmStatus\000"
+ 1680      736D5374 
+ 1680      61747573 
+ 1680      00
+ 1681              	.LASF44:
+ 1682 026a 64657669 		.ascii	"deviceId\000"
+ 1682      63654964 
+ 1682      00
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 37
+
+
+ 1683              	.LASF30:
+ 1684 0273 43617053 		.ascii	"CapSense_RAM_WD_BUTTON_STRUCT\000"
+ 1684      656E7365 
+ 1684      5F52414D 
+ 1684      5F57445F 
+ 1684      42555454 
+ 1685              	.LASF15:
+ 1686 0291 72656733 		.ascii	"reg32\000"
+ 1686      3200
+ 1687              	.LASF27:
+ 1688 0297 69646163 		.ascii	"idacMod\000"
+ 1688      4D6F6400 
+ 1689              	.LASF52:
+ 1690 029f 61646352 		.ascii	"adcResult\000"
+ 1690      6573756C 
+ 1690      7400
+ 1691              	.LASF17:
+ 1692 02a9 73697A65 		.ascii	"sizetype\000"
+ 1692      74797065 
+ 1692      00
+ 1693              	.LASF16:
+ 1694 02b2 6C6F6E67 		.ascii	"long double\000"
+ 1694      20646F75 
+ 1694      626C6500 
+ 1695              	.LASF23:
+ 1696 02be 6E4E6F69 		.ascii	"nNoiseTh\000"
+ 1696      73655468 
+ 1696      00
+ 1697              	.LASF45:
+ 1698 02c7 6877436C 		.ascii	"hwClock\000"
+ 1698      6F636B00 
+ 1699              	.LASF47:
+ 1700 02cf 7363616E 		.ascii	"scanCounter\000"
+ 1700      436F756E 
+ 1700      74657200 
+ 1701              	.LASF79:
+ 1702 02db 43617053 		.ascii	"CapSense_dsRam\000"
+ 1702      656E7365 
+ 1702      5F647352 
+ 1702      616D00
+ 1703              	.LASF46:
+ 1704 02ea 74756E65 		.ascii	"tunerCmd\000"
+ 1704      72436D64 
+ 1704      00
+ 1705              	.LASF12:
+ 1706 02f3 666C6F61 		.ascii	"float\000"
+ 1706      7400
+ 1707              	.LASF31:
+ 1708 02f9 62746E72 		.ascii	"btnro\000"
+ 1708      6F00
+ 1709              	.LASF74:
+ 1710 02ff 746D7043 		.ascii	"tmpChId\000"
+ 1710      68496400 
+ 1711              	.LASF42:
+ 1712 0307 43617053 		.ascii	"CapSense_RAM_SNS_LIST_STRUCT\000"
+ 1712      656E7365 
+ 1712      5F52414D 
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 38
+
+
+ 1712      5F534E53 
+ 1712      5F4C4953 
+ 1713              	.LASF67:
+ 1714 0324 43617053 		.ascii	"CapSense_RAM_STRUCT\000"
+ 1714      656E7365 
+ 1714      5F52414D 
+ 1714      5F535452 
+ 1714      55435400 
+ 1715              	.LASF1:
+ 1716 0338 756E7369 		.ascii	"unsigned char\000"
+ 1716      676E6564 
+ 1716      20636861 
+ 1716      7200
+ 1717              	.LASF2:
+ 1718 0346 73686F72 		.ascii	"short int\000"
+ 1718      7420696E 
+ 1718      7400
+ 1719              	.LASF54:
+ 1720 0350 61646353 		.ascii	"adcStatus\000"
+ 1720      74617475 
+ 1720      7300
+ 1721              	.LASF20:
+ 1722 035a 7265736F 		.ascii	"resolution\000"
+ 1722      6C757469 
+ 1722      6F6E00
+ 1723              	.LASF61:
+ 1724 0365 77646774 		.ascii	"wdgtList\000"
+ 1724      4C697374 
+ 1724      00
+ 1725              	.LASF72:
+ 1726 036e 706F6C61 		.ascii	"polarity\000"
+ 1726      72697479 
+ 1726      00
+ 1727              	.LASF84:
+ 1728 0377 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1728      43313120 
+ 1728      352E342E 
+ 1728      31203230 
+ 1728      31363036 
+ 1729 03aa 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0plus -mthumb -"
+ 1729      20726576 
+ 1729      6973696F 
+ 1729      6E203233 
+ 1729      37373135 
+ 1730 03dd 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 1730      67202D66 
+ 1730      66756E63 
+ 1730      74696F6E 
+ 1730      2D736563 
+ 1731              	.LASF14:
+ 1732 0409 63686172 		.ascii	"char\000"
+ 1732      00
+ 1733              	.LASF28:
+ 1734 040e 736E7343 		.ascii	"snsClk\000"
+ 1734      6C6B00
+ 1735              	.LASF60:
+ 1736 0415 61646341 		.ascii	"adcAzTime\000"
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 39
+
+
+ 1736      7A54696D 
+ 1736      6500
+ 1737              	.LASF78:
+ 1738 041f 74526563 		.ascii	"tRecover\000"
+ 1738      6F766572 
+ 1738      00
+ 1739              	.LASF85:
+ 1740 0428 47656E65 		.ascii	"Generated_Source\\PSoC4\\CapSense_Adc_INT.c\000"
+ 1740      72617465 
+ 1740      645F536F 
+ 1740      75726365 
+ 1740      5C50536F 
+ 1741              	.LASF25:
+ 1742 0452 6F6E4465 		.ascii	"onDebounce\000"
+ 1742      626F756E 
+ 1742      636500
+ 1743              	.LASF34:
+ 1744 045d 62746E6C 		.ascii	"btnlock\000"
+ 1744      6F636B00 
+ 1745              	.LASF40:
+ 1746 0465 69646163 		.ascii	"idacComp\000"
+ 1746      436F6D70 
+ 1746      00
+ 1747              	.LASF39:
+ 1748 046e 6E656742 		.ascii	"negBslnRstCnt\000"
+ 1748      736C6E52 
+ 1748      7374436E 
+ 1748      7400
+ 1749              	.LASF56:
+ 1750 047c 61646341 		.ascii	"adcActiveCh\000"
+ 1750      63746976 
+ 1750      65436800 
+ 1751              	.LASF48:
+ 1752 0488 73746174 		.ascii	"status\000"
+ 1752      757300
+ 1753              	.LASF71:
+ 1754 048f 746D7052 		.ascii	"tmpResult\000"
+ 1754      6573756C 
+ 1754      7400
+ 1755              	.LASF59:
+ 1756 0499 61646352 		.ascii	"adcResolution\000"
+ 1756      65736F6C 
+ 1756      7574696F 
+ 1756      6E00
+ 1757              	.LASF29:
+ 1758 04a7 736E7343 		.ascii	"snsClkSource\000"
+ 1758      6C6B536F 
+ 1758      75726365 
+ 1758      00
+ 1759              	.LASF21:
+ 1760 04b4 66696E67 		.ascii	"fingerTh\000"
+ 1760      65725468 
+ 1760      00
+ 1761              	.LASF35:
+ 1762 04bd 43617053 		.ascii	"CapSense_RAM_WD_LIST_STRUCT\000"
+ 1762      656E7365 
+ 1762      5F52414D 
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccByPeGI.s 			page 40
+
+
+ 1762      5F57445F 
+ 1762      4C495354 
+ 1763              	.LASF65:
+ 1764 04d9 736E7254 		.ascii	"snrTestScanCounter\000"
+ 1764      65737453 
+ 1764      63616E43 
+ 1764      6F756E74 
+ 1764      657200
+ 1765              	.LASF32:
+ 1766 04ec 62746E63 		.ascii	"btncold\000"
+ 1766      6F6C6400 
+ 1767              	.LASF81:
+ 1768 04f4 43617053 		.ascii	"CapSense_StartAdcFSM\000"
+ 1768      656E7365 
+ 1768      5F537461 
+ 1768      72744164 
+ 1768      6346534D 
+ 1769              	.LASF22:
+ 1770 0509 6E6F6973 		.ascii	"noiseTh\000"
+ 1770      65546800 
+ 1771              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

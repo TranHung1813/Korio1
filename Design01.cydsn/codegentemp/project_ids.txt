@@ -1,0 +1,6 @@
+E:\PSoC Creator\4.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|867f4b4e-a43a-4ea9-b849-93aa110402d3
+C:\Users\dell\Documents\PSoC Creator\4.3\Downloads ( 4.3).cylib\Downloads ( 4.3).cyprj|16d88807-8133-435c-bfbe-6abaef122017
+E:\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|7984bdcb-d09a-4cc4-ba86-df736e9a856f
+E:\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|37d7d0d6-69f4-4938-a49c-7979197a26dd
+E:\PSoC Creator\4.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|2cfc11e6-0d5a-440f-829c-08ea2d7dab26
+C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\Design01.cyprj|e0a4eed3-4ef6-46f3-966c-07078d69e160
