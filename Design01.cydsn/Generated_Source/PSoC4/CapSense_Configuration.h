@@ -314,10 +314,10 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 #define CapSense_IIR_FILTER_MEMORY            (3u)
 
 /* Regular sensor raw count filters */
-#define CapSense_REGULAR_RC_FILTER_EN         (1u)
+#define CapSense_REGULAR_RC_FILTER_EN         (0u)
 #define CapSense_REGULAR_RC_IIR_FILTER_EN     (0u)
 #define CapSense_REGULAR_RC_MEDIAN_FILTER_EN  (0u)
-#define CapSense_REGULAR_RC_AVERAGE_FILTER_EN (1u)
+#define CapSense_REGULAR_RC_AVERAGE_FILTER_EN (0u)
 #define CapSense_REGULAR_RC_CUSTOM_FILTER_EN  (0u)
 #define CapSense_REGULAR_RC_ALP_FILTER_EN     (0u)
 
@@ -529,7 +529,7 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 #define CapSense_CSD_DUALIDAC_LEVEL           (50u)
 #define CapSense_CSD_PRESCAN_SETTLING_TIME    (5u)
 #define CapSense_CSD_SNSCLK_R_CONST           (1000u)
-#define CapSense_CSD_VREF_MV                  (2021u)
+#define CapSense_CSD_VREF_MV                  (2743u)
 
 /* CSD settings - Fourth-generation HW block */
 #define CapSense_CSD_ANALOG_STARTUP_DELAY_US  (10u)
@@ -542,7 +542,7 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 #define CapSense_CSD_INIT_SWITCH_RES          (CapSense_INIT_SW_RES_MEDIUM)
 #define CapSense_CSD_SENSING_METHOD           (0)
 #define CapSense_CSD_SHIELD_SWITCH_RES        (CapSense_SHIELD_SW_RES_MEDIUM)
-#define CapSense_CSD_GAIN                     (18Lu)
+#define CapSense_CSD_GAIN                     (13Lu)
 
 #define CapSense_CSD_MFS_DIVIDER_OFFSET_F1    (1u)
 #define CapSense_CSD_MFS_DIVIDER_OFFSET_F2    (2u)
@@ -623,7 +623,7 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
                                        || (0u != CapSense_ISX_IDAC_AUTOCAL_EN)) \
                                        || (0u != CapSense_CSD_IDAC_AUTOCAL_EN))
 /* RAM Global Parameters Definitions */
-#define CapSense_CONFIG_ID                      (0xA9E6u)
+#define CapSense_CONFIG_ID                      (0x17B2u)
 #define CapSense_DEVICE_ID                      (0x0100u)
 #define CapSense_HW_CLOCK                       (0x0BB8u)
 #define CapSense_CSD0_CONFIG                    (0x0008u)
@@ -637,11 +637,28 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 /*******************************************************************************
 * btnRO initialization values for RAM data structure
 *******************************************************************************/
-#define CapSense_BTNRO_RESOLUTION               (CapSense_RES10BIT)
-#define CapSense_BTNRO_FINGER_TH                (72u)
-#define CapSense_BTNRO_NOISE_TH                 (36u)
-#define CapSense_BTNRO_NNOISE_TH                (36u)
-#define CapSense_BTNRO_HYSTERESIS               (9u)
+/* CUSTOM */
+#define CapSense_BTNRO_RESOLUTION               (CapSense_RES11BIT)
+#define CapSense_BTNCOLD_RESOLUTION             (CapSense_RES11BIT)
+#define CapSense_BTNHOT_RESOLUTION              (CapSense_RES11BIT)
+#define CapSense_BTNLOCK_RESOLUTION             (CapSense_RES10BIT)
+
+#define CapSense_BTNRO_FINGER_TH                (40)
+#define CapSense_BTNCOLD_FINGER_TH              (80)
+#define CapSense_BTNHOT_FINGER_TH               (80)
+#define CapSense_BTNLOCK_FINGER_TH              (40)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//#define CapSense_BTNRO_RESOLUTION               (CapSense_RES10BIT)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//#define CapSense_BTNRO_FINGER_TH                (80u)
+//#define CapSense_BTNRO_NOISE_TH                 (40u)
+//#define CapSense_BTNRO_NNOISE_TH                (40u)
+//#define CapSense_BTNRO_HYSTERESIS               (10u)
+//#define CapSense_BTNRO_FINGER_TH                (80)
+#define CapSense_BTNRO_NOISE_TH                 (CapSense_BTNRO_FINGER_TH/2)
+#define CapSense_BTNRO_NNOISE_TH                (CapSense_BTNRO_NOISE_TH)
+#define CapSense_BTNRO_HYSTERESIS               (CapSense_BTNRO_NOISE_TH/4)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define CapSense_BTNRO_ON_DEBOUNCE              (3u)
 #define CapSense_BTNRO_LOW_BSLN_RST             (30u)
 #define CapSense_BTNRO_IDAC_MOD0                (32u)
@@ -657,11 +674,17 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 /*******************************************************************************
 * btnCOLD initialization values for RAM data structure
 *******************************************************************************/
-#define CapSense_BTNCOLD_RESOLUTION             (CapSense_RES10BIT)
-#define CapSense_BTNCOLD_FINGER_TH              (128u)
-#define CapSense_BTNCOLD_NOISE_TH               (64u)
-#define CapSense_BTNCOLD_NNOISE_TH              (64u)
-#define CapSense_BTNCOLD_HYSTERESIS             (16u)
+//#define CapSense_BTNCOLD_RESOLUTION             (CapSense_RES10BIT)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//#define CapSense_BTNCOLD_FINGER_TH              (120u)
+//#define CapSense_BTNCOLD_NOISE_TH               (60u)
+//#define CapSense_BTNCOLD_NNOISE_TH              (60u)
+//#define CapSense_BTNCOLD_HYSTERESIS             (15u)
+//#define CapSense_BTNCOLD_FINGER_TH              (120)
+#define CapSense_BTNCOLD_NOISE_TH               (CapSense_BTNCOLD_FINGER_TH/2)
+#define CapSense_BTNCOLD_NNOISE_TH              (CapSense_BTNCOLD_NOISE_TH)
+#define CapSense_BTNCOLD_HYSTERESIS             (CapSense_BTNCOLD_NOISE_TH/4)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define CapSense_BTNCOLD_ON_DEBOUNCE            (3u)
 #define CapSense_BTNCOLD_LOW_BSLN_RST           (30u)
 #define CapSense_BTNCOLD_IDAC_MOD0              (32u)
@@ -677,11 +700,17 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 /*******************************************************************************
 * btnHOT initialization values for RAM data structure
 *******************************************************************************/
-#define CapSense_BTNHOT_RESOLUTION              (CapSense_RES11BIT)
-#define CapSense_BTNHOT_FINGER_TH               (160u)
-#define CapSense_BTNHOT_NOISE_TH                (80u)
-#define CapSense_BTNHOT_NNOISE_TH               (80u)
-#define CapSense_BTNHOT_HYSTERESIS              (20u)
+//#define CapSense_BTNHOT_RESOLUTION              (CapSense_RES10BIT)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//#define CapSense_BTNHOT_FINGER_TH               (224u)
+//#define CapSense_BTNHOT_NOISE_TH                (112u)
+//#define CapSense_BTNHOT_NNOISE_TH               (112u)
+//#define CapSense_BTNHOT_HYSTERESIS              (28u)
+//#define CapSense_BTNHOT_FINGER_TH               (96)
+#define CapSense_BTNHOT_NOISE_TH                (CapSense_BTNHOT_FINGER_TH/2)
+#define CapSense_BTNHOT_NNOISE_TH               (CapSense_BTNHOT_NOISE_TH)
+#define CapSense_BTNHOT_HYSTERESIS              (CapSense_BTNHOT_NOISE_TH/4)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define CapSense_BTNHOT_ON_DEBOUNCE             (3u)
 #define CapSense_BTNHOT_LOW_BSLN_RST            (30u)
 #define CapSense_BTNHOT_IDAC_MOD0               (32u)
@@ -697,11 +726,17 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 /*******************************************************************************
 * btnLOCK initialization values for RAM data structure
 *******************************************************************************/
-#define CapSense_BTNLOCK_RESOLUTION             (CapSense_RES10BIT)
-#define CapSense_BTNLOCK_FINGER_TH              (128u)
-#define CapSense_BTNLOCK_NOISE_TH               (64u)
-#define CapSense_BTNLOCK_NNOISE_TH              (64u)
-#define CapSense_BTNLOCK_HYSTERESIS             (16u)
+//#define CapSense_BTNLOCK_RESOLUTION             (CapSense_RES10BIT)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+//#define CapSense_BTNLOCK_FINGER_TH              (128u)
+//#define CapSense_BTNLOCK_NOISE_TH               (64u)
+//#define CapSense_BTNLOCK_NNOISE_TH              (64u)
+//#define CapSense_BTNLOCK_HYSTERESIS             (16u)
+//#define CapSense_BTNLOCK_FINGER_TH              (112)
+#define CapSense_BTNLOCK_NOISE_TH               (CapSense_BTNLOCK_FINGER_TH/2)
+#define CapSense_BTNLOCK_NNOISE_TH              (CapSense_BTNLOCK_NOISE_TH)
+#define CapSense_BTNLOCK_HYSTERESIS             (CapSense_BTNLOCK_NOISE_TH/4)
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define CapSense_BTNLOCK_ON_DEBOUNCE            (3u)
 #define CapSense_BTNLOCK_LOW_BSLN_RST           (30u)
 #define CapSense_BTNLOCK_IDAC_MOD0              (32u)
@@ -734,9 +769,9 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 #define CapSense_ADC_SELECT_AMUXB_CH          (0u)
 #define CapSense_ADC_AZ_EN                    (1Lu)
 #define CapSense_ADC_AZ_TIME                  (5u)
-#define CapSense_ADC_VREF_MV                  (2133u)
-#define CapSense_ADC_GAIN                     (17Lu)
-#define CapSense_ADC_IDAC_DEFAULT             (15u)
+#define CapSense_ADC_VREF_MV                  (3840u)
+#define CapSense_ADC_GAIN                     (9Lu)
+#define CapSense_ADC_IDAC_DEFAULT             (27u)
 #define CapSense_ADC_MODCLK_DIV_DEFAULT       (1u)
 #define CapSense_ADC_MEASURE_MODE             (CapSense_ADC_FULLRANGE_MODE)
 #define CapSense_ADC_ANALOG_STARTUP_DELAY_US  (5u)

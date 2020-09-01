@@ -69,6 +69,19 @@
 <v>Workspace03\Design01\Generated_Source\PSoC4\Buzzer</v>
 <v>Workspace03\Design01\Generated_Source\PSoC4\CapSense</v>
 <v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense.h</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Adc.c</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Adc.h</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Adc_INT.c</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Configuration.h</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Control.c</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Control.h</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Filter.c</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Filter.h</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_INT.c</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Processing.c</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Processing.h</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_RegisterMap.h</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Sensing.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
