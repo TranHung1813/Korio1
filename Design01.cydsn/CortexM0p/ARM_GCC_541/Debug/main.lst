@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\dell\AppData\Local\Temp\ccczvCht.s 			page 1
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 1
 
 
    1              		.syntax unified
@@ -19,15 +19,14 @@ ARM GAS  C:\Users\dell\AppData\Local\Temp\ccczvCht.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.main,"ax",%progbits
+  19              		.section	.text.systickInt,"ax",%progbits
   20              		.align	2
-  21              		.global	main
-  22              		.code	16
-  23              		.thumb_func
-  24              		.type	main, %function
-  25              	main:
-  26              	.LFB33:
-  27              		.file 1 "main.c"
+  21              		.code	16
+  22              		.thumb_func
+  23              		.type	systickInt, %function
+  24              	systickInt:
+  25              	.LFB34:
+  26              		.file 1 "main.c"
    1:main.c        **** /* ========================================
    2:main.c        ****  *
    3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
@@ -40,318 +39,1067 @@ ARM GAS  C:\Users\dell\AppData\Local\Temp\ccczvCht.s 			page 1
   10:main.c        ****  * ========================================
   11:main.c        **** */
   12:main.c        **** #include "project.h"
-  13:main.c        **** 
-  14:main.c        **** int main(void)
-  15:main.c        **** {
-  28              		.loc 1 15 0
-  29              		.cfi_startproc
-  30              		@ Volatile: function does not return.
-  31              		@ args = 0, pretend = 0, frame = 0
-  32              		@ frame_needed = 0, uses_anonymous_args = 0
-  33              		@ link register save eliminated.
-  16:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
-  34              		.loc 1 16 0
-  35              		.syntax divided
-  36              	@ 16 "main.c" 1
-  37 0000 62B6     		CPSIE   i
-  38              	@ 0 "" 2
-  39              		.thumb
-  40              		.syntax unified
-  41              	.L2:
-ARM GAS  C:\Users\dell\AppData\Local\Temp\ccczvCht.s 			page 2
+  13:main.c        **** #include "myHeader.h"
+  14:main.c        **** 
+  15:main.c        **** #define MAX_SOFT_TIMER 3
+  16:main.c        **** static uint16_t softTimer[MAX_SOFT_TIMER] = {0};
+  17:main.c        **** static bool flag_systick = false;
+  18:main.c        **** 
+  19:main.c        **** static void systickInt(void)
+  20:main.c        **** {
+  27              		.loc 1 20 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  21:main.c        ****     g_SysTime++;
+  32              		.loc 1 21 0
+  33 0000 034A     		ldr	r2, .L2
+  34 0002 1368     		ldr	r3, [r2]
+  35 0004 0133     		adds	r3, r3, #1
+  36 0006 1360     		str	r3, [r2]
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 2
 
 
-  42 0002 FEE7     		b	.L2
-  43              		.cfi_endproc
-  44              	.LFE33:
-  45              		.size	main, .-main
-  46              		.text
-  47              	.Letext0:
-  48              		.section	.debug_info,"",%progbits
-  49              	.Ldebug_info0:
-  50 0000 A0000000 		.4byte	0xa0
-  51 0004 0400     		.2byte	0x4
-  52 0006 00000000 		.4byte	.Ldebug_abbrev0
-  53 000a 04       		.byte	0x4
-  54 000b 01       		.uleb128 0x1
-  55 000c 5E000000 		.4byte	.LASF14
-  56 0010 0C       		.byte	0xc
-  57 0011 29000000 		.4byte	.LASF15
-  58 0015 F5000000 		.4byte	.LASF16
-  59 0019 00000000 		.4byte	.Ldebug_ranges0+0
-  60 001d 00000000 		.4byte	0
-  61 0021 00000000 		.4byte	.Ldebug_line0
-  62 0025 02       		.uleb128 0x2
-  63 0026 01       		.byte	0x1
-  64 0027 06       		.byte	0x6
-  65 0028 58010000 		.4byte	.LASF0
-  66 002c 02       		.uleb128 0x2
-  67 002d 01       		.byte	0x1
-  68 002e 08       		.byte	0x8
-  69 002f 1B000000 		.4byte	.LASF1
-  70 0033 02       		.uleb128 0x2
-  71 0034 02       		.byte	0x2
-  72 0035 05       		.byte	0x5
-  73 0036 76010000 		.4byte	.LASF2
-  74 003a 02       		.uleb128 0x2
-  75 003b 02       		.byte	0x2
-  76 003c 07       		.byte	0x7
-  77 003d 45010000 		.4byte	.LASF3
-  78 0041 02       		.uleb128 0x2
-  79 0042 04       		.byte	0x4
-  80 0043 05       		.byte	0x5
-  81 0044 35010000 		.4byte	.LASF4
-  82 0048 02       		.uleb128 0x2
-  83 0049 04       		.byte	0x4
-  84 004a 07       		.byte	0x7
-  85 004b 35000000 		.4byte	.LASF5
-  86 004f 02       		.uleb128 0x2
-  87 0050 08       		.byte	0x8
-  88 0051 05       		.byte	0x5
-  89 0052 00000000 		.4byte	.LASF6
-  90 0056 02       		.uleb128 0x2
-  91 0057 08       		.byte	0x8
-  92 0058 07       		.byte	0x7
-  93 0059 47000000 		.4byte	.LASF7
-  94 005d 03       		.uleb128 0x3
-  95 005e 04       		.byte	0x4
-  96 005f 05       		.byte	0x5
-  97 0060 696E7400 		.ascii	"int\000"
-  98 0064 02       		.uleb128 0x2
-ARM GAS  C:\Users\dell\AppData\Local\Temp\ccczvCht.s 			page 3
+  22:main.c        ****     flag_systick = true;
+  37              		.loc 1 22 0
+  38 0008 0122     		movs	r2, #1
+  39 000a 024B     		ldr	r3, .L2+4
+  40 000c 1A70     		strb	r2, [r3]
+  23:main.c        **** }
+  41              		.loc 1 23 0
+  42              		@ sp needed
+  43 000e 7047     		bx	lr
+  44              	.L3:
+  45              		.align	2
+  46              	.L2:
+  47 0010 00000000 		.word	g_SysTime
+  48 0014 00000000 		.word	.LANCHOR0
+  49              		.cfi_endproc
+  50              	.LFE34:
+  51              		.size	systickInt, .-systickInt
+  52              		.section	.text.main,"ax",%progbits
+  53              		.align	2
+  54              		.global	main
+  55              		.code	16
+  56              		.thumb_func
+  57              		.type	main, %function
+  58              	main:
+  59              	.LFB35:
+  24:main.c        **** 
+  25:main.c        **** volatile bool MODE_TEST = false;
+  26:main.c        **** 
+  27:main.c        **** int main(void)
+  28:main.c        **** {
+  60              		.loc 1 28 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64 0000 10B5     		push	{r4, lr}
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 4, -8
+  67              		.cfi_offset 14, -4
+  29:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  68              		.loc 1 29 0
+  69              		.syntax divided
+  70              	@ 29 "main.c" 1
+  71 0002 62B6     		CPSIE   i
+  72              	@ 0 "" 2
+  30:main.c        **** 
+  31:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */    
+  32:main.c        ****     Sys_init();    
+  73              		.loc 1 32 0
+  74              		.thumb
+  75              		.syntax unified
+  76 0004 FFF7FEFF 		bl	Sys_init
+  77              	.LVL0:
+  33:main.c        ****     MF58_init();
+  78              		.loc 1 33 0
+  79 0008 FFF7FEFF 		bl	MF58_init
+  80              	.LVL1:
+  34:main.c        ****     SYSTICK_regSysTickISRCallback(systickInt);
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 3
 
 
-  99 0065 04       		.byte	0x4
- 100 0066 07       		.byte	0x7
- 101 0067 0E000000 		.4byte	.LASF8
- 102 006b 02       		.uleb128 0x2
- 103 006c 04       		.byte	0x4
- 104 006d 04       		.byte	0x4
- 105 006e 70010000 		.4byte	.LASF9
- 106 0072 02       		.uleb128 0x2
- 107 0073 08       		.byte	0x8
- 108 0074 04       		.byte	0x4
- 109 0075 3E010000 		.4byte	.LASF10
- 110 0079 02       		.uleb128 0x2
- 111 007a 01       		.byte	0x1
- 112 007b 08       		.byte	0x8
- 113 007c F0000000 		.4byte	.LASF11
- 114 0080 02       		.uleb128 0x2
- 115 0081 08       		.byte	0x8
- 116 0082 04       		.byte	0x4
- 117 0083 64010000 		.4byte	.LASF12
- 118 0087 02       		.uleb128 0x2
- 119 0088 04       		.byte	0x4
- 120 0089 07       		.byte	0x7
- 121 008a 80010000 		.4byte	.LASF13
- 122 008e 04       		.uleb128 0x4
- 123 008f 30000000 		.4byte	.LASF17
- 124 0093 01       		.byte	0x1
- 125 0094 0E       		.byte	0xe
- 126 0095 5D000000 		.4byte	0x5d
- 127 0099 00000000 		.4byte	.LFB33
- 128 009d 04000000 		.4byte	.LFE33-.LFB33
- 129 00a1 01       		.uleb128 0x1
- 130 00a2 9C       		.byte	0x9c
- 131 00a3 00       		.byte	0
- 132              		.section	.debug_abbrev,"",%progbits
- 133              	.Ldebug_abbrev0:
- 134 0000 01       		.uleb128 0x1
- 135 0001 11       		.uleb128 0x11
- 136 0002 01       		.byte	0x1
- 137 0003 25       		.uleb128 0x25
- 138 0004 0E       		.uleb128 0xe
- 139 0005 13       		.uleb128 0x13
- 140 0006 0B       		.uleb128 0xb
- 141 0007 03       		.uleb128 0x3
- 142 0008 0E       		.uleb128 0xe
- 143 0009 1B       		.uleb128 0x1b
- 144 000a 0E       		.uleb128 0xe
- 145 000b 55       		.uleb128 0x55
- 146 000c 17       		.uleb128 0x17
- 147 000d 11       		.uleb128 0x11
- 148 000e 01       		.uleb128 0x1
- 149 000f 10       		.uleb128 0x10
- 150 0010 17       		.uleb128 0x17
- 151 0011 00       		.byte	0
- 152 0012 00       		.byte	0
- 153 0013 02       		.uleb128 0x2
- 154 0014 24       		.uleb128 0x24
- 155 0015 00       		.byte	0
-ARM GAS  C:\Users\dell\AppData\Local\Temp\ccczvCht.s 			page 4
+  81              		.loc 1 34 0
+  82 000c 2148     		ldr	r0, .L13
+  83 000e FFF7FEFF 		bl	SYSTICK_regSysTickISRCallback
+  84              	.LVL2:
+  35:main.c        ****     Touch_init();    
+  85              		.loc 1 35 0
+  86 0012 FFF7FEFF 		bl	Touch_init
+  87              	.LVL3:
+  88              	.L5:
+  36:main.c        ****     LOG_INFO("\r\nRunning after reset\r\n");
+  37:main.c        ****     for(;;)
+  38:main.c        ****     {
+  39:main.c        ****         /* Place your application code here. */
+  40:main.c        ****         if(flag_systick)
+  89              		.loc 1 40 0
+  90 0016 204B     		ldr	r3, .L13+4
+  91 0018 1B78     		ldrb	r3, [r3]
+  92 001a 002B     		cmp	r3, #0
+  93 001c 0ED0     		beq	.L6
+  41:main.c        ****         {
+  42:main.c        ****             flag_systick = false;
+  94              		.loc 1 42 0
+  95 001e 0022     		movs	r2, #0
+  96 0020 1D4B     		ldr	r3, .L13+4
+  97 0022 1A70     		strb	r2, [r3]
+  98              	.LVL4:
+  99              	.LBB2:
+  43:main.c        ****             for(uint8_t i = 0; i < MAX_SOFT_TIMER; i++) softTimer[i]++;
+ 100              		.loc 1 43 0
+ 101 0024 0023     		movs	r3, #0
+ 102 0026 07E0     		b	.L7
+ 103              	.LVL5:
+ 104              	.L8:
+ 105              		.loc 1 43 0 is_stmt 0 discriminator 3
+ 106 0028 5A00     		lsls	r2, r3, #1
+ 107 002a 1B49     		ldr	r1, .L13+4
+ 108 002c 8A18     		adds	r2, r1, r2
+ 109 002e 9188     		ldrh	r1, [r2, #4]
+ 110 0030 0131     		adds	r1, r1, #1
+ 111 0032 9180     		strh	r1, [r2, #4]
+ 112 0034 0133     		adds	r3, r3, #1
+ 113              	.LVL6:
+ 114 0036 DBB2     		uxtb	r3, r3
+ 115              	.LVL7:
+ 116              	.L7:
+ 117              		.loc 1 43 0 discriminator 1
+ 118 0038 022B     		cmp	r3, #2
+ 119 003a F5D9     		bls	.L8
+ 120              	.LVL8:
+ 121              	.L6:
+ 122              	.LBE2:
+  44:main.c        ****         }
+  45:main.c        ****         
+  46:main.c        ****         if(softTimer[0] >= 10)
+ 123              		.loc 1 46 0 is_stmt 1
+ 124 003c 164B     		ldr	r3, .L13+4
+ 125 003e 9B88     		ldrh	r3, [r3, #4]
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 4
 
 
- 156 0016 0B       		.uleb128 0xb
- 157 0017 0B       		.uleb128 0xb
- 158 0018 3E       		.uleb128 0x3e
- 159 0019 0B       		.uleb128 0xb
- 160 001a 03       		.uleb128 0x3
- 161 001b 0E       		.uleb128 0xe
- 162 001c 00       		.byte	0
- 163 001d 00       		.byte	0
- 164 001e 03       		.uleb128 0x3
- 165 001f 24       		.uleb128 0x24
- 166 0020 00       		.byte	0
- 167 0021 0B       		.uleb128 0xb
- 168 0022 0B       		.uleb128 0xb
- 169 0023 3E       		.uleb128 0x3e
- 170 0024 0B       		.uleb128 0xb
- 171 0025 03       		.uleb128 0x3
- 172 0026 08       		.uleb128 0x8
- 173 0027 00       		.byte	0
- 174 0028 00       		.byte	0
- 175 0029 04       		.uleb128 0x4
- 176 002a 2E       		.uleb128 0x2e
- 177 002b 00       		.byte	0
- 178 002c 3F       		.uleb128 0x3f
- 179 002d 19       		.uleb128 0x19
- 180 002e 03       		.uleb128 0x3
- 181 002f 0E       		.uleb128 0xe
- 182 0030 3A       		.uleb128 0x3a
- 183 0031 0B       		.uleb128 0xb
- 184 0032 3B       		.uleb128 0x3b
- 185 0033 0B       		.uleb128 0xb
- 186 0034 27       		.uleb128 0x27
- 187 0035 19       		.uleb128 0x19
- 188 0036 49       		.uleb128 0x49
- 189 0037 13       		.uleb128 0x13
- 190 0038 8701     		.uleb128 0x87
- 191 003a 19       		.uleb128 0x19
- 192 003b 11       		.uleb128 0x11
- 193 003c 01       		.uleb128 0x1
- 194 003d 12       		.uleb128 0x12
- 195 003e 06       		.uleb128 0x6
- 196 003f 40       		.uleb128 0x40
- 197 0040 18       		.uleb128 0x18
- 198 0041 9742     		.uleb128 0x2117
- 199 0043 19       		.uleb128 0x19
- 200 0044 00       		.byte	0
- 201 0045 00       		.byte	0
- 202 0046 00       		.byte	0
- 203              		.section	.debug_aranges,"",%progbits
- 204 0000 1C000000 		.4byte	0x1c
- 205 0004 0200     		.2byte	0x2
- 206 0006 00000000 		.4byte	.Ldebug_info0
- 207 000a 04       		.byte	0x4
- 208 000b 00       		.byte	0
- 209 000c 0000     		.2byte	0
- 210 000e 0000     		.2byte	0
- 211 0010 00000000 		.4byte	.LFB33
- 212 0014 04000000 		.4byte	.LFE33-.LFB33
-ARM GAS  C:\Users\dell\AppData\Local\Temp\ccczvCht.s 			page 5
+ 126 0040 092B     		cmp	r3, #9
+ 127 0042 04D9     		bls	.L9
+  47:main.c        ****         {
+  48:main.c        ****             softTimer[0] = 0;
+ 128              		.loc 1 48 0
+ 129 0044 0022     		movs	r2, #0
+ 130 0046 144B     		ldr	r3, .L13+4
+ 131 0048 9A80     		strh	r2, [r3, #4]
+  49:main.c        ****             Touch_process();
+ 132              		.loc 1 49 0
+ 133 004a FFF7FEFF 		bl	Touch_process
+ 134              	.LVL9:
+ 135              	.L9:
+  50:main.c        ****         }
+  51:main.c        ****         
+  52:main.c        ****         if(softTimer[1] >= 50)
+ 136              		.loc 1 52 0
+ 137 004e 124B     		ldr	r3, .L13+4
+ 138 0050 DB88     		ldrh	r3, [r3, #6]
+ 139 0052 312B     		cmp	r3, #49
+ 140 0054 04D9     		bls	.L10
+  53:main.c        ****         {
+  54:main.c        ****             softTimer[1] = 0;
+ 141              		.loc 1 54 0
+ 142 0056 0022     		movs	r2, #0
+ 143 0058 0F4B     		ldr	r3, .L13+4
+ 144 005a DA80     		strh	r2, [r3, #6]
+  55:main.c        ****             Sys_process();
+ 145              		.loc 1 55 0
+ 146 005c FFF7FEFF 		bl	Sys_process
+ 147              	.LVL10:
+ 148              	.L10:
+  56:main.c        ****         }
+  57:main.c        ****         
+  58:main.c        ****         if(MODE_TEST == false)
+ 149              		.loc 1 58 0
+ 150 0060 0D4B     		ldr	r3, .L13+4
+ 151 0062 9B7A     		ldrb	r3, [r3, #10]
+ 152 0064 002B     		cmp	r3, #0
+ 153 0066 0AD1     		bne	.L11
+  59:main.c        ****         {
+  60:main.c        ****             /* 10s dieu khien K1 */
+  61:main.c        ****             if(softTimer[2] >= 10000)
+ 154              		.loc 1 61 0
+ 155 0068 0B4B     		ldr	r3, .L13+4
+ 156 006a 1A89     		ldrh	r2, [r3, #8]
+ 157 006c 0B4B     		ldr	r3, .L13+8
+ 158 006e 9A42     		cmp	r2, r3
+ 159 0070 D1D9     		bls	.L5
+  62:main.c        ****             {
+  63:main.c        ****                 softTimer[2] = 0;
+ 160              		.loc 1 63 0
+ 161 0072 0022     		movs	r2, #0
+ 162 0074 084B     		ldr	r3, .L13+4
+ 163 0076 1A81     		strh	r2, [r3, #8]
+  64:main.c        ****                 MF58_control();
+ 164              		.loc 1 64 0
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 5
 
 
- 213 0018 00000000 		.4byte	0
- 214 001c 00000000 		.4byte	0
- 215              		.section	.debug_ranges,"",%progbits
- 216              	.Ldebug_ranges0:
- 217 0000 00000000 		.4byte	.LFB33
- 218 0004 04000000 		.4byte	.LFE33
- 219 0008 00000000 		.4byte	0
- 220 000c 00000000 		.4byte	0
- 221              		.section	.debug_line,"",%progbits
- 222              	.Ldebug_line0:
- 223 0000 33000000 		.section	.debug_str,"MS",%progbits,1
- 223      02001D00 
- 223      00000201 
- 223      FB0E0D00 
- 223      01010101 
- 224              	.LASF6:
- 225 0000 6C6F6E67 		.ascii	"long long int\000"
- 225      206C6F6E 
- 225      6720696E 
- 225      7400
- 226              	.LASF8:
- 227 000e 756E7369 		.ascii	"unsigned int\000"
- 227      676E6564 
- 227      20696E74 
- 227      00
- 228              	.LASF1:
- 229 001b 756E7369 		.ascii	"unsigned char\000"
- 229      676E6564 
- 229      20636861 
- 229      7200
- 230              	.LASF15:
- 231 0029 6D61696E 		.ascii	"main.c\000"
- 231      2E6300
- 232              	.LASF17:
- 233 0030 6D61696E 		.ascii	"main\000"
- 233      00
- 234              	.LASF5:
- 235 0035 6C6F6E67 		.ascii	"long unsigned int\000"
- 235      20756E73 
- 235      69676E65 
- 235      6420696E 
- 235      7400
- 236              	.LASF7:
- 237 0047 6C6F6E67 		.ascii	"long long unsigned int\000"
- 237      206C6F6E 
- 237      6720756E 
- 237      7369676E 
- 237      65642069 
- 238              	.LASF14:
- 239 005e 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 239      43313120 
- 239      352E342E 
- 239      31203230 
- 239      31363036 
- 240 0091 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0plus -mthumb -"
- 240      20726576 
- 240      6973696F 
-ARM GAS  C:\Users\dell\AppData\Local\Temp\ccczvCht.s 			page 6
+ 165 0078 FFF7FEFF 		bl	MF58_control
+ 166              	.LVL11:
+ 167 007c CBE7     		b	.L5
+ 168              	.L11:
+  65:main.c        ****             }
+  66:main.c        ****         } else
+  67:main.c        ****         {
+  68:main.c        ****             if(softTimer[2] >= 1000)
+ 169              		.loc 1 68 0
+ 170 007e 064B     		ldr	r3, .L13+4
+ 171 0080 1A89     		ldrh	r2, [r3, #8]
+ 172 0082 074B     		ldr	r3, .L13+12
+ 173 0084 9A42     		cmp	r2, r3
+ 174 0086 C6D9     		bls	.L5
+  69:main.c        ****             {
+  70:main.c        ****                 softTimer[2] = 0;
+ 175              		.loc 1 70 0
+ 176 0088 0022     		movs	r2, #0
+ 177 008a 034B     		ldr	r3, .L13+4
+ 178 008c 1A81     		strh	r2, [r3, #8]
+  71:main.c        ****                 MF58_control();
+ 179              		.loc 1 71 0
+ 180 008e FFF7FEFF 		bl	MF58_control
+ 181              	.LVL12:
+ 182 0092 C0E7     		b	.L5
+ 183              	.L14:
+ 184              		.align	2
+ 185              	.L13:
+ 186 0094 00000000 		.word	systickInt
+ 187 0098 00000000 		.word	.LANCHOR0
+ 188 009c 0F270000 		.word	9999
+ 189 00a0 E7030000 		.word	999
+ 190              		.cfi_endproc
+ 191              	.LFE35:
+ 192              		.size	main, .-main
+ 193              		.global	MODE_TEST
+ 194              		.comm	myBtn,4,4
+ 195              		.bss
+ 196              		.align	2
+ 197              		.set	.LANCHOR0,. + 0
+ 198              		.type	flag_systick, %object
+ 199              		.size	flag_systick, 1
+ 200              	flag_systick:
+ 201 0000 00       		.space	1
+ 202 0001 000000   		.space	3
+ 203              		.type	softTimer, %object
+ 204              		.size	softTimer, 6
+ 205              	softTimer:
+ 206 0004 00000000 		.space	6
+ 206      0000
+ 207              		.type	MODE_TEST, %object
+ 208              		.size	MODE_TEST, 1
+ 209              	MODE_TEST:
+ 210 000a 00       		.space	1
+ 211              		.text
+ 212              	.Letext0:
+ 213              		.file 2 "e:\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi\\include\\mac
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 6
 
 
- 240      6E203233 
- 240      37373135 
- 241 00c4 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
- 241      67202D66 
- 241      66756E63 
- 241      74696F6E 
- 241      2D736563 
- 242              	.LASF11:
- 243 00f0 63686172 		.ascii	"char\000"
- 243      00
- 244              	.LASF16:
- 245 00f5 433A5C55 		.ascii	"C:\\Users\\dell\\Documents\\PSoC Creator\\Workspace"
- 245      73657273 
- 245      5C64656C 
- 245      6C5C446F 
- 245      63756D65 
- 246 0123 30335C44 		.ascii	"03\\Design01.cydsn\000"
- 246      65736967 
- 246      6E30312E 
- 246      63796473 
- 246      6E00
- 247              	.LASF4:
- 248 0135 6C6F6E67 		.ascii	"long int\000"
- 248      20696E74 
- 248      00
- 249              	.LASF10:
- 250 013e 646F7562 		.ascii	"double\000"
- 250      6C6500
- 251              	.LASF3:
- 252 0145 73686F72 		.ascii	"short unsigned int\000"
- 252      7420756E 
- 252      7369676E 
- 252      65642069 
- 252      6E7400
- 253              	.LASF0:
- 254 0158 7369676E 		.ascii	"signed char\000"
- 254      65642063 
- 254      68617200 
- 255              	.LASF12:
- 256 0164 6C6F6E67 		.ascii	"long double\000"
- 256      20646F75 
- 256      626C6500 
- 257              	.LASF9:
- 258 0170 666C6F61 		.ascii	"float\000"
- 258      7400
- 259              	.LASF2:
- 260 0176 73686F72 		.ascii	"short int\000"
- 260      7420696E 
- 260      7400
- 261              	.LASF13:
- 262 0180 73697A65 		.ascii	"sizetype\000"
- 262      74797065 
- 262      00
- 263              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 214              		.file 3 "e:\\psoc creator\\4.3\\psoc creator\\import\\gnu\\arm\\5.4.1\\arm-none-eabi\\include\\sys
+ 215              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 216              		.file 5 "sysTick.h"
+ 217              		.file 6 "touchBtn_ADC.h"
+ 218              		.file 7 "sys.h"
+ 219              		.section	.debug_info,"",%progbits
+ 220              	.Ldebug_info0:
+ 221 0000 3D020000 		.4byte	0x23d
+ 222 0004 0400     		.2byte	0x4
+ 223 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 224 000a 04       		.byte	0x4
+ 225 000b 01       		.uleb128 0x1
+ 226 000c A0010000 		.4byte	.LASF34
+ 227 0010 0C       		.byte	0xc
+ 228 0011 F7000000 		.4byte	.LASF35
+ 229 0015 38010000 		.4byte	.LASF36
+ 230 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 231 001d 00000000 		.4byte	0
+ 232 0021 00000000 		.4byte	.Ldebug_line0
+ 233 0025 02       		.uleb128 0x2
+ 234 0026 01       		.byte	0x1
+ 235 0027 06       		.byte	0x6
+ 236 0028 32020000 		.4byte	.LASF0
+ 237 002c 03       		.uleb128 0x3
+ 238 002d 00000000 		.4byte	.LASF3
+ 239 0031 02       		.byte	0x2
+ 240 0032 1D       		.byte	0x1d
+ 241 0033 37000000 		.4byte	0x37
+ 242 0037 02       		.uleb128 0x2
+ 243 0038 01       		.byte	0x1
+ 244 0039 08       		.byte	0x8
+ 245 003a 3E000000 		.4byte	.LASF1
+ 246 003e 02       		.uleb128 0x2
+ 247 003f 02       		.byte	0x2
+ 248 0040 05       		.byte	0x5
+ 249 0041 25010000 		.4byte	.LASF2
+ 250 0045 03       		.uleb128 0x3
+ 251 0046 89000000 		.4byte	.LASF4
+ 252 004a 02       		.byte	0x2
+ 253 004b 2B       		.byte	0x2b
+ 254 004c 50000000 		.4byte	0x50
+ 255 0050 02       		.uleb128 0x2
+ 256 0051 02       		.byte	0x2
+ 257 0052 07       		.byte	0x7
+ 258 0053 6B000000 		.4byte	.LASF5
+ 259 0057 02       		.uleb128 0x2
+ 260 0058 04       		.byte	0x4
+ 261 0059 05       		.byte	0x5
+ 262 005a 8B010000 		.4byte	.LASF6
+ 263 005e 03       		.uleb128 0x3
+ 264 005f 9B000000 		.4byte	.LASF7
+ 265 0063 02       		.byte	0x2
+ 266 0064 41       		.byte	0x41
+ 267 0065 69000000 		.4byte	0x69
+ 268 0069 02       		.uleb128 0x2
+ 269 006a 04       		.byte	0x4
+ 270 006b 07       		.byte	0x7
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 7
+
+
+ 271 006c 59000000 		.4byte	.LASF8
+ 272 0070 02       		.uleb128 0x2
+ 273 0071 08       		.byte	0x8
+ 274 0072 05       		.byte	0x5
+ 275 0073 E9000000 		.4byte	.LASF9
+ 276 0077 02       		.uleb128 0x2
+ 277 0078 08       		.byte	0x8
+ 278 0079 07       		.byte	0x7
+ 279 007a B8000000 		.4byte	.LASF10
+ 280 007e 04       		.uleb128 0x4
+ 281 007f 04       		.byte	0x4
+ 282 0080 05       		.byte	0x5
+ 283 0081 696E7400 		.ascii	"int\000"
+ 284 0085 02       		.uleb128 0x2
+ 285 0086 04       		.byte	0x4
+ 286 0087 07       		.byte	0x7
+ 287 0088 AB000000 		.4byte	.LASF11
+ 288 008c 03       		.uleb128 0x3
+ 289 008d CF000000 		.4byte	.LASF12
+ 290 0091 03       		.byte	0x3
+ 291 0092 18       		.byte	0x18
+ 292 0093 2C000000 		.4byte	0x2c
+ 293 0097 03       		.uleb128 0x3
+ 294 0098 2F010000 		.4byte	.LASF13
+ 295 009c 03       		.byte	0x3
+ 296 009d 24       		.byte	0x24
+ 297 009e 45000000 		.4byte	0x45
+ 298 00a2 03       		.uleb128 0x3
+ 299 00a3 82010000 		.4byte	.LASF14
+ 300 00a7 03       		.byte	0x3
+ 301 00a8 30       		.byte	0x30
+ 302 00a9 5E000000 		.4byte	0x5e
+ 303 00ad 05       		.uleb128 0x5
+ 304 00ae 32000000 		.4byte	.LASF15
+ 305 00b2 04       		.byte	0x4
+ 306 00b3 F701     		.2byte	0x1f7
+ 307 00b5 37000000 		.4byte	0x37
+ 308 00b9 02       		.uleb128 0x2
+ 309 00ba 04       		.byte	0x4
+ 310 00bb 04       		.byte	0x4
+ 311 00bc 38000000 		.4byte	.LASF16
+ 312 00c0 02       		.uleb128 0x2
+ 313 00c1 08       		.byte	0x8
+ 314 00c2 04       		.byte	0x4
+ 315 00c3 94000000 		.4byte	.LASF17
+ 316 00c7 02       		.uleb128 0x2
+ 317 00c8 01       		.byte	0x1
+ 318 00c9 08       		.byte	0x8
+ 319 00ca FE000000 		.4byte	.LASF18
+ 320 00ce 02       		.uleb128 0x2
+ 321 00cf 08       		.byte	0x8
+ 322 00d0 04       		.byte	0x4
+ 323 00d1 94010000 		.4byte	.LASF19
+ 324 00d5 02       		.uleb128 0x2
+ 325 00d6 04       		.byte	0x4
+ 326 00d7 07       		.byte	0x7
+ 327 00d8 D7000000 		.4byte	.LASF20
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 8
+
+
+ 328 00dc 02       		.uleb128 0x2
+ 329 00dd 01       		.byte	0x1
+ 330 00de 02       		.byte	0x2
+ 331 00df 4A020000 		.4byte	.LASF21
+ 332 00e3 06       		.uleb128 0x6
+ 333 00e4 7E000000 		.4byte	.LASF37
+ 334 00e8 01       		.byte	0x1
+ 335 00e9 13       		.byte	0x13
+ 336 00ea 00000000 		.4byte	.LFB34
+ 337 00ee 18000000 		.4byte	.LFE34-.LFB34
+ 338 00f2 01       		.uleb128 0x1
+ 339 00f3 9C       		.byte	0x9c
+ 340 00f4 07       		.uleb128 0x7
+ 341 00f5 A6000000 		.4byte	.LASF38
+ 342 00f9 01       		.byte	0x1
+ 343 00fa 1B       		.byte	0x1b
+ 344 00fb 7E000000 		.4byte	0x7e
+ 345 00ff 00000000 		.4byte	.LFB35
+ 346 0103 A4000000 		.4byte	.LFE35-.LFB35
+ 347 0107 01       		.uleb128 0x1
+ 348 0108 9C       		.byte	0x9c
+ 349 0109 7F010000 		.4byte	0x17f
+ 350 010d 08       		.uleb128 0x8
+ 351 010e 24000000 		.4byte	.LBB2
+ 352 0112 18000000 		.4byte	.LBE2-.LBB2
+ 353 0116 28010000 		.4byte	0x128
+ 354 011a 09       		.uleb128 0x9
+ 355 011b 6900     		.ascii	"i\000"
+ 356 011d 01       		.byte	0x1
+ 357 011e 2B       		.byte	0x2b
+ 358 011f 8C000000 		.4byte	0x8c
+ 359 0123 00000000 		.4byte	.LLST0
+ 360 0127 00       		.byte	0
+ 361 0128 0A       		.uleb128 0xa
+ 362 0129 08000000 		.4byte	.LVL0
+ 363 012d F3010000 		.4byte	0x1f3
+ 364 0131 0A       		.uleb128 0xa
+ 365 0132 0C000000 		.4byte	.LVL1
+ 366 0136 FE010000 		.4byte	0x1fe
+ 367 013a 0B       		.uleb128 0xb
+ 368 013b 12000000 		.4byte	.LVL2
+ 369 013f 09020000 		.4byte	0x209
+ 370 0143 51010000 		.4byte	0x151
+ 371 0147 0C       		.uleb128 0xc
+ 372 0148 01       		.uleb128 0x1
+ 373 0149 50       		.byte	0x50
+ 374 014a 05       		.uleb128 0x5
+ 375 014b 03       		.byte	0x3
+ 376 014c 00000000 		.4byte	systickInt
+ 377 0150 00       		.byte	0
+ 378 0151 0A       		.uleb128 0xa
+ 379 0152 16000000 		.4byte	.LVL3
+ 380 0156 14020000 		.4byte	0x214
+ 381 015a 0A       		.uleb128 0xa
+ 382 015b 4E000000 		.4byte	.LVL9
+ 383 015f 1F020000 		.4byte	0x21f
+ 384 0163 0A       		.uleb128 0xa
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 9
+
+
+ 385 0164 60000000 		.4byte	.LVL10
+ 386 0168 2A020000 		.4byte	0x22a
+ 387 016c 0A       		.uleb128 0xa
+ 388 016d 7C000000 		.4byte	.LVL11
+ 389 0171 35020000 		.4byte	0x235
+ 390 0175 0A       		.uleb128 0xa
+ 391 0176 92000000 		.4byte	.LVL12
+ 392 017a 35020000 		.4byte	0x235
+ 393 017e 00       		.byte	0
+ 394 017f 0D       		.uleb128 0xd
+ 395 0180 97000000 		.4byte	0x97
+ 396 0184 8F010000 		.4byte	0x18f
+ 397 0188 0E       		.uleb128 0xe
+ 398 0189 D5000000 		.4byte	0xd5
+ 399 018d 02       		.byte	0x2
+ 400 018e 00       		.byte	0
+ 401 018f 0F       		.uleb128 0xf
+ 402 0190 0D010000 		.4byte	.LASF22
+ 403 0194 01       		.byte	0x1
+ 404 0195 10       		.byte	0x10
+ 405 0196 7F010000 		.4byte	0x17f
+ 406 019a 05       		.uleb128 0x5
+ 407 019b 03       		.byte	0x3
+ 408 019c 04000000 		.4byte	softTimer
+ 409 01a0 0F       		.uleb128 0xf
+ 410 01a1 0A000000 		.4byte	.LASF23
+ 411 01a5 01       		.byte	0x1
+ 412 01a6 11       		.byte	0x11
+ 413 01a7 DC000000 		.4byte	0xdc
+ 414 01ab 05       		.uleb128 0x5
+ 415 01ac 03       		.byte	0x3
+ 416 01ad 00000000 		.4byte	flag_systick
+ 417 01b1 10       		.uleb128 0x10
+ 418 01b2 78010000 		.4byte	.LASF24
+ 419 01b6 05       		.byte	0x5
+ 420 01b7 10       		.byte	0x10
+ 421 01b8 A2000000 		.4byte	0xa2
+ 422 01bc 0D       		.uleb128 0xd
+ 423 01bd 8C000000 		.4byte	0x8c
+ 424 01c1 CC010000 		.4byte	0x1cc
+ 425 01c5 0E       		.uleb128 0xe
+ 426 01c6 D5000000 		.4byte	0xd5
+ 427 01ca 03       		.byte	0x3
+ 428 01cb 00       		.byte	0
+ 429 01cc 11       		.uleb128 0x11
+ 430 01cd 17000000 		.4byte	.LASF25
+ 431 01d1 06       		.byte	0x6
+ 432 01d2 17       		.byte	0x17
+ 433 01d3 BC010000 		.4byte	0x1bc
+ 434 01d7 05       		.uleb128 0x5
+ 435 01d8 03       		.byte	0x3
+ 436 01d9 00000000 		.4byte	myBtn
+ 437 01dd 11       		.uleb128 0x11
+ 438 01de 28000000 		.4byte	.LASF26
+ 439 01e2 01       		.byte	0x1
+ 440 01e3 19       		.byte	0x19
+ 441 01e4 EE010000 		.4byte	0x1ee
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 10
+
+
+ 442 01e8 05       		.uleb128 0x5
+ 443 01e9 03       		.byte	0x3
+ 444 01ea 00000000 		.4byte	MODE_TEST
+ 445 01ee 12       		.uleb128 0x12
+ 446 01ef DC000000 		.4byte	0xdc
+ 447 01f3 13       		.uleb128 0x13
+ 448 01f4 E0000000 		.4byte	.LASF27
+ 449 01f8 E0000000 		.4byte	.LASF27
+ 450 01fc 07       		.byte	0x7
+ 451 01fd 10       		.byte	0x10
+ 452 01fe 13       		.uleb128 0x13
+ 453 01ff 03010000 		.4byte	.LASF28
+ 454 0203 03010000 		.4byte	.LASF28
+ 455 0207 06       		.byte	0x6
+ 456 0208 53       		.byte	0x53
+ 457 0209 13       		.uleb128 0x13
+ 458 020a 50020000 		.4byte	.LASF29
+ 459 020e 50020000 		.4byte	.LASF29
+ 460 0212 05       		.byte	0x5
+ 461 0213 12       		.byte	0x12
+ 462 0214 13       		.uleb128 0x13
+ 463 0215 1D000000 		.4byte	.LASF30
+ 464 0219 1D000000 		.4byte	.LASF30
+ 465 021d 06       		.byte	0x6
+ 466 021e 3C       		.byte	0x3c
+ 467 021f 13       		.uleb128 0x13
+ 468 0220 17010000 		.4byte	.LASF31
+ 469 0224 17010000 		.4byte	.LASF31
+ 470 0228 06       		.byte	0x6
+ 471 0229 3D       		.byte	0x3d
+ 472 022a 13       		.uleb128 0x13
+ 473 022b 3E020000 		.4byte	.LASF32
+ 474 022f 3E020000 		.4byte	.LASF32
+ 475 0233 07       		.byte	0x7
+ 476 0234 15       		.byte	0x15
+ 477 0235 13       		.uleb128 0x13
+ 478 0236 4C000000 		.4byte	.LASF33
+ 479 023a 4C000000 		.4byte	.LASF33
+ 480 023e 06       		.byte	0x6
+ 481 023f 54       		.byte	0x54
+ 482 0240 00       		.byte	0
+ 483              		.section	.debug_abbrev,"",%progbits
+ 484              	.Ldebug_abbrev0:
+ 485 0000 01       		.uleb128 0x1
+ 486 0001 11       		.uleb128 0x11
+ 487 0002 01       		.byte	0x1
+ 488 0003 25       		.uleb128 0x25
+ 489 0004 0E       		.uleb128 0xe
+ 490 0005 13       		.uleb128 0x13
+ 491 0006 0B       		.uleb128 0xb
+ 492 0007 03       		.uleb128 0x3
+ 493 0008 0E       		.uleb128 0xe
+ 494 0009 1B       		.uleb128 0x1b
+ 495 000a 0E       		.uleb128 0xe
+ 496 000b 55       		.uleb128 0x55
+ 497 000c 17       		.uleb128 0x17
+ 498 000d 11       		.uleb128 0x11
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 11
+
+
+ 499 000e 01       		.uleb128 0x1
+ 500 000f 10       		.uleb128 0x10
+ 501 0010 17       		.uleb128 0x17
+ 502 0011 00       		.byte	0
+ 503 0012 00       		.byte	0
+ 504 0013 02       		.uleb128 0x2
+ 505 0014 24       		.uleb128 0x24
+ 506 0015 00       		.byte	0
+ 507 0016 0B       		.uleb128 0xb
+ 508 0017 0B       		.uleb128 0xb
+ 509 0018 3E       		.uleb128 0x3e
+ 510 0019 0B       		.uleb128 0xb
+ 511 001a 03       		.uleb128 0x3
+ 512 001b 0E       		.uleb128 0xe
+ 513 001c 00       		.byte	0
+ 514 001d 00       		.byte	0
+ 515 001e 03       		.uleb128 0x3
+ 516 001f 16       		.uleb128 0x16
+ 517 0020 00       		.byte	0
+ 518 0021 03       		.uleb128 0x3
+ 519 0022 0E       		.uleb128 0xe
+ 520 0023 3A       		.uleb128 0x3a
+ 521 0024 0B       		.uleb128 0xb
+ 522 0025 3B       		.uleb128 0x3b
+ 523 0026 0B       		.uleb128 0xb
+ 524 0027 49       		.uleb128 0x49
+ 525 0028 13       		.uleb128 0x13
+ 526 0029 00       		.byte	0
+ 527 002a 00       		.byte	0
+ 528 002b 04       		.uleb128 0x4
+ 529 002c 24       		.uleb128 0x24
+ 530 002d 00       		.byte	0
+ 531 002e 0B       		.uleb128 0xb
+ 532 002f 0B       		.uleb128 0xb
+ 533 0030 3E       		.uleb128 0x3e
+ 534 0031 0B       		.uleb128 0xb
+ 535 0032 03       		.uleb128 0x3
+ 536 0033 08       		.uleb128 0x8
+ 537 0034 00       		.byte	0
+ 538 0035 00       		.byte	0
+ 539 0036 05       		.uleb128 0x5
+ 540 0037 16       		.uleb128 0x16
+ 541 0038 00       		.byte	0
+ 542 0039 03       		.uleb128 0x3
+ 543 003a 0E       		.uleb128 0xe
+ 544 003b 3A       		.uleb128 0x3a
+ 545 003c 0B       		.uleb128 0xb
+ 546 003d 3B       		.uleb128 0x3b
+ 547 003e 05       		.uleb128 0x5
+ 548 003f 49       		.uleb128 0x49
+ 549 0040 13       		.uleb128 0x13
+ 550 0041 00       		.byte	0
+ 551 0042 00       		.byte	0
+ 552 0043 06       		.uleb128 0x6
+ 553 0044 2E       		.uleb128 0x2e
+ 554 0045 00       		.byte	0
+ 555 0046 03       		.uleb128 0x3
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 12
+
+
+ 556 0047 0E       		.uleb128 0xe
+ 557 0048 3A       		.uleb128 0x3a
+ 558 0049 0B       		.uleb128 0xb
+ 559 004a 3B       		.uleb128 0x3b
+ 560 004b 0B       		.uleb128 0xb
+ 561 004c 27       		.uleb128 0x27
+ 562 004d 19       		.uleb128 0x19
+ 563 004e 11       		.uleb128 0x11
+ 564 004f 01       		.uleb128 0x1
+ 565 0050 12       		.uleb128 0x12
+ 566 0051 06       		.uleb128 0x6
+ 567 0052 40       		.uleb128 0x40
+ 568 0053 18       		.uleb128 0x18
+ 569 0054 9742     		.uleb128 0x2117
+ 570 0056 19       		.uleb128 0x19
+ 571 0057 00       		.byte	0
+ 572 0058 00       		.byte	0
+ 573 0059 07       		.uleb128 0x7
+ 574 005a 2E       		.uleb128 0x2e
+ 575 005b 01       		.byte	0x1
+ 576 005c 3F       		.uleb128 0x3f
+ 577 005d 19       		.uleb128 0x19
+ 578 005e 03       		.uleb128 0x3
+ 579 005f 0E       		.uleb128 0xe
+ 580 0060 3A       		.uleb128 0x3a
+ 581 0061 0B       		.uleb128 0xb
+ 582 0062 3B       		.uleb128 0x3b
+ 583 0063 0B       		.uleb128 0xb
+ 584 0064 27       		.uleb128 0x27
+ 585 0065 19       		.uleb128 0x19
+ 586 0066 49       		.uleb128 0x49
+ 587 0067 13       		.uleb128 0x13
+ 588 0068 8701     		.uleb128 0x87
+ 589 006a 19       		.uleb128 0x19
+ 590 006b 11       		.uleb128 0x11
+ 591 006c 01       		.uleb128 0x1
+ 592 006d 12       		.uleb128 0x12
+ 593 006e 06       		.uleb128 0x6
+ 594 006f 40       		.uleb128 0x40
+ 595 0070 18       		.uleb128 0x18
+ 596 0071 9742     		.uleb128 0x2117
+ 597 0073 19       		.uleb128 0x19
+ 598 0074 01       		.uleb128 0x1
+ 599 0075 13       		.uleb128 0x13
+ 600 0076 00       		.byte	0
+ 601 0077 00       		.byte	0
+ 602 0078 08       		.uleb128 0x8
+ 603 0079 0B       		.uleb128 0xb
+ 604 007a 01       		.byte	0x1
+ 605 007b 11       		.uleb128 0x11
+ 606 007c 01       		.uleb128 0x1
+ 607 007d 12       		.uleb128 0x12
+ 608 007e 06       		.uleb128 0x6
+ 609 007f 01       		.uleb128 0x1
+ 610 0080 13       		.uleb128 0x13
+ 611 0081 00       		.byte	0
+ 612 0082 00       		.byte	0
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 13
+
+
+ 613 0083 09       		.uleb128 0x9
+ 614 0084 34       		.uleb128 0x34
+ 615 0085 00       		.byte	0
+ 616 0086 03       		.uleb128 0x3
+ 617 0087 08       		.uleb128 0x8
+ 618 0088 3A       		.uleb128 0x3a
+ 619 0089 0B       		.uleb128 0xb
+ 620 008a 3B       		.uleb128 0x3b
+ 621 008b 0B       		.uleb128 0xb
+ 622 008c 49       		.uleb128 0x49
+ 623 008d 13       		.uleb128 0x13
+ 624 008e 02       		.uleb128 0x2
+ 625 008f 17       		.uleb128 0x17
+ 626 0090 00       		.byte	0
+ 627 0091 00       		.byte	0
+ 628 0092 0A       		.uleb128 0xa
+ 629 0093 898201   		.uleb128 0x4109
+ 630 0096 00       		.byte	0
+ 631 0097 11       		.uleb128 0x11
+ 632 0098 01       		.uleb128 0x1
+ 633 0099 31       		.uleb128 0x31
+ 634 009a 13       		.uleb128 0x13
+ 635 009b 00       		.byte	0
+ 636 009c 00       		.byte	0
+ 637 009d 0B       		.uleb128 0xb
+ 638 009e 898201   		.uleb128 0x4109
+ 639 00a1 01       		.byte	0x1
+ 640 00a2 11       		.uleb128 0x11
+ 641 00a3 01       		.uleb128 0x1
+ 642 00a4 31       		.uleb128 0x31
+ 643 00a5 13       		.uleb128 0x13
+ 644 00a6 01       		.uleb128 0x1
+ 645 00a7 13       		.uleb128 0x13
+ 646 00a8 00       		.byte	0
+ 647 00a9 00       		.byte	0
+ 648 00aa 0C       		.uleb128 0xc
+ 649 00ab 8A8201   		.uleb128 0x410a
+ 650 00ae 00       		.byte	0
+ 651 00af 02       		.uleb128 0x2
+ 652 00b0 18       		.uleb128 0x18
+ 653 00b1 9142     		.uleb128 0x2111
+ 654 00b3 18       		.uleb128 0x18
+ 655 00b4 00       		.byte	0
+ 656 00b5 00       		.byte	0
+ 657 00b6 0D       		.uleb128 0xd
+ 658 00b7 01       		.uleb128 0x1
+ 659 00b8 01       		.byte	0x1
+ 660 00b9 49       		.uleb128 0x49
+ 661 00ba 13       		.uleb128 0x13
+ 662 00bb 01       		.uleb128 0x1
+ 663 00bc 13       		.uleb128 0x13
+ 664 00bd 00       		.byte	0
+ 665 00be 00       		.byte	0
+ 666 00bf 0E       		.uleb128 0xe
+ 667 00c0 21       		.uleb128 0x21
+ 668 00c1 00       		.byte	0
+ 669 00c2 49       		.uleb128 0x49
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 14
+
+
+ 670 00c3 13       		.uleb128 0x13
+ 671 00c4 2F       		.uleb128 0x2f
+ 672 00c5 0B       		.uleb128 0xb
+ 673 00c6 00       		.byte	0
+ 674 00c7 00       		.byte	0
+ 675 00c8 0F       		.uleb128 0xf
+ 676 00c9 34       		.uleb128 0x34
+ 677 00ca 00       		.byte	0
+ 678 00cb 03       		.uleb128 0x3
+ 679 00cc 0E       		.uleb128 0xe
+ 680 00cd 3A       		.uleb128 0x3a
+ 681 00ce 0B       		.uleb128 0xb
+ 682 00cf 3B       		.uleb128 0x3b
+ 683 00d0 0B       		.uleb128 0xb
+ 684 00d1 49       		.uleb128 0x49
+ 685 00d2 13       		.uleb128 0x13
+ 686 00d3 02       		.uleb128 0x2
+ 687 00d4 18       		.uleb128 0x18
+ 688 00d5 00       		.byte	0
+ 689 00d6 00       		.byte	0
+ 690 00d7 10       		.uleb128 0x10
+ 691 00d8 34       		.uleb128 0x34
+ 692 00d9 00       		.byte	0
+ 693 00da 03       		.uleb128 0x3
+ 694 00db 0E       		.uleb128 0xe
+ 695 00dc 3A       		.uleb128 0x3a
+ 696 00dd 0B       		.uleb128 0xb
+ 697 00de 3B       		.uleb128 0x3b
+ 698 00df 0B       		.uleb128 0xb
+ 699 00e0 49       		.uleb128 0x49
+ 700 00e1 13       		.uleb128 0x13
+ 701 00e2 3F       		.uleb128 0x3f
+ 702 00e3 19       		.uleb128 0x19
+ 703 00e4 3C       		.uleb128 0x3c
+ 704 00e5 19       		.uleb128 0x19
+ 705 00e6 00       		.byte	0
+ 706 00e7 00       		.byte	0
+ 707 00e8 11       		.uleb128 0x11
+ 708 00e9 34       		.uleb128 0x34
+ 709 00ea 00       		.byte	0
+ 710 00eb 03       		.uleb128 0x3
+ 711 00ec 0E       		.uleb128 0xe
+ 712 00ed 3A       		.uleb128 0x3a
+ 713 00ee 0B       		.uleb128 0xb
+ 714 00ef 3B       		.uleb128 0x3b
+ 715 00f0 0B       		.uleb128 0xb
+ 716 00f1 49       		.uleb128 0x49
+ 717 00f2 13       		.uleb128 0x13
+ 718 00f3 3F       		.uleb128 0x3f
+ 719 00f4 19       		.uleb128 0x19
+ 720 00f5 02       		.uleb128 0x2
+ 721 00f6 18       		.uleb128 0x18
+ 722 00f7 00       		.byte	0
+ 723 00f8 00       		.byte	0
+ 724 00f9 12       		.uleb128 0x12
+ 725 00fa 35       		.uleb128 0x35
+ 726 00fb 00       		.byte	0
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 15
+
+
+ 727 00fc 49       		.uleb128 0x49
+ 728 00fd 13       		.uleb128 0x13
+ 729 00fe 00       		.byte	0
+ 730 00ff 00       		.byte	0
+ 731 0100 13       		.uleb128 0x13
+ 732 0101 2E       		.uleb128 0x2e
+ 733 0102 00       		.byte	0
+ 734 0103 3F       		.uleb128 0x3f
+ 735 0104 19       		.uleb128 0x19
+ 736 0105 3C       		.uleb128 0x3c
+ 737 0106 19       		.uleb128 0x19
+ 738 0107 6E       		.uleb128 0x6e
+ 739 0108 0E       		.uleb128 0xe
+ 740 0109 03       		.uleb128 0x3
+ 741 010a 0E       		.uleb128 0xe
+ 742 010b 3A       		.uleb128 0x3a
+ 743 010c 0B       		.uleb128 0xb
+ 744 010d 3B       		.uleb128 0x3b
+ 745 010e 0B       		.uleb128 0xb
+ 746 010f 00       		.byte	0
+ 747 0110 00       		.byte	0
+ 748 0111 00       		.byte	0
+ 749              		.section	.debug_loc,"",%progbits
+ 750              	.Ldebug_loc0:
+ 751              	.LLST0:
+ 752 0000 24000000 		.4byte	.LVL4
+ 753 0004 28000000 		.4byte	.LVL5
+ 754 0008 0200     		.2byte	0x2
+ 755 000a 30       		.byte	0x30
+ 756 000b 9F       		.byte	0x9f
+ 757 000c 28000000 		.4byte	.LVL5
+ 758 0010 36000000 		.4byte	.LVL6
+ 759 0014 0100     		.2byte	0x1
+ 760 0016 53       		.byte	0x53
+ 761 0017 38000000 		.4byte	.LVL7
+ 762 001b 3C000000 		.4byte	.LVL8
+ 763 001f 0100     		.2byte	0x1
+ 764 0021 53       		.byte	0x53
+ 765 0022 00000000 		.4byte	0
+ 766 0026 00000000 		.4byte	0
+ 767              		.section	.debug_aranges,"",%progbits
+ 768 0000 24000000 		.4byte	0x24
+ 769 0004 0200     		.2byte	0x2
+ 770 0006 00000000 		.4byte	.Ldebug_info0
+ 771 000a 04       		.byte	0x4
+ 772 000b 00       		.byte	0
+ 773 000c 0000     		.2byte	0
+ 774 000e 0000     		.2byte	0
+ 775 0010 00000000 		.4byte	.LFB34
+ 776 0014 18000000 		.4byte	.LFE34-.LFB34
+ 777 0018 00000000 		.4byte	.LFB35
+ 778 001c A4000000 		.4byte	.LFE35-.LFB35
+ 779 0020 00000000 		.4byte	0
+ 780 0024 00000000 		.4byte	0
+ 781              		.section	.debug_ranges,"",%progbits
+ 782              	.Ldebug_ranges0:
+ 783 0000 00000000 		.4byte	.LFB34
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 16
+
+
+ 784 0004 18000000 		.4byte	.LFE34
+ 785 0008 00000000 		.4byte	.LFB35
+ 786 000c A4000000 		.4byte	.LFE35
+ 787 0010 00000000 		.4byte	0
+ 788 0014 00000000 		.4byte	0
+ 789              		.section	.debug_line,"",%progbits
+ 790              	.Ldebug_line0:
+ 791 0000 76010000 		.section	.debug_str,"MS",%progbits,1
+ 791      02002E01 
+ 791      00000201 
+ 791      FB0E0D00 
+ 791      01010101 
+ 792              	.LASF3:
+ 793 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 793      6E74385F 
+ 793      7400
+ 794              	.LASF23:
+ 795 000a 666C6167 		.ascii	"flag_systick\000"
+ 795      5F737973 
+ 795      7469636B 
+ 795      00
+ 796              	.LASF25:
+ 797 0017 6D794274 		.ascii	"myBtn\000"
+ 797      6E00
+ 798              	.LASF30:
+ 799 001d 546F7563 		.ascii	"Touch_init\000"
+ 799      685F696E 
+ 799      697400
+ 800              	.LASF26:
+ 801 0028 4D4F4445 		.ascii	"MODE_TEST\000"
+ 801      5F544553 
+ 801      5400
+ 802              	.LASF15:
+ 803 0032 75696E74 		.ascii	"uint8\000"
+ 803      3800
+ 804              	.LASF16:
+ 805 0038 666C6F61 		.ascii	"float\000"
+ 805      7400
+ 806              	.LASF1:
+ 807 003e 756E7369 		.ascii	"unsigned char\000"
+ 807      676E6564 
+ 807      20636861 
+ 807      7200
+ 808              	.LASF33:
+ 809 004c 4D463538 		.ascii	"MF58_control\000"
+ 809      5F636F6E 
+ 809      74726F6C 
+ 809      00
+ 810              	.LASF8:
+ 811 0059 6C6F6E67 		.ascii	"long unsigned int\000"
+ 811      20756E73 
+ 811      69676E65 
+ 811      6420696E 
+ 811      7400
+ 812              	.LASF5:
+ 813 006b 73686F72 		.ascii	"short unsigned int\000"
+ 813      7420756E 
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 17
+
+
+ 813      7369676E 
+ 813      65642069 
+ 813      6E7400
+ 814              	.LASF37:
+ 815 007e 73797374 		.ascii	"systickInt\000"
+ 815      69636B49 
+ 815      6E7400
+ 816              	.LASF4:
+ 817 0089 5F5F7569 		.ascii	"__uint16_t\000"
+ 817      6E743136 
+ 817      5F7400
+ 818              	.LASF17:
+ 819 0094 646F7562 		.ascii	"double\000"
+ 819      6C6500
+ 820              	.LASF7:
+ 821 009b 5F5F7569 		.ascii	"__uint32_t\000"
+ 821      6E743332 
+ 821      5F7400
+ 822              	.LASF38:
+ 823 00a6 6D61696E 		.ascii	"main\000"
+ 823      00
+ 824              	.LASF11:
+ 825 00ab 756E7369 		.ascii	"unsigned int\000"
+ 825      676E6564 
+ 825      20696E74 
+ 825      00
+ 826              	.LASF10:
+ 827 00b8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 827      206C6F6E 
+ 827      6720756E 
+ 827      7369676E 
+ 827      65642069 
+ 828              	.LASF12:
+ 829 00cf 75696E74 		.ascii	"uint8_t\000"
+ 829      385F7400 
+ 830              	.LASF20:
+ 831 00d7 73697A65 		.ascii	"sizetype\000"
+ 831      74797065 
+ 831      00
+ 832              	.LASF27:
+ 833 00e0 5379735F 		.ascii	"Sys_init\000"
+ 833      696E6974 
+ 833      00
+ 834              	.LASF9:
+ 835 00e9 6C6F6E67 		.ascii	"long long int\000"
+ 835      206C6F6E 
+ 835      6720696E 
+ 835      7400
+ 836              	.LASF35:
+ 837 00f7 6D61696E 		.ascii	"main.c\000"
+ 837      2E6300
+ 838              	.LASF18:
+ 839 00fe 63686172 		.ascii	"char\000"
+ 839      00
+ 840              	.LASF28:
+ 841 0103 4D463538 		.ascii	"MF58_init\000"
+ 841      5F696E69 
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 18
+
+
+ 841      7400
+ 842              	.LASF22:
+ 843 010d 736F6674 		.ascii	"softTimer\000"
+ 843      54696D65 
+ 843      7200
+ 844              	.LASF31:
+ 845 0117 546F7563 		.ascii	"Touch_process\000"
+ 845      685F7072 
+ 845      6F636573 
+ 845      7300
+ 846              	.LASF2:
+ 847 0125 73686F72 		.ascii	"short int\000"
+ 847      7420696E 
+ 847      7400
+ 848              	.LASF13:
+ 849 012f 75696E74 		.ascii	"uint16_t\000"
+ 849      31365F74 
+ 849      00
+ 850              	.LASF36:
+ 851 0138 433A5C55 		.ascii	"C:\\Users\\dell\\Documents\\PSoC Creator\\Workspace"
+ 851      73657273 
+ 851      5C64656C 
+ 851      6C5C446F 
+ 851      63756D65 
+ 852 0166 30335C44 		.ascii	"03\\Design01.cydsn\000"
+ 852      65736967 
+ 852      6E30312E 
+ 852      63796473 
+ 852      6E00
+ 853              	.LASF24:
+ 854 0178 675F5379 		.ascii	"g_SysTime\000"
+ 854      7354696D 
+ 854      6500
+ 855              	.LASF14:
+ 856 0182 75696E74 		.ascii	"uint32_t\000"
+ 856      33325F74 
+ 856      00
+ 857              	.LASF6:
+ 858 018b 6C6F6E67 		.ascii	"long int\000"
+ 858      20696E74 
+ 858      00
+ 859              	.LASF19:
+ 860 0194 6C6F6E67 		.ascii	"long double\000"
+ 860      20646F75 
+ 860      626C6500 
+ 861              	.LASF34:
+ 862 01a0 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 862      43313120 
+ 862      352E342E 
+ 862      31203230 
+ 862      31363036 
+ 863 01d3 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0plus -mthumb -"
+ 863      20726576 
+ 863      6973696F 
+ 863      6E203233 
+ 863      37373135 
+ 864 0206 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ARM GAS  C:\Users\dell\AppData\Local\Temp\ccUUF4jo.s 			page 19
+
+
+ 864      67202D66 
+ 864      66756E63 
+ 864      74696F6E 
+ 864      2D736563 
+ 865              	.LASF0:
+ 866 0232 7369676E 		.ascii	"signed char\000"
+ 866      65642063 
+ 866      68617200 
+ 867              	.LASF32:
+ 868 023e 5379735F 		.ascii	"Sys_process\000"
+ 868      70726F63 
+ 868      65737300 
+ 869              	.LASF21:
+ 870 024a 5F426F6F 		.ascii	"_Bool\000"
+ 870      6C00
+ 871              	.LASF29:
+ 872 0250 53595354 		.ascii	"SYSTICK_regSysTickISRCallback\000"
+ 872      49434B5F 
+ 872      72656753 
+ 872      79735469 
+ 872      636B4953 
+ 873              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -9,15 +9,13 @@
  *
  * ========================================
 */
-#ifndef _SYS_H
-#define _SYS_H
+#ifndef _SYSTICK_H
+#define _SYSTICK_H
 #include "myHeader.h"
- 
-void Sys_init(void);    
-void Sys_touchPress(uint8_t btnId);
-void Sys_touchShortPress(uint8_t btnId);
-void Sys_touchHold(uint8_t btnId);
-void Sys_RoColdHold(uint8_t btnId);
-void Sys_process(void);
+
+extern uint32_t g_SysTime;
+
+void SYSTICK_regSysTickISRCallback(void *func);
+uint32_t elapstime(uint32_t newTime, uint32_t oldTime);    
 #endif    
 /* [] END OF FILE */
