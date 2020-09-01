@@ -638,15 +638,15 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 * btnRO initialization values for RAM data structure
 *******************************************************************************/
 /* CUSTOM */
-#define CapSense_BTNRO_RESOLUTION               (CapSense_RES11BIT)
-#define CapSense_BTNCOLD_RESOLUTION             (CapSense_RES11BIT)
-#define CapSense_BTNHOT_RESOLUTION              (CapSense_RES11BIT)
+#define CapSense_BTNRO_RESOLUTION               (CapSense_RES10BIT)
+#define CapSense_BTNCOLD_RESOLUTION             (CapSense_RES10BIT)
+#define CapSense_BTNHOT_RESOLUTION              (CapSense_RES10BIT)
 #define CapSense_BTNLOCK_RESOLUTION             (CapSense_RES10BIT)
 
-#define CapSense_BTNRO_FINGER_TH                (40)
-#define CapSense_BTNCOLD_FINGER_TH              (80)
-#define CapSense_BTNHOT_FINGER_TH               (80)
-#define CapSense_BTNLOCK_FINGER_TH              (40)
+#define CapSense_BTNRO_FINGER_TH                (100)
+#define CapSense_BTNCOLD_FINGER_TH              (100)
+#define CapSense_BTNHOT_FINGER_TH               (100)
+#define CapSense_BTNLOCK_FINGER_TH              (100)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 //#define CapSense_BTNRO_RESOLUTION               (CapSense_RES10BIT)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -655,9 +655,9 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 //#define CapSense_BTNRO_NNOISE_TH                (40u)
 //#define CapSense_BTNRO_HYSTERESIS               (10u)
 //#define CapSense_BTNRO_FINGER_TH                (80)
-#define CapSense_BTNRO_NOISE_TH                 (CapSense_BTNRO_FINGER_TH/2)
+#define CapSense_BTNRO_NOISE_TH                 (CapSense_BTNRO_FINGER_TH/5)
 #define CapSense_BTNRO_NNOISE_TH                (CapSense_BTNRO_NOISE_TH)
-#define CapSense_BTNRO_HYSTERESIS               (CapSense_BTNRO_NOISE_TH/4)
+#define CapSense_BTNRO_HYSTERESIS               (CapSense_BTNRO_FINGER_TH/8)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define CapSense_BTNRO_ON_DEBOUNCE              (3u)
 #define CapSense_BTNRO_LOW_BSLN_RST             (30u)
@@ -681,9 +681,9 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 //#define CapSense_BTNCOLD_NNOISE_TH              (60u)
 //#define CapSense_BTNCOLD_HYSTERESIS             (15u)
 //#define CapSense_BTNCOLD_FINGER_TH              (120)
-#define CapSense_BTNCOLD_NOISE_TH               (CapSense_BTNCOLD_FINGER_TH/2)
+#define CapSense_BTNCOLD_NOISE_TH               (CapSense_BTNCOLD_FINGER_TH/5)
 #define CapSense_BTNCOLD_NNOISE_TH              (CapSense_BTNCOLD_NOISE_TH)
-#define CapSense_BTNCOLD_HYSTERESIS             (CapSense_BTNCOLD_NOISE_TH/4)
+#define CapSense_BTNCOLD_HYSTERESIS             (CapSense_BTNCOLD_FINGER_TH/8)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define CapSense_BTNCOLD_ON_DEBOUNCE            (3u)
 #define CapSense_BTNCOLD_LOW_BSLN_RST           (30u)
@@ -707,9 +707,9 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 //#define CapSense_BTNHOT_NNOISE_TH               (112u)
 //#define CapSense_BTNHOT_HYSTERESIS              (28u)
 //#define CapSense_BTNHOT_FINGER_TH               (96)
-#define CapSense_BTNHOT_NOISE_TH                (CapSense_BTNHOT_FINGER_TH/2)
+#define CapSense_BTNHOT_NOISE_TH                (CapSense_BTNHOT_FINGER_TH/5)
 #define CapSense_BTNHOT_NNOISE_TH               (CapSense_BTNHOT_NOISE_TH)
-#define CapSense_BTNHOT_HYSTERESIS              (CapSense_BTNHOT_NOISE_TH/4)
+#define CapSense_BTNHOT_HYSTERESIS              (CapSense_BTNHOT_FINGER_TH/8)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define CapSense_BTNHOT_ON_DEBOUNCE             (3u)
 #define CapSense_BTNHOT_LOW_BSLN_RST            (30u)
@@ -733,9 +733,9 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 //#define CapSense_BTNLOCK_NNOISE_TH              (64u)
 //#define CapSense_BTNLOCK_HYSTERESIS             (16u)
 //#define CapSense_BTNLOCK_FINGER_TH              (112)
-#define CapSense_BTNLOCK_NOISE_TH               (CapSense_BTNLOCK_FINGER_TH/2)
+#define CapSense_BTNLOCK_NOISE_TH               (CapSense_BTNLOCK_FINGER_TH/5)
 #define CapSense_BTNLOCK_NNOISE_TH              (CapSense_BTNLOCK_NOISE_TH)
-#define CapSense_BTNLOCK_HYSTERESIS             (CapSense_BTNLOCK_NOISE_TH/4)
+#define CapSense_BTNLOCK_HYSTERESIS             (CapSense_BTNLOCK_FINGER_TH/8)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 #define CapSense_BTNLOCK_ON_DEBOUNCE            (3u)
 #define CapSense_BTNLOCK_LOW_BSLN_RST           (30u)

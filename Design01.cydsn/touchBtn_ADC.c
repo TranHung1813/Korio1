@@ -81,7 +81,7 @@ void Touch_process(void)
             startConv = false;
             CapSense_ScanAllWidgets();
             CapSense_ProcessAllWidgets();
-            CapSense_UpdateAllBaselines();
+            //CapSense_UpdateAllBaselines();
             for(uint8_t i = 0; i < NUM_TOUCH_BTN; i++) 
             {
                 sensorParams[i].baseline = getDataMode(MODE_BASELINE, i);

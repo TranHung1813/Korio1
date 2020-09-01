@@ -145,6 +145,21 @@ static void Lay_nuoc_HOT(void)
     autoLock = false;
 }
 
+static void Lay_nuoc_All(void)
+{
+    dangLayNuoc = true;
+    thoiGianLayNuoc = g_SysTime;
+    VL1_ON;
+    VL2_ON;
+    VL3_ON;
+    ledROIsBlink = true;
+    ledCOLDIsBlink = true;
+    ledHOTIsBlink = true;
+    ledROBinkTime = g_SysTime;
+    ledCOLDBinkTime = g_SysTime;
+    ledHOTBinkTime = g_SysTime;
+}
+
 static void SwitchState(uint8_t status)
 {
     if(status == LOCK)
@@ -216,6 +231,13 @@ void Sys_init(void)
     Dung_lay_nuoc();
 }
 
+enum
+{
+    ULOCK_ALL0 = 0,
+    ULOCK_ALL1,
+    ULOCK_ALL2,
+} Ulock_State_t;
+uint8_t unLockAll = ULOCK_ALL0;
 void Sys_touchPress(uint8_t btnId)
 {
 //    if(lockStatus == LOCK)
@@ -232,6 +254,7 @@ void Sys_touchPress(uint8_t btnId)
     
     if(dangLayNuoc) 
     {
+        if(unLockAll == ULOCK_ALL2) unLockAll = ULOCK_ALL0;
         Dung_lay_nuoc();
         Beep();
     }
@@ -240,7 +263,7 @@ void Sys_touchPress(uint8_t btnId)
         if(lockStatus == UNLOCK)
         {
             if(btnId == BTN_RO)
-            {           
+            {          
                 Beep();
                 Lay_nuoc_RO();
             }
@@ -255,12 +278,30 @@ void Sys_touchPress(uint8_t btnId)
                 Lay_nuoc_HOT();                
             }
         }
+//        else if(lockStatus == LOCK)
+//        {
+            if(btnId == BTN_LOCK)
+            { 
+                if(unLockAll == ULOCK_ALL0) unLockAll = ULOCK_ALL1;               
+            }
+            if(btnId == BTN_RO)
+            { 
+                if(unLockAll == ULOCK_ALL1)
+                {
+                    unLockAll = ULOCK_ALL2;
+                    Beep();
+                    Lay_nuoc_All();
+                }
+            }
+
+//        }
     } 
 }
 
 void Sys_touchShortPress(uint8_t btnId)
 {
     uint8_t id = btnId;
+    if(unLockAll != ULOCK_ALL0) unLockAll = ULOCK_ALL0;
     if(enteringTestMode) 
     {
         if(btnId == BTN_LOCK) 
