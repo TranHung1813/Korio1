@@ -1,4 +1,4 @@
---------------- Build Started: 09/01/2020 11:22:29 Project: Design01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 09/01/2020 11:38:25 Project: Design01, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m0plus -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0p\ARM_GCC_541\Debug/softDebug.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c softDebug.c -o .\CortexM0p\ARM_GCC_541\Debug\softDebug.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0plus -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0p\ARM_GCC_541\Debug/sys.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c sys.c -o .\CortexM0p\ARM_GCC_541\Debug\sys.o
@@ -27,6 +27,6 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S "C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\CortexM0p\ARM_GCC_541\Debug\Design01.elf"
-Flash used: 14966 of 32768 bytes (45.7%).
+Flash used: 15030 of 32768 bytes (45.9%).
 SRAM used: 1904 of 4096 bytes (46.5%). Stack: 1024 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 09/01/2020 11:22:35 ---------------
+--------------- Build Succeeded: 09/01/2020 11:38:32 ---------------

@@ -643,10 +643,10 @@ typedef uint16 CapSense_THRESHOLD_TYPE;
 #define CapSense_BTNHOT_RESOLUTION              (CapSense_RES10BIT)
 #define CapSense_BTNLOCK_RESOLUTION             (CapSense_RES10BIT)
 
-#define CapSense_BTNRO_FINGER_TH                (100)
-#define CapSense_BTNCOLD_FINGER_TH              (100)
-#define CapSense_BTNHOT_FINGER_TH               (100)
-#define CapSense_BTNLOCK_FINGER_TH              (100)
+#define CapSense_BTNRO_FINGER_TH                (108)
+#define CapSense_BTNCOLD_FINGER_TH              (92)
+#define CapSense_BTNHOT_FINGER_TH               (86)
+#define CapSense_BTNLOCK_FINGER_TH              (79)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 //#define CapSense_BTNRO_RESOLUTION               (CapSense_RES10BIT)
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

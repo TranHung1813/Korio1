@@ -50,6 +50,7 @@ static uint16_t getDataMode(modeData_t mode, uint8_t btnId)
     return 0xFFFF;
 }
 /* -------------------------------*/
+uint16_t retacd;
 void Touch_init(void)
 {
     CapSense_Start();	
@@ -58,6 +59,10 @@ void Touch_init(void)
     CyDelay(100);
 	/* Initialize the baselines of all CapSense widgets. */ 
 	CapSense_InitializeAllBaselines();
+    retacd = CapSense_CSDCalibrateWidget(CapSense_BTNRO_WDGT_ID,65);
+    retacd = CapSense_CSDCalibrateWidget(CapSense_BTNCOLD_WDGT_ID,65);
+    retacd = CapSense_CSDCalibrateWidget(CapSense_BTNHOT_WDGT_ID,65);
+    retacd = CapSense_CSDCalibrateWidget(CapSense_BTNLOCK_WDGT_ID,65);
 }
 
 static bool startConv = false;
