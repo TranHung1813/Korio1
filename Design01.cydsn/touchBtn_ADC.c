@@ -171,8 +171,8 @@ void Touch_pressEvent(uint8_t btnId)
 void Touch_holdEvent(uint8_t btnId, uint32_t timeHolding)
 {
     LOG_INFO("btn %d hold, timeholding %d\r\n", btnId, timeHolding);
-    if(timeHolding == TOUCH_TIME_HOLDING2) Sys_touchHold(btnId);
-    else if(timeHolding == TOUCH_TIME_HOLDING1) Sys_RoColdHold(btnId);
+    if(timeHolding == TOUCH_TIME_HOLDING2) Sys_touchHold(btnId);//giu LOCK de doi trang thai, giu HOT de keu bipbip
+    else if(timeHolding == TOUCH_TIME_HOLDING1) Sys_RoColdHold(btnId);//lay nuoc RO, COLD o trang thai LOCK
 }
 /* -------------------------------*/
 void Touch_releaseEvent(uint8_t btnId, uint32_t timeHolding)

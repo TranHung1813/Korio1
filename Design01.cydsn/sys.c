@@ -153,7 +153,7 @@ static void Lay_nuoc_All(void)
     VL2_ON;
     VL3_ON;
     ledROIsBlink = true;
-    ledCOLDIsBlink = true;
+    ledCOLDIsBlink = true; 
     ledHOTIsBlink = true;
     ledROBinkTime = g_SysTime;
     ledCOLDBinkTime = g_SysTime;
@@ -305,7 +305,7 @@ void Sys_touchShortPress(uint8_t btnId)
     if(enteringTestMode) 
     {
         if(btnId == BTN_LOCK) 
-        {
+        { 
             enteringTestMode = false;
             if(MODE_TEST == false){
                 MODE_TEST = true;

@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_SensingCSD_LL.h">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="Workspace03\Design01\Source Files\sys\sys.c">
 <ExpandedNodeIds>
 <v>Workspace03</v>
 <v>Workspace03\Design01</v>
@@ -49,6 +49,30 @@
 <v>Workspace03\Design01\Generated_Source\PSoC4\CapSense</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
+<v>Workspace03\Design01\Design01.cydwr\Interrupts</v>
+<v>Workspace03\Design01\Design01.cydwr\System</v>
+<v>Workspace03\Design01\Design01.cydwr\Directives</v>
+<v>Workspace03\Design01\Design01.cydwr\Flash Security</v>
+<v>Workspace03\Design01\Header Files</v>
+<v>Workspace03\Design01\Header Files\cyapicallbacks.h</v>
+<v>Workspace03\Design01\Header Files\myHeader.h</v>
+<v>Workspace03\Design01\Header Files\untitled01.txt</v>
+<v>Workspace03\Design01\Source Files</v>
+<v>Workspace03\Design01\Source Files\softDebug</v>
+<v>Workspace03\Design01\Source Files\softDebug\softDebug.c</v>
+<v>Workspace03\Design01\Source Files\softDebug\softDebug.h</v>
+<v>Workspace03\Design01\Source Files\sys</v>
+<v>Workspace03\Design01\Source Files\sys\sys.c</v>
+<v>Workspace03\Design01\Source Files\sys\sys.h</v>
+<v>Workspace03\Design01\Source Files\sysTick</v>
+<v>Workspace03\Design01\Source Files\sysTick\sysTick.c</v>
+<v>Workspace03\Design01\Source Files\sysTick\sysTick.h</v>
+<v>Workspace03\Design01\Source Files\touchbtn_ADC</v>
+<v>Workspace03\Design01\Source Files\touchbtn_ADC\touchBtn_ADC.c</v>
+<v>Workspace03\Design01\Source Files\touchbtn_ADC\touchBtn_ADC.h</v>
+<v>Workspace03\Design01\Source Files\main.c</v>
+<v>Workspace03\Design01\Generated_Source</v>
+<v>Workspace03\Design01\Generated_Source\PSoC4</v>
 <v>Workspace03\Design01\Generated_Source\PSoC4\Buzzer</v>
 <v>Workspace03\Design01\Generated_Source\PSoC4\CapSense</v>
 <v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense.h</v>
@@ -59,30 +83,6 @@
 <v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Control.c</v>
 <v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Control.h</v>
 <v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Filter.c</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Filter.h</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_INT.c</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Processing.c</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Processing.h</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_RegisterMap.h</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Sensing.c</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Sensing.h</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_SensingCSD_LL.c</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_SensingCSD_LL.h</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Structure.c</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Structure.h</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Tuner.c</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense\CapSense_Tuner.h</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\CapSense_ISR</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\COLD_K1</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\cy_boot</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\cy_lfclk</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\Em_EEPROM_Dynamic</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\LED_COLD</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\LED_HOT</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\LED_LOCK</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\LED_RO</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\SW_Tx_UART</v>
-<v>Workspace03\Design01\Generated_Source\PSoC4\VL1</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -163,38 +163,6 @@
 <VisibleNodeIds>
 <v>Workspace03</v>
 <v>Workspace03\Design01</v>
-<v>Workspace03\Design01\CortexM0p</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\Buzzer.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\Buzzer_PM.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_Adc.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_Adc_INT.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_Control.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_Filter.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_INT.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_ISR.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_Processing.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_Sensing.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_SensingCSD_LL.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_Structure.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CapSense_Tuner.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\Cm0plusStart.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\COLD_K1.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\COLD_K1_PM.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CyLFClk.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\LED_COLD.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\LED_COLD_PM.lst</v>
-<v>Workspace03\Design01\CortexM0p\ARM_GCC_541\Debug\Listing Files\LED_HOT.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -242,9 +210,14 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\Design01.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\Design01.cydsn\Design01.cydwr" />
+<name v=".\Design01.cydsn\myHeader.h" />
+<name v=".\Design01.cydsn\softDebug.c" />
+<name v=".\Design01.cydsn\softDebug.h" />
+<name v=".\Design01.cydsn\sys.c" />
+<name v=".\Design01.cydsn\touchBtn_ADC.c" />
+<name v=".\Design01.cydsn\Generated_Source\PSoC4\CapSense_Configuration.h" />
 <name v=".\Design01.cydsn\main.c" />
+<name v=".\Design01.cydsn\sysTick.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -252,7 +225,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="776, 459" SelectedTabbedMdiWindow="1cac9f82-fc4e-4001-a7a3-f8d68dac11e9"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="b761508f-212a-4319-9c6d-c468df5644d9" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\TopDesign\TopDesign.cysch" Guid="8333351d-0a62-437d-a68e-b7d6579e5bdd" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\Design01.cydwr" Guid="04c97f39-f372-4b30-bfe4-e2dba123d9ce" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\main.c" Guid="1cac9f82-fc4e-4001-a7a3-f8d68dac11e9" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="776, 459" SelectedTabbedMdiWindow="d4e83f59-2e96-45ff-8109-c2dd055d5825"><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\myHeader.h" Guid="3af3e9ae-59a7-4640-bdc5-a44abdf57c22" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\softDebug.c" Guid="2c023f59-21dc-4c8e-b3ff-7607c3238cc6" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\softDebug.h" Guid="b9103964-ab62-4d2f-b76a-9ef89a14d520" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\sys.c" Guid="d4e83f59-2e96-45ff-8109-c2dd055d5825" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\touchBtn_ADC.c" Guid="690cea28-6b03-4d0a-bd65-a64809308624" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\Generated_Source\PSoC4\CapSense_Configuration.h" Guid="d116085f-0d68-414c-b07b-c940dea33a60" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\main.c" Guid="6e3892a2-451a-45aa-8c46-c739b8c0de40" /><DocumentWindow Key="C:\Users\dell\Documents\PSoC Creator\Workspace03\Design01.cydsn\sysTick.c" Guid="96dc31f6-6fcb-4520-8d28-934606421dc1" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
